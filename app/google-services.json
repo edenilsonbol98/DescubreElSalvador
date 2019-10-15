@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "48152697256",
+    "firebase_url": "https://descrubreelsalvador.firebaseio.com",
+    "project_id": "descrubreelsalvador",
+    "storage_bucket": "descrubreelsalvador.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:48152697256:android:e89da71cfbfee8d45be59d",
+        "android_client_info": {
+          "package_name": "sv.edu.catolica.bolanios.jonathan.descubreelsalvador"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "48152697256-ko4ncb52pn06nfpptqo99t7c3t2p31h8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCSTB3nVuzhpuTtif9O50bvVb0zLE86UOk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "48152697256-ko4ncb52pn06nfpptqo99t7c3t2p31h8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
