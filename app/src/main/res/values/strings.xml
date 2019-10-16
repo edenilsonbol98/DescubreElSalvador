@@ -17,5 +17,20 @@
     <string name="agrega_tu_nombre">Agrega tu nombre:</string>
     <string name="nombre">Nombre</string>
     <string name="registrarse">Registrarse</string>
+    <string name="title_activity_menu_slide">MenuSlideActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+
+    <string name="title_activity_menu_slider">MenuSliderActivity</string>
+    <string name="inicio">Inicio</string>
+    <string name="agregar_publicaci_n">Agregar publicación</string>
+    <string name="donde_encuentras_todo_lo_que_necesitas">Donde encuentras todo lo que necesitas</string>
+    <string name="descubriendo_el_salvador">Descubriendo EL SALVADOR</string>
+    <string name="chat">Chat</string>
 
 </resources>
