@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "48152697256",
-    "firebase_url": "https://descrubreelsalvador.firebaseio.com",
-    "project_id": "descrubreelsalvador",
-    "storage_bucket": "descrubreelsalvador.appspot.com"
+    "project_number": "997000696490",
+    "firebase_url": "https://pruebas-c4e21.firebaseio.com",
+    "project_id": "pruebas-c4e21",
+    "storage_bucket": "pruebas-c4e21.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:48152697256:android:e89da71cfbfee8d45be59d",
+        "mobilesdk_app_id": "1:997000696490:android:04a53c3614b6a4d7b5f6d3",
         "android_client_info": {
           "package_name": "sv.edu.catolica.bolanios.jonathan.descubreelsalvador"
         }
       },
       "oauth_client": [
         {
-          "client_id": "48152697256-ko4ncb52pn06nfpptqo99t7c3t2p31h8.apps.googleusercontent.com",
+          "client_id": "997000696490-g6gj8oihqfl57q7rngc0fji7bd7kooob.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCSTB3nVuzhpuTtif9O50bvVb0zLE86UOk"
+          "current_key": "AIzaSyAGhuNbP8Uv2NJV0sIe0R_2Ga3wzuKnuzQ"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "48152697256-ko4ncb52pn06nfpptqo99t7c3t2p31h8.apps.googleusercontent.com",
+              "client_id": "997000696490-g6gj8oihqfl57q7rngc0fji7bd7kooob.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

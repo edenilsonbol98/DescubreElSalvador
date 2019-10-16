@@ -18,4 +18,8 @@ public class MainActivity extends AppCompatActivity {
         Intent signid = new Intent(MainActivity.this,Registrarse.class);
         startActivity(signid);
     }
+
+    public void logueo(View view) {
+
+    }
 }

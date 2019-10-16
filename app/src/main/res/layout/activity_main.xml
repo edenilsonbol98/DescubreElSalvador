@@ -35,7 +35,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/ingresar"
-        android:drawableLeft="@android:drawable/ic_menu_send"/>
+        android:drawableLeft="@android:drawable/ic_menu_send"
+        android:onClick="logueo"/>
     <Button
         android:layout_marginTop="25dp"
         android:layout_width="match_parent"
