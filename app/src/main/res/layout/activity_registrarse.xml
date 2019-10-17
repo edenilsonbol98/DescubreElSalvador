@@ -1,133 +1,163 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Registrarse"
     android:orientation="vertical"
-    android:padding="10dp">
+    >
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+       android:background="@drawable/fondoesa"
+        android:scaleType="centerCrop"
+        />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Registro"
-        android:textSize="25sp"
-        android:textAlignment="center"/>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="@string/nombre"
-    android:textSize="20sp"
-    />
-        <EditText
-            android:id="@+id/etNombre"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/agrega_tu_nombre"
-            android:textAlignment="center"
+        android:layout_height="match_parent"
+        android:background="#d8000000"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="172dp"
+            android:layout_height="138dp"
+            android:background="@drawable/icono3"
             />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/apellido"
-            android:textSize="20sp"/>
-        <EditText
-            android:id="@+id/etApellido"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/agrega_tu_apellido"
-            android:textAlignment="center"
-            />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/tel_fono"
-            android:textSize="20sp"/>
-        <EditText
-            android:id="@+id/etNumero"
+            android:text=".."
+            android:textSize="25sp"
+            android:textColor="#ffffff"
+            android:textAlignment="center"/>
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/numer"
-            android:textAlignment="center"
-            android:inputType="number"
-            />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/usuario"
-            android:textSize="20sp"/>
-        <EditText
-            android:id="@+id/etUsuario"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/etNombre"
+                android:layout_width="match_parent"
+                android:layout_height="37dp"
+                android:background="@drawable/input"
+                android:hint="@string/agrega_tu_nombre"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:paddingLeft="10dp"
+                android:paddingBottom="10dp"
+                android:textColorHint="@color/Blanco" />
+
+
+            <EditText
+                android:id="@+id/etApellido"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:background="@drawable/input"
+                android:hint="@string/agrega_tu_apellido"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:paddingLeft="10dp"
+                android:paddingBottom="10dp"
+                android:textColorHint="@color/Blanco" />
+
+
+            <EditText
+                android:id="@+id/etNumero"
+                android:layout_width="match_parent"
+                android:layout_height="34dp"
+                android:background="@drawable/input"
+                android:hint="@string/numero_de_telefono"
+                android:inputType="number"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:paddingLeft="10dp"
+                android:paddingBottom="10dp"
+                android:textColorHint="@color/Blanco" />
+
+
+            <EditText
+                android:id="@+id/etUsuario"
+                android:layout_width="match_parent"
+                android:layout_height="34dp"
+                android:background="@drawable/input"
+                android:hint="@string/nombre_de_usuario"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:paddingLeft="10dp"
+                android:paddingBottom="10dp"
+                android:textColorHint="@color/Blanco" />
+
+
+
+            <EditText
+                android:id="@+id/etContraseña"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:paddingLeft="10dp"
+                android:paddingBottom="10dp"
+
+                android:background="@drawable/input"
+                android:hint="@string/contrase_a"
+                android:inputType="textPassword"
+
+                android:textColorHint="@color/Blanco" />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/nombre_de_usuario"
-            android:textAlignment="center"
-            />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/contrase_a"
-            android:textSize="20sp"/>
-        <EditText
-            android:id="@+id/etContraseña"
+            android:orientation="horizontal"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/departamento"
+                android:textSize="20sp"
+                android:textColor="@color/Blanco"
+                android:paddingRight="10dp"/>
+
+            <Spinner
+                android:id="@+id/spDepartamento"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/Blanco"
+
+
+                />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnRegistrarse"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="*********"
-            android:inputType="textPassword"
-            android:textAlignment="center"
-            />
-    </LinearLayout>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/direcci_n_de_residencia"
-        android:textSize="20sp"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/departamento"
-            android:textSize="20sp"/>
-        <Spinner
-            android:id="@+id/spDepartamento"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"/>
+            android:text="@string/registrarse"
+            android:drawableLeft="@android:drawable/ic_menu_send"
+            android:onClick="Registrar"
+            android:background="@drawable/fondoboton"
+            android:elevation="5dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:paddingLeft="10dp"
+            android:paddingBottom="10dp"
+            android:layout_marginTop="40dp"/>
+
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btnRegistrarse"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/registrarse"
-        android:drawableLeft="@android:drawable/ic_menu_send"
-        android:onClick="Registrar"/>
-</LinearLayout>
+
+
+
+
+</RelativeLayout>

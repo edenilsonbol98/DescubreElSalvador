@@ -7,14 +7,14 @@
     <string name="municipio">Municipio</string>
     <string name="departamento">Departamento</string>
     <string name="direcci_n_de_residencia">Dirección de residencia</string>
-    <string name="contrase_a">Contraseña</string>
+    <string name="contrase">Contraseña</string>
     <string name="nombre_de_usuario">Nombre de usuario</string>
     <string name="usuario">Usuario:</string>
     <string name="tel_fono">Teléfono:</string>
     <string name="numer">########</string>
-    <string name="agrega_tu_apellido">Agrega tu apellido</string>
+    <string name="agrega_tu_apellido">Apellidos</string>
     <string name="apellido">Apellido:</string>
-    <string name="agrega_tu_nombre">Agrega tu nombre:</string>
+    <string name="agrega_tu_nombre">Nombres</string>
     <string name="nombre">Nombre</string>
     <string name="registrarse">Registrarse</string>
     <string name="title_activity_menu_slide">MenuSlideActivity</string>
@@ -32,5 +32,7 @@
     <string name="donde_encuentras_todo_lo_que_necesitas">Donde encuentras todo lo que necesitas</string>
     <string name="descubriendo_el_salvador">Descubriendo EL SALVADOR</string>
     <string name="chat">Chat</string>
+    <string name="contrase_a">Contraseña</string>
+    <string name="numero_de_telefono">Numero de telefono</string>
 
 </resources>
