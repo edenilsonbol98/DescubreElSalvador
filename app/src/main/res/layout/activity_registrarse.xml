@@ -22,10 +22,9 @@
         android:gravity="center">
 
         <ImageView
-            android:layout_width="172dp"
-            android:layout_height="138dp"
-            android:background="@drawable/icono3"
-            />
+            android:layout_width="303dp"
+            android:layout_height="113dp"
+            android:background="@drawable/descubrelogo" />
 
         <TextView
             android:layout_width="match_parent"
