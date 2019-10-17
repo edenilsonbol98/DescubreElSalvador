@@ -34,5 +34,7 @@
     <string name="chat">Chat</string>
     <string name="contrase_a">Contraseña</string>
     <string name="numero_de_telefono">Numero de telefono</string>
+    <string name="iniciar_sesi_n">Iniciar sesión</string>
+    <string name="facebook">Iniciar con Facebook</string>
 
 </resources>
