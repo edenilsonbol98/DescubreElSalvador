@@ -41,7 +41,7 @@
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="15dp"
                 android:background="@drawable/input"
-                android:hint="Correo electrónico"
+                android:hint="@string/correo_electr_nico"
                 android:paddingLeft="10dp"
                 android:paddingBottom="10dp"
                 android:textColorHint="@color/Blanco" />
@@ -67,10 +67,10 @@
 
 
         <Button
-            android:id="@+id/btnRegistrarse"
+            android:id="@+id/btnLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Iniciar sesión"
+            android:text="@string/iniciar_sesi"
             android:background="@drawable/fondoboton"
             android:layout_marginBottom="15dp"
             android:layout_marginLeft="20dp"

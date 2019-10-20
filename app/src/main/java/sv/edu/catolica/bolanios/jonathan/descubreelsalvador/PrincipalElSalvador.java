@@ -12,7 +12,6 @@ public class PrincipalElSalvador extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal_el_salvador);
 
-        Intent llamarMenu = new Intent(getApplicationContext(),MenuSliderActivity.class);
-        startActivity(llamarMenu);
+
     }
 }

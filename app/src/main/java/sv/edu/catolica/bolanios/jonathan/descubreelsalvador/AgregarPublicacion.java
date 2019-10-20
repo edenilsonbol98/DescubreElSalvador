@@ -18,7 +18,7 @@ public class AgregarPublicacion extends AppCompatActivity {
         contexto= this;
         Button botonAgregarTel = (Button) findViewById(R.id.btnmas1);
         Button botonAgregarcel = (Button) findViewById(R.id.btnagreCel);
-        Button botoncalendario = (Button) findViewById(R.id.btnCalendario);
+
 
 
         botonAgregarTel.setOnClickListener(new View.OnClickListener() {
@@ -33,11 +33,6 @@ public class AgregarPublicacion extends AppCompatActivity {
                 new Dialogo_telefono(contexto);
             }
         });
-        botoncalendario.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                new Dialogo_telefono(contexto);
-            }
-        });
+
     }
 }
