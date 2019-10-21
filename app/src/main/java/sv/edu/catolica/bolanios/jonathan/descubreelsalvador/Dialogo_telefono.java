@@ -23,6 +23,7 @@ public class Dialogo_telefono {
         EditText telCel = (EditText) dialogo.findViewById(R.id.txtCelular);
         Button btnagregar = (Button) dialogo.findViewById(R.id.btnAgregarTel);
         telFijo.setInputType(InputType.TYPE_CLASS_NUMBER);
+        telCel.setInputType(InputType.TYPE_CLASS_NUMBER);
 
         btnagregar.setOnClickListener(new View.OnClickListener() {
             @Override

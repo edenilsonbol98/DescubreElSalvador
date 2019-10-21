@@ -5,7 +5,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="245dp"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         >
 
@@ -24,7 +24,9 @@
             android:layout_width="308dp"
             android:layout_height="47dp"
             android:layout_marginTop="15sp"
-android:layout_gravity="center"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="center"
             android:background="@drawable/inputnegro"
             android:hint="@string/fijo"
             android:paddingLeft="20sp" />
@@ -35,6 +37,8 @@ android:layout_gravity="center"
             android:layout_width="308dp"
             android:layout_height="47dp"
             android:layout_marginTop="15sp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
             android:background="@drawable/inputnegro"
             android:hint="@string/de_celular"
             android:paddingLeft="20sp"
@@ -47,6 +51,8 @@ android:layout_gravity="center"
             android:layout_gravity="center"
             android:layout_marginTop="20sp"
             android:background="@drawable/boton_publicacion"
-            android:text="Agregar" />
+            android:text="Agregar"
+            android:layout_marginBottom="10dp"
+            />
     </LinearLayout>
 </LinearLayout>

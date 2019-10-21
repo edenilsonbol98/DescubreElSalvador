@@ -42,7 +42,9 @@
             android:layout_marginRight="20dp"
             android:paddingLeft="10dp"
             android:paddingBottom="10dp"
-            android:layout_marginTop="40dp"/>
+            android:layout_marginTop="40dp"
+            android:onClick="irSesion"
+            />
         <Button
             android:id="@+id/btnfacebok"
             android:layout_width="match_parent"

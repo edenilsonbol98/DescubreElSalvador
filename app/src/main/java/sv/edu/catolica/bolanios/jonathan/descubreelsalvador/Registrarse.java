@@ -2,6 +2,7 @@ package sv.edu.catolica.bolanios.jonathan.descubreelsalvador;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -70,4 +71,6 @@ public class Registrarse extends AppCompatActivity {
 
 
     }
+
+
 }
