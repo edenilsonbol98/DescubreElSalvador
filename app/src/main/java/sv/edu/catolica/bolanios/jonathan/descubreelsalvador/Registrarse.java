@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -29,9 +30,8 @@ public class Registrarse extends AppCompatActivity {
     private static final String TAG = "bi";
     private EditText nombre,apellido,telefono,usuario,contraseña;
     private Spinner departamento;
+    private Button Registrarse;
 
-    FirebaseDatabase ingreso;
-    DatabaseReference referencias;
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
 
@@ -50,54 +50,55 @@ public class Registrarse extends AppCompatActivity {
         usuario=findViewById(R.id.etUsuario);
         contraseña=findViewById(R.id.etContraseña);
         departamento=findViewById(R.id.spDepartamento);
+
         String [] opcionesDepartamento={"Ahuachapán","Sonsonate","Santa Ana","San Salvador","Cuscatlán","Cabañas","Chalatenango","La Libertad","La Paz","San Vicente","Morazán","Usulután","San Miguel","La Unión"};
 
    ArrayAdapter<String> adaptador = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,opcionesDepartamento);
    departamento.setAdapter(adaptador);
+   Registrarse=findViewById(R.id.btnRegistrarse);
 
-        InicializarFirebase();
-    }
-
-    public void InicializarFirebase(){
-        FirebaseApp.initializeApp(this);
-        ingreso=FirebaseDatabase.getInstance();
-        referencias= FirebaseDatabase.getInstance().getReference();
-    }
-
-    public void Registrar(View view) {
-       final String nom =nombre.getText().toString();
-       final String apell =apellido.getText().toString();
-        final int telef =Integer.parseInt(telefono.getText().toString()) ;
-        final String email =usuario.getText().toString();
-        final String password= contraseña.getText().toString();
-        final String select=departamento.getSelectedItem().toString();
-
-        mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(Registrarse.this,new OnCompleteListener<AuthResult>() {
+     Registrarse.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
-                 ReUsuario datos=new ReUsuario();
-                 datos.setNombre(nom);
-                 datos.setApellido(apell);
-                 datos.setTelefono(telef);
-                 datos.setUsuario(email);
-                 datos.setContraseñ(password);
-                 datos.setDepartamento(select);
-                    mDatabase.push().setValue(datos);
-                    Toast.makeText(Registrarse.this,"Exacto",Toast.LENGTH_SHORT).show();
-                }else {
-                    Log.w(TAG, "signInWithEmail:failure", task.getException());
-                    Toast.makeText(Registrarse.this,"Vamos tu puedes",Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+            public void onClick(View view) {
+         final String nom =nombre.getText().toString();
+           final String apell =apellido.getText().toString();
+           final int telef =Integer.parseInt(telefono.getText().toString()) ;
+           final String email =usuario.getText().toString();
+           final String password= contraseña.getText().toString();
+           final String select=departamento.getSelectedItem().toString();
 
-    }
+           mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(Registrarse.this,new OnCompleteListener<AuthResult>() {
+               @Override
+               public void onComplete(@NonNull Task<AuthResult> task) {
+                   if(task.isSuccessful()){
+                       ReUsuario datos=new ReUsuario();
+                       datos.setNombre(nom);
+                       datos.setApellido(apell);
+                       datos.setTelefono(telef);
+                       datos.setUsuario(email);
+                       datos.setContraseñ(password);
+                       datos.setDepartamento(select);
+                       mDatabase.push().setValue(datos);
+                       limpiar();
+                       Toast.makeText(Registrarse.this,"Registrado con éxito",Toast.LENGTH_SHORT).show();
+                   }else {
+                       Log.w(TAG, "signInWithEmail:failure", task.getException());
+                       Toast.makeText(Registrarse.this,"La autenticación fallo",Toast.LENGTH_SHORT).show();
+                   }
+               }
+           });
+       }
+   });
 
+       }
+
+       public void limpiar(){
+        nombre.setText("");
+        apellido.setText("");
+        telefono.setText("");
+        usuario.setText("");
+        contraseña.setText("");
+       }
 
 
 }
-
-
-
-
