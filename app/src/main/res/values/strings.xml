@@ -53,5 +53,12 @@
     <string name="de_celular"># de celular</string>
     <string name="iniciar_sesi_n">Iniciar sesión</string>
     <string name="correo_electr_nico">Correo electrónico</string>
+    <string name="nuevap">Nueva publicación</string>
+    <string name="direcci_n">Dirección</string>
+    <string name="addFotos">Agregar fotos</string>
+    <string name="tel">Teléfono</string>
+    <string name="imagenes">imagenes</string>
+    <string name="pregunta">¿Aun no tienes cuenta?</string>
+    <string name="crear_cuenta">Crear cuenta</string>
 
 </resources>

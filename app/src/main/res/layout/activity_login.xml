@@ -13,6 +13,7 @@
         android:layout_height="match_parent"
         android:background="@drawable/fondoesa"
         android:scaleType="centerCrop"
+        android:contentDescription="@string/imagenes"
         />
 
     <LinearLayout
@@ -26,7 +27,8 @@
             android:layout_width="313dp"
             android:layout_height="124dp"
             android:layout_marginBottom="50dp"
-            android:background="@drawable/descubrelogo" />
+            android:background="@drawable/descubrelogo"
+            android:contentDescription="@string/imagenes"/>
 
 
         <LinearLayout
@@ -46,12 +48,14 @@
 
                     <ImageView
                         android:id="@+id/imageView"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_weight="1"
-                        android:paddingLeft="30dp"
-                        app:srcCompat="@android:drawable/ic_dialog_email" />
+                        android:paddingStart="30dp"
+                        app:srcCompat="@android:drawable/ic_dialog_email"
+                        android:paddingEnd="5dp"
+                        android:contentDescription="@string/imagenes"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -63,11 +67,13 @@
 
                     <ImageView
                         android:id="@+id/imageView2"
-                        android:layout_width="wrap_content"
+                        android:contentDescription="@string/imagenes"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         app:srcCompat="@drawable/candado"
-                        android:paddingLeft="30dp"/>
+                        android:paddingStart="30dp"
+                        android:paddingEnd="5dp"/>
                 </LinearLayout>
             </LinearLayout>
 
@@ -80,12 +86,13 @@
                     android:id="@+id/etNombre"
                     android:layout_width="301dp"
                     android:layout_height="46dp"
-
-                    android:layout_marginRight="20dp"
+                    android:inputType="text"
+                    android:layout_marginEnd="20dp"
                     android:layout_marginBottom="15dp"
                     android:background="@drawable/input"
                     android:hint="@string/correo_electr_nico"
-                    android:paddingLeft="15dp"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="10dp"
                     android:paddingBottom="10dp"
                     android:textColor="@color/Blanco"
                     android:textColorHint="@color/Blanco" />
@@ -96,12 +103,13 @@
                     android:layout_width="303dp"
                     android:layout_height="48dp"
 
-                    android:layout_marginRight="20dp"
+                    android:layout_marginEnd="20dp"
                     android:layout_marginBottom="15dp"
                     android:background="@drawable/input"
                     android:hint="@string/contrase_a"
                     android:inputType="textPassword"
-                    android:paddingLeft="10dp"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
                     android:paddingBottom="10dp"
                     android:textColor="@color/Blanco"
 
@@ -119,7 +127,8 @@
             android:layout_marginBottom="15dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:paddingLeft="10dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
             android:paddingBottom="10dp"
             android:layout_marginTop="40dp"
             android:onClick="iniciar"
@@ -143,7 +152,7 @@
                     android:id="@+id/textView5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="¿Aun no tienes cuenta?"
+                    android:text="@string/pregunta"
                     android:textColor="@color/Blanco"
                     android:textSize="15sp"/>
             </LinearLayout>
@@ -157,10 +166,11 @@
                     android:id="@+id/textView8"
                     android:layout_width="103dp"
                     android:layout_height="wrap_content"
-                    android:text="Crear cuenta"
+                    android:text="@string/crear_cuenta"
                     android:textColor="@color/Blanco"
                     android:textStyle="bold"
-                    android:paddingLeft="10dp"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
                     android:textSize="15sp"
                     android:onClick="registrarse"/>
             </LinearLayout>
