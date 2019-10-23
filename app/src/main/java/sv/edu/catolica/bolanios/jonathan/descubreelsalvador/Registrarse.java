@@ -68,9 +68,13 @@ public class Registrarse extends AppCompatActivity {
 
         Toast.makeText(Registrarse.this,"Agregado",Toast.LENGTH_LONG).show();
 
+        Intent intencion1 = new Intent(Registrarse.this, Login.class);
+        startActivity(intencion1);
+
 
 
     }
+
 
 
 }

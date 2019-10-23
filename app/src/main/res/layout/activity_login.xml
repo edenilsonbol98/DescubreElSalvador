@@ -72,7 +72,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="303dp"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
@@ -124,6 +124,47 @@
             android:layout_marginTop="40dp"
             android:onClick="iniciar"
              />
+
+        <LinearLayout
+            android:layout_width="358dp"
+            android:layout_height="47dp"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginTop="60dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="¿Aun no tienes cuenta?"
+                    android:textColor="@color/Blanco"
+                    android:textSize="15sp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="103dp"
+                    android:layout_height="wrap_content"
+                    android:text="Crear cuenta"
+                    android:textColor="@color/Blanco"
+                    android:textStyle="bold"
+                    android:paddingLeft="10dp"
+                    android:textSize="15sp"
+                    android:onClick="registrarse"/>
+            </LinearLayout>
+        </LinearLayout>
 
     </LinearLayout>
 

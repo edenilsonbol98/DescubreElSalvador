@@ -19,4 +19,9 @@ public class Login extends AppCompatActivity {
         Intent intencion1 = new Intent(Login.this, AgregarPublicacion.class);
         startActivity(intencion1);
     }
+
+    public void registrarse(View view) {
+        Intent intencion1 = new Intent(Login.this, Registrarse.class);
+        startActivity(intencion1);
+    }
 }

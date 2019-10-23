@@ -142,7 +142,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/registrarse"
-            android:drawableLeft="@android:drawable/ic_menu_send"
+
             android:onClick="Registrar"
             android:background="@drawable/fondoboton"
             android:elevation="5dp"
