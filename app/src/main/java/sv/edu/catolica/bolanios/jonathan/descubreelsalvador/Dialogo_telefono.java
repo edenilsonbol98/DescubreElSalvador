@@ -12,6 +12,7 @@ import android.widget.EditText;
 
 public class Dialogo_telefono {
 
+
     public Dialogo_telefono(Context contexto){
         final Dialog dialogo = new Dialog(contexto);
         dialogo.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -24,6 +25,7 @@ public class Dialogo_telefono {
         Button btnagregar = (Button) dialogo.findViewById(R.id.btnAgregarTel);
         telFijo.setInputType(InputType.TYPE_CLASS_NUMBER);
         telCel.setInputType(InputType.TYPE_CLASS_NUMBER);
+
 
         btnagregar.setOnClickListener(new View.OnClickListener() {
             @Override
