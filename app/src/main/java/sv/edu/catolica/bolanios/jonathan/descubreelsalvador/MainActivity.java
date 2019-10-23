@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void logueo(View view) {
-
+        Intent signid = new Intent(MainActivity.this,Login.class);
+        startActivity(signid);
     }
 }

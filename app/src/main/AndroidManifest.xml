@@ -2,8 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="sv.edu.catolica.bolanios.jonathan.descubreelsalvador">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -14,7 +12,7 @@
         <activity android:name=".prueba"></activity>
         <activity android:name=".MainActivity" />
         <activity android:name=".CargarLugares" />
-        <activity android:name=".Login" />
+        <activity android:name=".Login" ></activity>
         <activity android:name=".AgregarPublicacion" />
         <activity android:name=".PrincipalElSalvador" />
         <activity android:name=".Registrarse" />
@@ -27,5 +25,7 @@
             </intent-filter>
         </activity>
     </application>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

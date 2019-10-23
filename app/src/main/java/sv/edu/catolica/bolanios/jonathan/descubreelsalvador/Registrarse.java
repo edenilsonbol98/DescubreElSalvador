@@ -1,33 +1,48 @@
 package sv.edu.catolica.bolanios.jonathan.descubreelsalvador;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class Registrarse extends AppCompatActivity {
 
+    private static final String TAG = "bi";
     private EditText nombre,apellido,telefono,usuario,contraseña;
     private Spinner departamento;
 
     FirebaseDatabase ingreso;
     DatabaseReference referencias;
+    private FirebaseAuth mAuth;
+    private DatabaseReference mDatabase;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registrarse);
+
+        mAuth = FirebaseAuth.getInstance();
+        mDatabase= FirebaseDatabase.getInstance().getReference("User");
 
         nombre=findViewById(R.id.etNombre);
         apellido=findViewById(R.id.etApellido);
@@ -50,31 +65,39 @@ public class Registrarse extends AppCompatActivity {
     }
 
     public void Registrar(View view) {
-        String nom =nombre.getText().toString();
-        String apell =apellido.getText().toString();
-        int telef =Integer.parseInt(telefono.getText().toString()) ;
-        String usu =usuario.getText().toString();
-        String contra= contraseña.getText().toString();
-        String select=departamento.getSelectedItem().toString();
+       final String nom =nombre.getText().toString();
+       final String apell =apellido.getText().toString();
+        final int telef =Integer.parseInt(telefono.getText().toString()) ;
+        final String email =usuario.getText().toString();
+        final String password= contraseña.getText().toString();
+        final String select=departamento.getSelectedItem().toString();
 
-        ReUsuario agregar=new ReUsuario();
-        agregar.setNombre(nom);
-        agregar.setApellido(apell);
-        agregar.setTelefono(telef);
-        agregar.setUsuario(usu);
-        agregar.setContraseñ(contra);
-        agregar.setDepartamento(select);
-        referencias.child("Usuario").push().setValue(agregar);
-
-        Toast.makeText(Registrarse.this,"Agregado",Toast.LENGTH_LONG).show();
-
-        Intent intencion1 = new Intent(Registrarse.this, Login.class);
-        startActivity(intencion1);
-
-
+        mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(Registrarse.this,new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()){
+                 ReUsuario datos=new ReUsuario();
+                 datos.setNombre(nom);
+                 datos.setApellido(apell);
+                 datos.setTelefono(telef);
+                 datos.setUsuario(email);
+                 datos.setContraseñ(password);
+                 datos.setDepartamento(select);
+                    mDatabase.push().setValue(datos);
+                    Toast.makeText(Registrarse.this,"Exacto",Toast.LENGTH_SHORT).show();
+                }else {
+                    Log.w(TAG, "signInWithEmail:failure", task.getException());
+                    Toast.makeText(Registrarse.this,"Vamos tu puedes",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
     }
 
 
 
 }
+
+
+
+

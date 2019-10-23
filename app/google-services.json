@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "997000696490-tiiaiovc7aad9h93768agdrjd5ho8sfh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "sv.edu.catolica.bolanios.jonathan.descubreelsalvador",
+            "certificate_hash": "0b61487261e7280ffc63eea1c7c96d7ee2aa4c90"
+          }
+        },
+        {
           "client_id": "997000696490-g6gj8oihqfl57q7rngc0fji7bd7kooob.apps.googleusercontent.com",
           "client_type": 3
         }

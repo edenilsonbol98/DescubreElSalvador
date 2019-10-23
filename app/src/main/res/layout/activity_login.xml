@@ -131,7 +131,7 @@
             android:paddingEnd="10dp"
             android:paddingBottom="10dp"
             android:layout_marginTop="40dp"
-            android:onClick="iniciar"
+           android:onClick="iniciar"
              />
 
         <LinearLayout
