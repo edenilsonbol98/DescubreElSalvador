@@ -31,7 +31,6 @@ public class PrincipalElSalvador extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private LoginButton logueoFace;
     private CallbackManager callM;
-    private TextView texto1,texto2;
     private AccessToken accessToken;
 
     @Override
@@ -42,8 +41,7 @@ public class PrincipalElSalvador extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 logueoFace=findViewById(R.id.btnLoginFacebook);
 callM=CallbackManager.Factory.create();
-texto1=findViewById(R.id.email);
-texto2=findViewById(R.id.nombre);
+
  accessToken = AccessToken.getCurrentAccessToken();
 
 
@@ -76,8 +74,7 @@ logueoFace.registerCallback(callM, new FacebookCallback<LoginResult>() {
         @Override
         protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken, AccessToken currentAccessToken) {
             if(currentAccessToken==null){
-                texto1.setText("");
-                texto2.setText("");
+
                 Toast.makeText(PrincipalElSalvador.this,"Usuario no logueado",Toast.LENGTH_LONG).show();
             }else {
                 loguearse(currentAccessToken);
@@ -132,9 +129,6 @@ logueoFace.registerCallback(callM, new FacebookCallback<LoginResult>() {
             startActivity(new Intent(PrincipalElSalvador.this,AgregarPublicacion.class));
             finish();
         }
-        if(accessToken!=null){
-            startActivity(new Intent(PrincipalElSalvador.this,AgregarPublicacion.class));
-            finish();
-        }
+
     }
 }
