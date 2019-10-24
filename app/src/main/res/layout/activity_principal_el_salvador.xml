@@ -45,6 +45,13 @@
             android:layout_marginTop="40dp"
             android:onClick="irSesion"
             />
+        <com.facebook.login.widget.LoginButton
+            android:id="@+id/btnLoginFacebook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+
+            />
         <Button
             android:id="@+id/btnfacebok"
             android:layout_width="match_parent"
@@ -58,6 +65,18 @@
             android:textColor="@color/Blanco"
             android:paddingBottom="10dp"
             android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:id="@+id/nombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
 
     </LinearLayout>
 

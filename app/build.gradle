@@ -38,6 +38,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-core:17.0.0'
     implementation 'com.google.firebase:firebase-database:18.0.0'
     implementation group: 'com.google.firebase', name: 'firebase-core', version: '17.1.0'
+    implementation 'com.facebook.android:facebook-login:[5,6)'
+
 
 
 }
