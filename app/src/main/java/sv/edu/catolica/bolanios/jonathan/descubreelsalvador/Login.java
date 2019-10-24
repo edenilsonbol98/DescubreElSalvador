@@ -2,8 +2,12 @@ package sv.edu.catolica.bolanios.jonathan.descubreelsalvador;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +20,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class Login extends AppCompatActivity {
+    private static final String TAG = "MainActivity";
+    private static int PERMISSION_GRANTED;
     private FirebaseAuth mAuth;
     private Button ingresar;
     private EditText txtCorreo,txtpass;
@@ -26,6 +32,8 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+       // verificarPermisos();
+    }
 
          mAuth = FirebaseAuth.getInstance();
 
@@ -58,6 +66,7 @@ public class Login extends AppCompatActivity {
 
 
     }
+
 
 
 

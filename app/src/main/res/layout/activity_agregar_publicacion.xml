@@ -46,7 +46,7 @@
             android:inputType="text"/>
 
         <EditText
-            android:id="@+id/txtdescripcion"
+            android:id="@+id/txtDescripcion"
             android:layout_width="match_parent"
             android:layout_height="101dp"
             android:layout_marginLeft="5dp"
@@ -87,6 +87,8 @@
                 android:layout_marginBottom="5dp"
                 android:text="@string/direcci_n"
                 android:textSize="18sp"
+                android:paddingLeft="10dp"/>
+
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"/>
         </LinearLayout>
@@ -95,7 +97,19 @@
             android:id="@+id/linear3"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"></LinearLayout>
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/btnMapa"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@android:color/transparent"
+                android:drawableLeft="@android:drawable/ic_input_add"
+                android:gravity="center"
+                android:onClick="MostrarMapa" />
+
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
@@ -127,10 +141,13 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/btnmas1"
+                android:id="@+id/btnFotos"
                 android:layout_width="32dp"
                 android:layout_height="31dp"
                 android:background="@android:color/transparent"
+                android:drawableLeft="@android:drawable/ic_input_add"
+                android:gravity="left"
+                android:onClick="ObtenerFotos"/>
                 android:drawableStart="@android:drawable/ic_input_add"
                 android:gravity="start" />
         </LinearLayout>
@@ -206,6 +223,8 @@
             android:layout_marginTop="30dp"
             android:layout_weight="1"
             android:background="@drawable/boton_publicacion"
+            android:drawableLeft="@android:drawable/ic_menu_add"
+            android:onClick="btnGuardar"
             android:drawableStart="@android:drawable/ic_menu_add"
             android:text="@string/agregar_publicaci_n" />
     </LinearLayout>

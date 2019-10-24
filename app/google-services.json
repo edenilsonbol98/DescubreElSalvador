@@ -1,42 +1,149 @@
 {
   "project_info": {
-    "project_number": "997000696490",
-    "firebase_url": "https://pruebas-c4e21.firebaseio.com",
-    "project_id": "pruebas-c4e21",
-    "storage_bucket": "pruebas-c4e21.appspot.com"
+    "project_number": "779459441867",
+    "firebase_url": "https://pruebalocation-51d20.firebaseio.com",
+    "project_id": "pruebalocation-51d20",
+    "storage_bucket": "pruebalocation-51d20.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:997000696490:android:04a53c3614b6a4d7b5f6d3",
+        "mobilesdk_app_id": "1:779459441867:android:21b3459713f20ee0ea574e",
         "android_client_info": {
           "package_name": "sv.edu.catolica.bolanios.jonathan.descubreelsalvador"
         }
       },
       "oauth_client": [
         {
-          "client_id": "997000696490-tiiaiovc7aad9h93768agdrjd5ho8sfh.apps.googleusercontent.com",
+          "client_id": "779459441867-auhv4psjhdnchvaoesodgu4j44nrsk2j.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "sv.edu.catolica.bolanios.jonathan.descubreelsalvador",
-            "certificate_hash": "0b61487261e7280ffc63eea1c7c96d7ee2aa4c90"
+            "certificate_hash": "187cafa12e78815cb94059a0a7744b633d6effe2"
           }
         },
         {
-          "client_id": "997000696490-g6gj8oihqfl57q7rngc0fji7bd7kooob.apps.googleusercontent.com",
+          "client_id": "779459441867-1gq5osa39129dfq78f0su7p3ckh7ttpj.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAGhuNbP8Uv2NJV0sIe0R_2Ga3wzuKnuzQ"
+          "current_key": "AIzaSyARfrrn75qhArwDUVFUanVvaC0cglaiIbU"
+        },
+        {
+          "current_key": "AIzaSyDMHvpJg30IDQF3nuZGHH31zT5G1Qold4M"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "997000696490-g6gj8oihqfl57q7rngc0fji7bd7kooob.apps.googleusercontent.com",
+              "client_id": "779459441867-1gq5osa39129dfq78f0su7p3ckh7ttpj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:779459441867:android:7599fd5125e0df80ea574e",
+        "android_client_info": {
+          "package_name": "sv.edu.catolica.pimentel.amilcar.ejemploextraerubicacion"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "779459441867-1gq5osa39129dfq78f0su7p3ckh7ttpj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyARfrrn75qhArwDUVFUanVvaC0cglaiIbU"
+        },
+        {
+          "current_key": "AIzaSyDMHvpJg30IDQF3nuZGHH31zT5G1Qold4M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "779459441867-1gq5osa39129dfq78f0su7p3ckh7ttpj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:779459441867:android:0fd94a2c06a1db5dea574e",
+        "android_client_info": {
+          "package_name": "sv.edu.catolica.pimentel.amilcar.logins"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "779459441867-ivct8avlakjj02filu2e3tlj6cup02bt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "sv.edu.catolica.pimentel.amilcar.logins",
+            "certificate_hash": "187cafa12e78815cb94059a0a7744b633d6effe2"
+          }
+        },
+        {
+          "client_id": "779459441867-1gq5osa39129dfq78f0su7p3ckh7ttpj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyARfrrn75qhArwDUVFUanVvaC0cglaiIbU"
+        },
+        {
+          "current_key": "AIzaSyDMHvpJg30IDQF3nuZGHH31zT5G1Qold4M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "779459441867-1gq5osa39129dfq78f0su7p3ckh7ttpj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:779459441867:android:1bfb96d65e39565eea574e",
+        "android_client_info": {
+          "package_name": "sv.edu.catolica.pimentel.amilcar.prueba"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "779459441867-1gq5osa39129dfq78f0su7p3ckh7ttpj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyARfrrn75qhArwDUVFUanVvaC0cglaiIbU"
+        },
+        {
+          "current_key": "AIzaSyDMHvpJg30IDQF3nuZGHH31zT5G1Qold4M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "779459441867-1gq5osa39129dfq78f0su7p3ckh7ttpj.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

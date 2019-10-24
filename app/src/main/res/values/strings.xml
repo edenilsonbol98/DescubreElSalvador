@@ -53,6 +53,7 @@
     <string name="de_celular"># de celular</string>
     <string name="iniciar_sesi_n">Iniciar sesión</string>
     <string name="correo_electr_nico">Correo electrónico</string>
+    <string name="title_activity_mapa_publicacion">Map</string>
     <string name="nuevap">Nueva publicación</string>
     <string name="direcci_n">Dirección</string>
     <string name="addFotos">Agregar fotos</string>

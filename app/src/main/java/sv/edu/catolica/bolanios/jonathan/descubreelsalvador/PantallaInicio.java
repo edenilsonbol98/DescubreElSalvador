@@ -1,22 +1,17 @@
 package sv.edu.catolica.bolanios.jonathan.descubreelsalvador;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.animation.Animator;
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.animation.Animation;
-import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
-import java.security.Principal;
-
 public class PantallaInicio extends AppCompatActivity {
     public Boolean botonBackPresionado = false;
+
+    private static final String TAG = "MainActivity";
 private ImageView imagen;
 
 
@@ -46,8 +41,6 @@ private ImageView imagen;
         botonBackPresionado=true;
         super.onBackPressed();
     }
-
-
 
 
     }

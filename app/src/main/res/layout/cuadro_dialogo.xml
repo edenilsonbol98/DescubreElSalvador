@@ -53,6 +53,7 @@
             android:background="@drawable/boton_publicacion"
             android:text="Agregar"
             android:layout_marginBottom="10dp"
+            android:onClick="btnSave"
 
             />
     </LinearLayout>
