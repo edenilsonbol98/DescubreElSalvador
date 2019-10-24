@@ -77,7 +77,7 @@ public class AgregarPublicacion extends AppCompatActivity {
     }
 
     public void ObtenerFotos(View view) {
-        if (txtTitulo.getText().toString().isEmpty()&& txtDescrip.getText().toString().isEmpty()) {
+        if (!(txtTitulo.getText().toString().isEmpty()&& txtDescrip.getText().toString().isEmpty())) {
             MostrarGaleria();
         }
         else {

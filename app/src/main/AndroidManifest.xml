@@ -47,7 +47,6 @@
             android:name=".MapaPublicacion" />
         <activity android:name=".prueba" />
         <activity android:name=".Publicaciones"></activity>
-        <activity android:name=".prueba" />
         <activity android:name=".MainActivity" />
         <activity android:name=".CargarLugares" />
         <activity android:name=".Login" />
@@ -78,9 +77,6 @@
             </intent-filter>
         </activity>
 
-        <meta-data
-            android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/facebook_app_id" />
     </application>
 
 </manifest>

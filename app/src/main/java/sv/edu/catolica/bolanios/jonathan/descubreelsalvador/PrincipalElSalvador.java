@@ -83,11 +83,7 @@ logueoFace.registerCallback(callM, new FacebookCallback<LoginResult>() {
 
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        callM.onActivityResult(requestCode,resultCode,data);
-        super.onActivityResult(requestCode, resultCode, data);
-    }
+
 
     AccessTokenTracker tokenTracker=new AccessTokenTracker() {
         @Override
@@ -232,6 +228,7 @@ logueoFace.registerCallback(callM, new FacebookCallback<LoginResult>() {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        callM.onActivityResult(requestCode,resultCode,data);
         super.onActivityResult(requestCode, resultCode, data);
         Log.d(TAG, "onActivityResult: called.");
         switch (requestCode) {

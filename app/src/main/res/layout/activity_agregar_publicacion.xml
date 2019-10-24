@@ -148,8 +148,6 @@
                 android:drawableLeft="@android:drawable/ic_input_add"
                 android:gravity="left"
                 android:onClick="ObtenerFotos"/>
-                android:drawableStart="@android:drawable/ic_input_add"
-                android:gravity="start" />
         </LinearLayout>
     </LinearLayout>
 
