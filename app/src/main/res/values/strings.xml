@@ -61,7 +61,8 @@
     <string name="imagenes">imagenes</string>
     <string name="pregunta">¿Aun no tienes cuenta?</string>
     <string name="crear_cuenta">Crear cuenta</string>
-    <string name="facebook_app_id">690032918169805</string>
-    <string name="fb_login_protocol_scheme">fb690032918169805</string>
+    <string name="facebook_app_id">3587141701299547</string>
+    <string name="fb_login_protocol_scheme">fb3587141701299547</string>
+
 
 </resources>
