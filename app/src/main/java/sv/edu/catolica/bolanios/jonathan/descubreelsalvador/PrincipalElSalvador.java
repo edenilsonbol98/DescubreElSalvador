@@ -1,7 +1,6 @@
 package sv.edu.catolica.bolanios.jonathan.descubreelsalvador;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -11,17 +10,21 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
+import com.facebook.login.LoginManager;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.facebook.AccessToken;
 import com.facebook.AccessTokenTracker;
@@ -37,8 +40,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public class PrincipalElSalvador extends AppCompatActivity {
     private static final int ERROR_DIALOG_REQUEST = 9001;
@@ -62,12 +65,30 @@ logueoFace=findViewById(R.id.btnLoginFacebook);
 callM=CallbackManager.Factory.create();
 
  accessToken = AccessToken.getCurrentAccessToken();
+        FacebookSdk.sdkInitialize(getApplicationContext());
+        AppEventsLogger.activateApp(this);
 
+        logueoFace.setReadPermissions("email");
+        LoginManager.getInstance().registerCallback(callM, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                startActivity(new Intent(PrincipalElSalvador.this,AgregarPublicacion.class));
+            }
 
-logueoFace.registerCallback(callM, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onCancel() {
+
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+
+            }
+        });
+ logueoFace.registerCallback(callM, new FacebookCallback<LoginResult>() {
     @Override
     public void onSuccess(LoginResult loginResult) {
-
+        startActivity(new Intent(PrincipalElSalvador.this,AgregarPublicacion.class));
     }
 
     @Override
