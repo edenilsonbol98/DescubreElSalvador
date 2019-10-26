@@ -87,9 +87,6 @@
                 android:layout_marginBottom="5dp"
                 android:text="@string/direcci_n"
                 android:textSize="18sp"
-                android:paddingLeft="10dp"/>
-
-                android:paddingLeft="10dp"
                 android:paddingRight="10dp"/>
         </LinearLayout>
 
@@ -102,8 +99,8 @@
 
             <Button
                 android:id="@+id/btnMapa"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="36dp"
+                android:layout_height="35dp"
                 android:background="@android:color/transparent"
                 android:drawableLeft="@android:drawable/ic_input_add"
                 android:gravity="center"
@@ -224,6 +221,20 @@
             android:drawableLeft="@android:drawable/ic_menu_add"
             android:onClick="btnGuardar"
             android:drawableStart="@android:drawable/ic_menu_add"
-            android:text="@string/agregar_publicaci_n" />
+            android:text="@string/agregar_publicaci_n"
+            />
     </LinearLayout>
+
+    <com.nightonke.boommenu.BoomMenuButton
+        android:id="@+id/boom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_margin="20dp"
+        app:boom_inActionBar="false"
+        app:boom_button_color="@color/naranja"
+        app:boom_button_pressed_color="@color/azul"
+        />
+
+
 </LinearLayout>

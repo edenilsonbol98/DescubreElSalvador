@@ -2,8 +2,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never" />
+        android:title="@string/perfil"
+        android:id="@+id/perfil"
+        android:orderInCategory="5"
+        android:icon="@drawable/usuario"
+        app:showAsAction="ifRoom"
+        />
+    <item android:title="@string/cerrar_sesi_n"
+        android:id="@+id/salir"
+        android:orderInCategory="5"
+        android:icon="@drawable/cerrar"
+        app:showAsAction="ifRoom|withText"
+        />
+
+
+
 </menu>

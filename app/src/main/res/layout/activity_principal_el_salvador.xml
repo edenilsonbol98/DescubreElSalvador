@@ -52,21 +52,6 @@
             android:layout_gravity="center_horizontal"
 
             />
-        <Button
-            android:id="@+id/btnfacebok"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/facebook"
-            android:background="@drawable/fondoface"
-            android:layout_marginBottom="15dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:paddingLeft="10dp"
-            android:textColor="@color/Blanco"
-            android:paddingBottom="10dp"
-            android:layout_marginTop="20dp"/>
-
-
 
 
     </LinearLayout>

@@ -166,15 +166,15 @@
 
                 <TextView
                     android:id="@+id/textView8"
-                    android:layout_width="103dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/crear_cuenta"
-                    android:textColor="@color/Blanco"
-                    android:textStyle="bold"
+                    android:onClick="registrarse"
                     android:paddingStart="10dp"
                     android:paddingEnd="10dp"
+                    android:text="@string/crear_cuenta"
+                    android:textColor="@color/Blanco"
                     android:textSize="15sp"
-                    android:onClick="registrarse"/>
+                    android:textStyle="bold" />
             </LinearLayout>
         </LinearLayout>
 

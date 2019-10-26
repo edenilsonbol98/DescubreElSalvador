@@ -63,9 +63,9 @@
     <string name="crear_cuenta">Crear cuenta</string>
     <string name="facebook_app_id">2074223582654566</string>
     <string name="fb_login_protocol_scheme">fb2074223582654566</string>
-
-
-
+    <string name="perfil">Perfil</string>
+    <string name="salir">Salir</string>
+    <string name="cerrar_sesi_n">Cerrar sesión</string>
 
 
 </resources>

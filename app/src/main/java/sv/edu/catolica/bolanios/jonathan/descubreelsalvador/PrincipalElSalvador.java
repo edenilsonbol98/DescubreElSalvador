@@ -251,6 +251,7 @@ callM=CallbackManager.Factory.create();
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         callM.onActivityResult(requestCode,resultCode,data);
         super.onActivityResult(requestCode, resultCode, data);
+        callM.onActivityResult(requestCode,resultCode,data);
         Log.d(TAG, "onActivityResult: called.");
         switch (requestCode) {
             case PERMISSIONS_REQUEST_ENABLE_GPS: {
