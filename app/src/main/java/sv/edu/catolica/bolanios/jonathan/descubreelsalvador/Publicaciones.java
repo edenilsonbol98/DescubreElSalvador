@@ -1,14 +1,101 @@
 package sv.edu.catolica.bolanios.jonathan.descubreelsalvador;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
+
+import sv.edu.catolica.bolanios.jonathan.descubreelsalvador.Clases.ModeloPublicacion;
+import sv.edu.catolica.bolanios.jonathan.descubreelsalvador.Clases.MyAdapterPublicaciones;
+
 public class Publicaciones extends AppCompatActivity {
 
+    ArrayList<String> listFotos;
+    ArrayList<ModeloPublicacion> listModelo;
+    FirebaseFirestore myRef;
+    RecyclerView recyclerView;
+    ModeloPublicacion classModelo;
+    MyAdapterPublicaciones adapter;
+    String url1="", url2="", url3="", url4="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_publicaciones);
+        listFotos=new ArrayList<>();
+        listModelo= new ArrayList<>();
+        classModelo=new ModeloPublicacion();
+        myRef=FirebaseFirestore.getInstance();
+        recyclerView=findViewById(R.id.my_recycler_view);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mostrarPublicaciones();
+    }
+
+
+    public void mostrarPublicaciones(){
+        myRef.collection("publicacion").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                String urls="";
+                for (QueryDocumentSnapshot snapshot:task.getResult()) {
+                    classModelo.setTitulo(snapshot.get("titulo").toString());
+                    classModelo.setDireccionPublicacion(snapshot.get("direccionPub").toString());
+                    classModelo.setDescripcion(snapshot.get("descripcion").toString());
+                    classModelo.setCelular(snapshot.get("celular").toString());
+                    classModelo.setFijo(snapshot.get("telefono").toString());
+                    urls=snapshot.get("urlFotos").toString();
+                    separarUrls(urls);
+                    listFotos.add(url1);
+                    listFotos.add(url2);
+                    //   listFotos.add(url3);
+                    //   listFotos.add(url4);
+                    classModelo.setFotos(listFotos);
+                    listModelo.add(classModelo);
+                }
+                adapter=new MyAdapterPublicaciones(Publicaciones.this,listModelo);
+                recyclerView.setAdapter(adapter);
+            }
+        });
+
+    }
+
+    private void separarUrls(String urls) {
+        boolean foto3=false, foto4=false, foto2=false, foto1=true, caracterInvalido=false;
+        int contador = urls.length()-1, i=0;
+        for (int h=0; h<contador; h++)
+        {
+            char c = urls.charAt(h);
+            String b = String.valueOf(c);
+            if (caracterInvalido && !(b.equals(",")) && !(b.equals(" "))) {
+                if (foto1) { url1+=b;i=1;}
+                else if (foto2) { url2+=b; i=2;}
+                else if (foto3) { url3+=b; i=3;}
+                else if (foto4) { url4+=b;}
+            }
+            else{
+                if (i==0) {foto1=true;caracterInvalido = true;}
+                else if (i == 1) {
+                    foto1 = false;
+                    foto2 = true;
+                } else if (i == 2) {
+                    foto2 = false;
+                    foto3 = true;
+                } else if (i == 3) {
+                    foto3 = false;
+                    foto4 = true;
+                }
+            }
+        }
     }
 }

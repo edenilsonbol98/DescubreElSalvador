@@ -11,6 +11,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,8 +25,12 @@ import com.nightonke.boommenu.Util;
 
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.annotations.Nullable;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -35,10 +40,13 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import sv.edu.catolica.bolanios.jonathan.descubreelsalvador.Clases.Localizacion;
 import sv.edu.catolica.bolanios.jonathan.descubreelsalvador.Clases.Publicacion;
+import sv.edu.catolica.bolanios.jonathan.descubreelsalvador.Clases.VariablesCompartidas;
 
 public class AgregarPublicacion extends AppCompatActivity {
     private Context mContext;
@@ -49,15 +57,14 @@ public class AgregarPublicacion extends AppCompatActivity {
     private Button botonAgregarFotos;
     private StorageReference storageReference;
     private static final int GALLERY_INTENT =1;
-    private EditText txtDescrip;
-    private EditText txtTitulo;
-    List<String> listFotos= new ArrayList<>();
-    private static final String TAG = "MainActivity";
-    GeoPoint location;
-    Localizacion clasLocalizacion;
-    Publicacion classPublic;
-    String cel, fijo;
+    private EditText txtDescrip,txtTitulo;
+    private List<String> listFotos= new ArrayList<>();
+    private GeoPoint location;
+    private String cel, fijo, direcPub,myUser;
     private FirebaseFirestore myRef;
+    private FirebaseUser firebaseUser;
+    private DatabaseReference reference;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,10 +103,13 @@ public class AgregarPublicacion extends AppCompatActivity {
             }
         });*/
 
+        firebaseUser=FirebaseAuth.getInstance().getCurrentUser();
+        reference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid());
     }
 
     public void ObtenerFotos(View view) {
         if (!(txtTitulo.getText().toString().isEmpty()&& txtDescrip.getText().toString().isEmpty())) {
+            Toast.makeText(AgregarPublicacion.this, "Elija solo 4 fotos", Toast.LENGTH_SHORT).show();
             MostrarGaleria();
         }
         else {
@@ -108,12 +118,12 @@ public class AgregarPublicacion extends AppCompatActivity {
     }
 
     public void  ObtenerIntens(){
-        Bundle data= getIntent().getExtras();
-        double longitud = data.getDouble("latitudIntent");
-        double latitud = data.getDouble("latitudIntent");
-         cel = data.getString("telefono");
-         fijo = data.getString("fijo");
-        location = new GeoPoint(latitud,longitud);
+            double longitud = VariablesCompartidas.getLongitud();
+            double latitud = VariablesCompartidas.getLatitud();
+            cel = VariablesCompartidas.getTelefono();
+            fijo = VariablesCompartidas.getFijo();
+            location = new GeoPoint(latitud,longitud);
+            direcPub = VariablesCompartidas.getDireccion();
     }
     private void MostrarGaleria() {
         Intent intent = new Intent(Intent.ACTION_PICK);
@@ -139,20 +149,17 @@ public class AgregarPublicacion extends AppCompatActivity {
             else if (data.getData()!=null) {
 
                 SubiendoImagenes(uri);
-                Toast.makeText(AgregarPublicacion.this, "Imagenen subidas", Toast.LENGTH_LONG).show();
+                Toast.makeText(AgregarPublicacion.this, "Imagenen subida", Toast.LENGTH_LONG).show();
             }
         }
     }
 
     private void SubiendoImagenes(Uri uri) {
-        final StorageReference filePatch = storageReference.child("fotos").child(uri.getLastPathSegment());
+        final StorageReference filePatch = storageReference.child("publicacion").child(uri.getLastPathSegment());
         filePatch.putFile(uri).continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
             @Override
             public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
-               // if(!task.isSuccessful()){
-
-                //}
-                // Toast.makeText(AgregarPublicacion.this, "Fotos"+ filePatch.getActiveDownloadTasks().toString(), Toast.LENGTH_LONG).show();
+               // listFotos.add(filePatch.getDownloadUrl().getResult().toString());
                 return filePatch.getDownloadUrl();
             }
         }).addOnCompleteListener(new OnCompleteListener<Uri>() {
@@ -172,26 +179,36 @@ public class AgregarPublicacion extends AppCompatActivity {
     }
 
     public void btnGuardar(View view) {
-        ObtenerIntens();
-        clasLocalizacion.setGeoPoint(location);
-        clasLocalizacion.setTimesTamp(null);
-        classPublic.setTitulo(txtTitulo.getText().toString());
-        classPublic.setDescripcion(txtDescrip.getText().toString());
-        classPublic.setLocation(clasLocalizacion);
-        classPublic.setTelefono(cel);
-        classPublic.setFijo(fijo);
-        classPublic.setFotos((ArrayList<String>) listFotos);
-       if (classPublic !=null) {
-            DocumentReference publicacionesRef = myRef.collection("Publicaciones").document(FirebaseAuth.getInstance().getUid());
-            publicacionesRef.set(classPublic).addOnCompleteListener(new OnCompleteListener<Void>() {
-                @Override
-                public void onComplete(@NonNull Task<Void> task) {
-                    if (task.isSuccessful()) {
-                        //mensaje
+        new CountDownTimer(30000, 1000) {
+            public void onFinish() {
+                // When timer is finished
+                // Execute your code here
+                ObtenerIntens();
+                myUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                Map<String,Object> publicacion = new HashMap<>();
+                publicacion.put("lonlan",location);
+                publicacion.put("titulo",txtTitulo.getText().toString());
+                publicacion.put("descripcion",txtDescrip.getText().toString());
+                publicacion.put("telefono",fijo);
+                publicacion.put("celular",cel);
+                publicacion.put("urlFotos",listFotos);
+                publicacion.put("idUsuario",myUser);
+                publicacion.put("direccionPub",direcPub);
+                //publicacion.put("tipoLocal",direcPub);
+                // publicacion.put("fechaCreacion",direcPub);
+                // publicacion.put("departamento",direcPub);
+                myRef.collection("publicacion").document().set(publicacion).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(AgregarPublicacion.this, "Publicacion hechá", Toast.LENGTH_SHORT).show();
                     }
-                }
-            });
-        }
+                });
+            }
+
+            public void onTick(long millisUntilFinished) {
+                Toast.makeText(AgregarPublicacion.this, "Obteniendo información", Toast.LENGTH_SHORT).show();
+            }
+        }.start();
 
     }
     @Override

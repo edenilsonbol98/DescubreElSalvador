@@ -3,14 +3,22 @@ package sv.edu.catolica.bolanios.jonathan.descubreelsalvador.Clases;
 import java.util.ArrayList;
 
 public class Publicacion {
-    private String titulo;
-    private String descripcion;
-    private Localizacion location;
-    private String telefono;
-    private String fijo;
-    private ArrayList<String> fotos;
+    public String titulo;
+    public String descripcion;
+    public Localizacion location;
+    public String telefono;
+    public String fijo;
+    public ArrayList<String> fotos;
+    public Usuario user;
 
-    public Publicacion() {
+    public Publicacion(String titulo, String descripcion, Localizacion location, String telefono, String fijo, ArrayList<String> fotos, Usuario user) {
+        this.titulo = titulo;
+        this.descripcion = descripcion;
+        this.location = location;
+        this.telefono = telefono;
+        this.fijo = fijo;
+        this.fotos = fotos;
+        this.user = user;
     }
 
     @Override
@@ -22,24 +30,11 @@ public class Publicacion {
                 ", telefono='" + telefono + '\'' +
                 ", fijo='" + fijo + '\'' +
                 ", fotos=" + fotos +
+                ", user=" + user +
                 '}';
     }
 
-    public Publicacion(String titulo, String descripcion, Localizacion location, String telefono, String fijo, ArrayList<String> fotos) {
-        this.titulo = titulo;
-        this.descripcion = descripcion;
-        this.location = location;
-        this.telefono = telefono;
-        this.fijo = fijo;
-        this.fotos = fotos;
-    }
-
-    public String getFijo() {
-        return fijo;
-    }
-
-    public void setFijo(String fijo) {
-        this.fijo = fijo;
+    public Publicacion() {
     }
 
     public String getTitulo() {
@@ -74,11 +69,27 @@ public class Publicacion {
         this.telefono = telefono;
     }
 
+    public String getFijo() {
+        return fijo;
+    }
+
+    public void setFijo(String fijo) {
+        this.fijo = fijo;
+    }
+
     public ArrayList<String> getFotos() {
         return fotos;
     }
 
     public void setFotos(ArrayList<String> fotos) {
         this.fotos = fotos;
+    }
+
+    public Usuario getUser() {
+        return user;
+    }
+
+    public void setUser(Usuario user) {
+        this.user = user;
     }
 }

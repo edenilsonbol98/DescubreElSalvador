@@ -16,20 +16,22 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import sv.edu.catolica.bolanios.jonathan.descubreelsalvador.Clases.VariablesCompartidas;
+
 public class Dialogo_telefono extends AppCompatActivity {
     EditText telCel;
     EditText telFijo;
+    VariablesCompartidas clasVar = new VariablesCompartidas();
 
     public Dialogo_telefono(final Context contexto) {
             final Dialog dialogo = new Dialog(contexto);
             dialogo.requestWindowFeature(Window.FEATURE_NO_TITLE);
             dialogo.setCancelable(false);
-            //dialogo.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             dialogo.setContentView(R.layout.cuadro_dialogo);
 
-            telFijo = (EditText) dialogo.findViewById(R.id.txtTelFijo);
-            telCel = (EditText) dialogo.findViewById(R.id.txtCelular);
-            Button btnagregar = (Button) dialogo.findViewById(R.id.btnAgregarTel);
+            telFijo =  dialogo.findViewById(R.id.txtTelFijo);
+            telCel = dialogo.findViewById(R.id.txtCelular);
+            Button btnagregar = dialogo.findViewById(R.id.btnAgregarTel);
             telFijo.setInputType(InputType.TYPE_CLASS_NUMBER);
             telCel.setInputType(InputType.TYPE_CLASS_NUMBER);
 
@@ -37,13 +39,13 @@ public class Dialogo_telefono extends AppCompatActivity {
             btnagregar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(contexto, AgregarPublicacion.class);
-                    Bundle data = null;
-                    intent.putExtra("telefono", telCel.getText());
-                    intent.putExtra("fijo", telCel.getText());
-                    setResult(RESULT_OK, intent);
-                    Toast.makeText(contexto, "Pasando valores", Toast.LENGTH_SHORT).show();
+                    String telefonoX =  telCel.getText().toString();
+                    String fijoX = telFijo.getText().toString();
+                   // if (!(telefonoX.getText().toString().isEmpty()&& fijoX.getText().toString().isEmpty())) {
+                    VariablesCompartidas.setTelefono(telefonoX);
+                    VariablesCompartidas.setFijo(fijoX);
                     dialogo.dismiss();
+                    //}
 
                 }
             });

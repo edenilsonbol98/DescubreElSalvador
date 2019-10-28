@@ -19,6 +19,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import sv.edu.catolica.bolanios.jonathan.descubreelsalvador.Clases.Publicacion;
+
 public class Login extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private static int PERMISSION_GRANTED;
@@ -33,9 +35,11 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
        // verificarPermisos();
+        Intent intencion1 = new Intent(Login.this, Publicaciones.class);
+        startActivity(intencion1);
+        finish();
 
-
-         mAuth = FirebaseAuth.getInstance();
+        /* mAuth = FirebaseAuth.getInstance();
 
          txtCorreo=findViewById(R.id.etNombre);
          txtpass=findViewById(R.id.etContraseña);
@@ -51,9 +55,7 @@ public class Login extends AppCompatActivity {
                  @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                      if(task.isSuccessful()){
-                         Intent intencion1 = new Intent(Login.this, AgregarPublicacion.class);
-                         startActivity(intencion1);
-                         finish();
+
                      }else {
                          Toast.makeText(Login.this,"Las credenciales no son las correctas verifique si la contraseña o su correo son conrrectos",Toast.LENGTH_LONG).show();
                      }
@@ -63,18 +65,13 @@ public class Login extends AppCompatActivity {
              }
          });
 
-
+        */
 
     }
 
 
 
 
-    public void registrarse(View view) {
-        Intent intencion1 = new Intent(Login.this, Registrarse.class);
-        startActivity(intencion1);
-        finish();
-    }
 
 
 }

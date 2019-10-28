@@ -3,6 +3,8 @@ package sv.edu.catolica.bolanios.jonathan.descubreelsalvador;
 import androidx.fragment.app.FragmentActivity;
 
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -16,11 +18,17 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.firestore.GeoPoint;
 
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
+
+import sv.edu.catolica.bolanios.jonathan.descubreelsalvador.Clases.VariablesCompartidas;
+
 public class MapaPublicacion extends FragmentActivity implements GoogleMap.OnMapLongClickListener , OnMapReadyCallback {
 
     private GoogleMap mMap;
     Location lugar;
-
+    Geocoder decod;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,37 +64,32 @@ public class MapaPublicacion extends FragmentActivity implements GoogleMap.OnMap
     public void onMapLongClick(LatLng latLng) {
 
         mMap.clear();
-        Marker mo =mMap.addMarker(new MarkerOptions().position(latLng));
+        Marker mo =mMap.addMarker(new MarkerOptions().position(latLng).title("Tu ubicación"));
+
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,15));
         if (mo!=null) {
             String tty = String.valueOf(latLng.longitude);
             lugar= new Location("location");
-            lugar.setAltitude(latLng.latitude);
+            lugar.setLatitude(latLng.latitude);
             lugar.setLongitude(latLng.longitude);
             mandarLocation(lugar);
         }
     }
 
-   /* @Override
-    public void onMapClick(LatLng latLng) {
-        mMap.clear();
-        Marker mo =mMap.addMarker(new MarkerOptions().position(latLng));
-        if (mo!=null) {
-            String tty = String.valueOf(latLng.longitude);
-            lugar= new Location("location");
-            lugar.setAltitude(latLng.latitude);
-            lugar.setLongitude(latLng.longitude);
-            mandarLocation(lugar);
-        }
-    }*/
+
 
     private void mandarLocation(Location locat) {
-        Intent intent = new Intent(this, AgregarPublicacion.class);
-        intent.putExtra("latitudIntent",locat.getLatitude());
-        intent.putExtra("LongitudIntent",locat.getLongitude());
-        setResult(RESULT_OK,intent);
-        //MapaPublicacion vista = new MapaPublicacion();
-        Toast.makeText(MapaPublicacion.this, "Pasando valores", Toast.LENGTH_SHORT).show();
-       // vista.finish();
+        try {
+            decod= new Geocoder(MapaPublicacion.this, Locale.getDefault());
+            List<Address> direc = decod.getFromLocation(locat.getLatitude(), locat.getLongitude(),1);
+            VariablesCompartidas.setDireccion(direc.get(0).getAddressLine(0));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        VariablesCompartidas.setLatitud(locat.getLatitude());
+        VariablesCompartidas.setLongitud(locat.getLongitude());
+      //  Toast.makeText(MapaPublicacion.this, "Pasando valores", Toast.LENGTH_SHORT).show();
     }
 
 }
