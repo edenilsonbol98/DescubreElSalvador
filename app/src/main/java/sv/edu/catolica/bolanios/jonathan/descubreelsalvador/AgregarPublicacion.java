@@ -50,8 +50,9 @@ import sv.edu.catolica.bolanios.jonathan.descubreelsalvador.Clases.VariablesComp
 
 public class AgregarPublicacion extends AppCompatActivity {
     private Context mContext;
-    private boolean init = false;
     private BoomMenuButton boomMenuButton;
+    private boolean init = false;
+
 
     Context contexto;
     private Button botonAgregarFotos;

@@ -50,7 +50,7 @@ dependencies {
     implementation "androidx.cardview:cardview:1.0.0"
     //estas las he agregado
     //para el slider
-   // implementation 'de.hdodenhof:circleimageview:2.2.0'
+    // implementation 'de.hdodenhof:circleimageview:2.2.0'
     implementation 'com.github.ahmedshaban1:EasySlider:1.0.0'
 
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
@@ -67,5 +67,7 @@ dependencies {
     implementation 'com.rengwuxian.materialedittext:library:2.1.4'
     implementation 'com.google.android.material:material:1.0.0'
 
+    //imagen circular
+    implementation 'de.hdodenhof:circleimageview:3.0.1'
 }
 apply plugin: 'com.google.gms.google-services'
