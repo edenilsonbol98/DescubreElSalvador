@@ -51,10 +51,10 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".CargarLugares" />
         <activity android:name=".Login" />
-        <activity android:name=".AgregarPublicacion" />
+        <activity android:name=".PantallaInicio" />
         <activity android:name=".PrincipalElSalvador" />
         <activity android:name=".Registrarse" />
-        <activity android:name=".PantallaInicio">
+        <activity android:name=".AgregarPublicacion">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

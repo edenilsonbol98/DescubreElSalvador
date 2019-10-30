@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Publicaciones"
-    android:background="@drawable/fondo_todo"
+
     android:orientation="vertical">
     <LinearLayout
         android:layout_width="match_parent"
@@ -39,7 +39,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="49dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
 
         <TextView
             android:id="@+id/txtTituloList"
@@ -51,7 +52,10 @@
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
             android:paddingTop="10dp"
-            android:paddingBottom="10dp"/>
+            android:paddingBottom="10dp"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:background="@drawable/contorno_negro"/>
     </LinearLayout>
 
     <LinearLayout
@@ -65,29 +69,44 @@
             android:layout_weight="1"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/textView12"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
+                android:layout_height="57dp"
                 android:layout_weight="1"
-                android:paddingStart="20dp"
-                android:paddingTop="10dp"
-                android:paddingEnd="20dp"
-                android:paddingBottom="0dp"
-                android:text="DESCRIPCIÓN"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/txtDescripcionList"
+                <TextView
+                    android:id="@+id/textView12"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingStart="20dp"
+                    android:paddingTop="10dp"
+                    android:paddingEnd="20dp"
+                    android:paddingBottom="0dp"
+                    android:text="DESCRIPCIÓN"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:paddingStart="20dp"
-                android:paddingTop="10dp"
-                android:paddingEnd="20dp"
-                android:paddingBottom="0dp"
-                android:text="Aqui se cargara la descripcion" />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtDescripcionList"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:paddingStart="20dp"
+                    android:paddingTop="10dp"
+                    android:paddingEnd="20dp"
+                    android:paddingBottom="0dp"
+                    android:text="Aqui se cargara la descripcion" />
+            </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>
@@ -101,37 +120,128 @@
         <Button
             android:id="@+id/btnMarcarRutaList"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Marcar ruta"
-            android:layout_gravity="center"/>
+            android:layout_height="35dp"
+            android:layout_gravity="center"
+            android:background="@drawable/boton_publicacion"
+            android:text="Marcar ruta" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="109dp"
         android:orientation="horizontal">
-        <TextView
-            android:id="@+id/textView14"
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:paddingStart="20dp"
-            android:paddingTop="10dp"
-            android:paddingEnd="20dp"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:paddingBottom="0dp"
-            android:text="CONTACTANOS" />
-        <TextView
-            android:id="@+id/txtTelefonosList"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingStart="20dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="20dp"
+                android:paddingBottom="0dp"
+                android:paddingLeft="10dp"
+                android:text="CONTACTANOS"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_weight="1"
-            android:paddingStart="20dp"
-            android:paddingTop="10dp"
-            android:paddingEnd="20dp"
-            android:paddingBottom="0dp"
-            android:text="Aqui se cargara los telefonos" />
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="26dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="25dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/imageView9"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            app:srcCompat="@drawable/fijo" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="25dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/imageView10"
+                            android:layout_width="wrap_content"
+                            android:layout_height="22dp"
+                            android:layout_weight="1"
+                            app:srcCompat="@drawable/telefono" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/txtTelefonosList"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:paddingStart="20dp"
+                            android:paddingTop="3dp"
+                            android:paddingEnd="20dp"
+                            android:paddingBottom="0dp"
+                            android:text="TELEFONO FIJO" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/txtTelefonosList2"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:paddingStart="20dp"
+                            android:paddingTop="3dp"
+                            android:paddingEnd="20dp"
+                            android:paddingBottom="0dp"
+                            android:text="CELULAR" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
     </LinearLayout>
 
     <LinearLayout
@@ -139,12 +249,14 @@
         android:layout_height="106dp"
         android:orientation="horizontal"
         android:gravity="center">
+
         <Button
             android:id="@+id/btnEnviarMensajeList"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Enviar mensaje"
-            android:layout_gravity="center"/>
+            android:layout_width="139dp"
+            android:layout_height="36dp"
+            android:layout_gravity="center"
+            android:background="@drawable/boton_publicacion"
+            android:text="Enviar mensaje" />
 
     </LinearLayout>
 

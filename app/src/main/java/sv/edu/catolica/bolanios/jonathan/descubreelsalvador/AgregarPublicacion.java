@@ -13,8 +13,10 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.os.CountDownTimer;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.nightonke.boommenu.BoomMenuButton;
@@ -45,6 +47,7 @@ import java.util.List;
 import java.util.Map;
 
 import sv.edu.catolica.bolanios.jonathan.descubreelsalvador.Clases.Localizacion;
+import sv.edu.catolica.bolanios.jonathan.descubreelsalvador.Clases.MenuDescurbriendo;
 import sv.edu.catolica.bolanios.jonathan.descubreelsalvador.Clases.Publicacion;
 import sv.edu.catolica.bolanios.jonathan.descubreelsalvador.Clases.VariablesCompartidas;
 
@@ -65,6 +68,8 @@ public class AgregarPublicacion extends AppCompatActivity {
     private FirebaseFirestore myRef;
     private FirebaseUser firebaseUser;
     private DatabaseReference reference;
+    private MenuDescurbriendo classMenu;
+    private Spinner tipo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,8 +90,17 @@ public class AgregarPublicacion extends AppCompatActivity {
         myRef = FirebaseFirestore.getInstance();
 
         mContext = this;
+        //classMenu = new MenuDescurbriendo(AgregarPublicacion.this);
+        //classMenu.crearMenu(boomMenuButton);
+        //classMenu.instanciar(boomMenuButton,mContext);
+       // boomMenuButton = (BoomMenuButton)findViewById(R.id.boom);
 
-        boomMenuButton = (BoomMenuButton)findViewById(R.id.boom);
+        tipo=findViewById(R.id.spTipo);
+
+        String [] opcionesTipo={"Hospedaje", "Turicentro", "Restaurante"};
+
+        ArrayAdapter<String> adaptador = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,opcionesTipo);
+        tipo.setAdapter(adaptador);
     }
 
     @Override
@@ -99,7 +113,7 @@ public class AgregarPublicacion extends AppCompatActivity {
         //Button botonAgregarcel = (Button) findViewById(R.id.btnagreCel);
        /* botonAgregarTel.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+                public void onClick(View view) {
                 new Dialogo_telefono(contexto);
             }
         });*/
@@ -212,90 +226,7 @@ public class AgregarPublicacion extends AppCompatActivity {
         }.start();
 
     }
-    @Override
-    public void onWindowFocusChanged(boolean hasFocus) {
-        super.onWindowFocusChanged(hasFocus);
-
-        // Use a param to record whether the boom button has been initialized
-        // Because we don't need to init it again when onResume()
-        if (init) return;
-        init = true;
-
-        Drawable[] subButtonDrawables = new Drawable[7];
-        int[] drawablesResource = new int[]{
-                R.drawable.agregar,
-                R.drawable.comida,
-                R.drawable.hotel,
-                R.drawable.chat,
-                R.drawable.turi,
-                R.drawable.acerca
 
 
-        };
-        for (int i = 0; i < 4; i++)
-            subButtonDrawables[i] = ContextCompat.getDrawable(this, drawablesResource[i]);
 
-        String[] subButtonTexts = new String[]{"BoomMenuButton", "View source code", "Follow me", "Otra cosa","Otra cosa"};
-
-        int[][] subButtonColors = new int[3][2];
-        for (int i = 0; i < 3; i++) {
-            subButtonColors[i][1] = ContextCompat.getColor(this, R.color.azul);
-            subButtonColors[i][0] = Util.getInstance().getPressedColor(subButtonColors[i][1]);
-
-        }
-
-        // Now with Builder, you can init BMB more convenient
-        new BoomMenuButton.Builder()
-
-                .addSubButton(ContextCompat.getDrawable(this, R.drawable.acerca), subButtonColors[0], "Acerca de nosotros")
-                .addSubButton(ContextCompat.getDrawable(this, R.drawable.chat), subButtonColors[0], "Chat")
-                .addSubButton(ContextCompat.getDrawable(this, R.drawable.agregar), subButtonColors[0], "Agregar")
-                .addSubButton(ContextCompat.getDrawable(this, R.drawable.comida), subButtonColors[0], "Restaurantes")
-                .addSubButton(ContextCompat.getDrawable(this, R.drawable.turi), subButtonColors[0], "Turicentros")
-                .addSubButton(ContextCompat.getDrawable(this, R.drawable.hotel), subButtonColors[0], "Hoteles")
-
-
-                .button(ButtonType.CIRCLE)
-                .boom(BoomType.HORIZONTAL_THROW_2)
-                .place(PlaceType.SHARE_6_6)
-                .subButtonTextColor(ContextCompat.getColor(this, R.color.Blanco))
-                .subButtonsShadow(Util.getInstance().dp2px(1), Util.getInstance().dp2px(1))
-                .onSubButtonClick(new BoomMenuButton.OnSubButtonClickListener() {
-                    @Override
-                    public void onClick(int buttonIndex) {
-                        if (buttonIndex == 0) {
-                            Intent llamar = new Intent(AgregarPublicacion.this,Publicaciones.class);
-                            startActivity(llamar);
-                            finish();
-                        } else if (buttonIndex == 1) {
-                            Intent llamar = new Intent(AgregarPublicacion.this,Publicaciones.class);
-                            startActivity(llamar);
-                            finish();
-                        } else if (buttonIndex == 2) {
-                            Intent llamar = new Intent(AgregarPublicacion.this,AgregarPublicacion.class);
-                            startActivity(llamar);
-                            finish();
-                        }else if (buttonIndex == 3) {
-                            Intent llamar = new Intent(AgregarPublicacion.this,Publicaciones.class);
-                            startActivity(llamar);
-                            finish();
-                        }else if (buttonIndex == 4) {
-                            Intent llamar = new Intent(AgregarPublicacion.this,Publicaciones.class);
-                            startActivity(llamar);
-                            finish();
-                        }else if (buttonIndex == 5) {
-                            Intent llamar = new Intent(AgregarPublicacion.this,Publicaciones.class);
-                            startActivity(llamar);
-                            finish();
-                        }else if (buttonIndex == 6) {
-                            Intent llamar = new Intent(AgregarPublicacion.this,Publicaciones.class);
-                            startActivity(llamar);
-                            finish();
-                        }
-
-                    }
-                })
-                .init(boomMenuButton);
-
-    }
 }

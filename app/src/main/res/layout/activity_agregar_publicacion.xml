@@ -108,29 +108,49 @@
 
         </LinearLayout>
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:orientation="horizontal"
-        android:layout_gravity="center">
 
-        <Button
-            android:id="@+id/btnAgregar"
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="10dp"
-            android:layout_weight="1"
-            android:background="@drawable/boton_publicacion"
-            android:drawableLeft="@android:drawable/ic_menu_add"
-            android:onClick="btnGuardar"
-            android:drawableStart="@android:drawable/ic_menu_add"
-            android:text="@string/agregar_publicaci_n" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="209dp"
+            android:layout_height="45dp"
+            android:orientation="vertical"
+            android:paddingTop="15dp"
+            android:paddingLeft="20dp"
+            >
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tipo de publicación"
+                android:textSize="15sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="201dp"
+            android:layout_height="45dp"
+            android:orientation="vertical"
+            android:paddingTop="10dp">
+
+            <Spinner
+                android:id="@+id/spTipo"
+                android:layout_width="174dp"
+                android:layout_height="30dp"
+                android:background="@color/Blanco"
+
+
+                />
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="40dp"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -153,7 +173,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="start"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingTop="10dp">
 
             <Button
                 android:id="@+id/btnFotos"
@@ -182,6 +203,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="50dp"
+                android:paddingLeft="10dp"
                 android:gravity="start"
                 android:text="@string/tel" />
         </LinearLayout>
@@ -190,7 +212,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="start"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingTop="10dp">
 
             <Button
                 android:id="@+id/btnagreCel"
@@ -198,28 +221,68 @@
                 android:layout_height="31dp"
                 android:background="@android:color/transparent"
                 android:drawableStart="@android:drawable/ic_input_add"
-                android:gravity="start" />
+                android:gravity="start"
+                />
         </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingTop="5dp">
 
         <LinearLayout
             android:id="@+id/linear6"
-            android:layout_width="243dp"
+            android:layout_width="220dp"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:orientation="vertical" />
+            android:orientation="vertical" >  <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+
+            <Button
+                android:id="@+id/btnAgregar"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/boton_publicacion"
+                android:drawableLeft="@android:drawable/ic_menu_add"
+                android:onClick="btnGuardar"
+                android:drawableStart="@android:drawable/ic_menu_add"
+                android:text="@string/agregar_publicaci_n" />
+        </LinearLayout>
+
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/linear7"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="start"
-            android:orientation="vertical" />
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnCancelar"
+                    android:layout_width="139dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/botonrojo"
+                    android:drawableStart="@android:drawable/ic_menu_close_clear_cancel"
+                    android:drawableLeft="@android:drawable/ic_menu_close_clear_cancel"
+                    android:text="Cancelar" />
+            </LinearLayout>
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -227,21 +290,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_gravity="center">
-
-        <Button
-            android:id="@+id/btnAgregar"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:layout_weight="1"
-            android:background="@drawable/boton_publicacion"
-            android:drawableLeft="@android:drawable/ic_menu_add"
-            android:onClick="btnGuardar"
-            android:drawableStart="@android:drawable/ic_menu_add"
-            android:text="@string/agregar_publicaci_n"
-            />
-    </LinearLayout>
+        android:layout_gravity="center"/>
 
     <com.nightonke.boommenu.BoomMenuButton
         android:id="@+id/boom"
