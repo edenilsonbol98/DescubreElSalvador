@@ -1,12 +1,42 @@
 package sv.edu.catolica.bolanios.jonathan.descubreelsalvador;
 
 public class ReUsuario {
+    private String id;
     private String nombre;
     private String Apellido;
     private int Telefono;
     private String usuario;
     private String contraseñ;
     private String departamento;
+    private String imagenURL;
+
+
+    public ReUsuario(String id, String nombre, String apellido, int telefono, String usuario, String contraseñ, String departamento, String imagenURL) {
+        this.id = id;
+        this.nombre = nombre;
+        Apellido = apellido;
+        Telefono = telefono;
+        this.usuario = usuario;
+        this.contraseñ = contraseñ;
+        this.departamento = departamento;
+        this.imagenURL = imagenURL;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getImagenURL() {
+        return imagenURL;
+    }
+
+    public void setImagenURL(String imagenURL) {
+        this.imagenURL = imagenURL;
+    }
 
     public ReUsuario() {
     }
