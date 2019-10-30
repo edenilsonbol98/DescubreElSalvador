@@ -35,11 +35,9 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
        // verificarPermisos();
-        Intent intencion1 = new Intent(Login.this, Publicaciones.class);
-        startActivity(intencion1);
-        finish();
 
-        /* mAuth = FirebaseAuth.getInstance();
+
+         mAuth = FirebaseAuth.getInstance();
 
          txtCorreo=findViewById(R.id.etNombre);
          txtpass=findViewById(R.id.etContraseña);
@@ -55,7 +53,9 @@ public class Login extends AppCompatActivity {
                  @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                      if(task.isSuccessful()){
-
+                         Intent intencion1 = new Intent(Login.this, CargarLugares.class);
+                         startActivity(intencion1);
+                         finish();
                      }else {
                          Toast.makeText(Login.this,"Las credenciales no son las correctas verifique si la contraseña o su correo son conrrectos",Toast.LENGTH_LONG).show();
                      }
@@ -65,7 +65,7 @@ public class Login extends AppCompatActivity {
              }
          });
 
-        */
+
 
     }
 

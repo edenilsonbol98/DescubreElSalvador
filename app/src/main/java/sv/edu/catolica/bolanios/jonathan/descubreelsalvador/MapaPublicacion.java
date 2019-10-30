@@ -83,7 +83,7 @@ public class MapaPublicacion extends FragmentActivity implements GoogleMap.OnMap
             decod= new Geocoder(MapaPublicacion.this, Locale.getDefault());
             List<Address> direc = decod.getFromLocation(locat.getLatitude(), locat.getLongitude(),1);
             VariablesCompartidas.setDireccion(direc.get(0).getAddressLine(0));
-            VariablesCompartidas.setDepartammento(direc.get(0).getCountryName());
+            VariablesCompartidas.setDepartammento(direc.get(0).getLocality());
         } catch (IOException e) {
             e.printStackTrace();
         }

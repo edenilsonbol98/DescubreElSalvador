@@ -14,22 +14,18 @@ public class ModeloPublicacion {
     private String titulo;
     private ArrayList<String> fotos;
     private GeoPoint locacion;
+    private String idPublicacion;
 
     public ModeloPublicacion() {
     }
 
-    public ModeloPublicacion(String celular, String fijo, String descripcion,
-                             String direccionPublicacion, String tipoLocal, String departamento,
-                             String titulo, ArrayList<String> fotos, GeoPoint locacion) {
-        this.celular = celular;
-        this.fijo = fijo;
-        this.descripcion = descripcion;
-        this.direccionPublicacion = direccionPublicacion;
-        this.tipoLocal = tipoLocal;
-        this.departamento = departamento;
-        this.titulo = titulo;
-        this.fotos = fotos;
-        this.locacion = locacion;
+
+    public String getIdPublicacion() {
+        return idPublicacion;
+    }
+
+    public void setIdPublicacion(String idPublicacion) {
+        this.idPublicacion = idPublicacion;
     }
 
     public GeoPoint getLocacion() {

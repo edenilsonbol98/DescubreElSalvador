@@ -29,20 +29,16 @@ public class MyAdapterPublicaciones extends RecyclerView.Adapter<MyAdapterPublic
     private ArrayList<ModeloPublicacion> modelos;
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView textTitulo, textDescripcion, textTelefonos, textGeoPoint,
+        public TextView textTitulo, textDescripcion,textIdPublicacion,
                         textDepartamento, textTipoLocal;
-        public Button btnRuta, btnMensaje;
         public EasySlider easySlider;
         public MyViewHolder(View v) {
             super(v);
             textTitulo = v.findViewById(R.id.txtTituloList);
-            textDescripcion = v.findViewById(R.id.txtDescripcionList);
-            textTelefonos = v.findViewById(R.id.txtTelefonosList);
-           // textDepartamento = v.findViewById(R.id.txtDepartamentoList);
-           // textGeoPoint = v.findViewById(R.id.txtGeoPointList);
-           // textTipoLocal = v.findViewById(R.id.txtTipoLocalList);
-            btnRuta =v.findViewById(R.id.btnMarcarRutaList);
-            btnMensaje =v.findViewById(R.id.btnEnviarMensajeList);
+            textDescripcion = v.findViewById(R.id.txtDescripcion);
+            textDepartamento = v.findViewById(R.id.txtDepartamentoList);
+            textIdPublicacion = v.findViewById(R.id.txtIdPubtList);
+            textTipoLocal = v.findViewById(R.id.txtTipoLocalList);
             easySlider=v.findViewById(R.id.sliderList);
         }
     }
@@ -64,31 +60,16 @@ public class MyAdapterPublicaciones extends RecyclerView.Adapter<MyAdapterPublic
         ModeloPublicacion modelo = modelos.get(position);
         holder.textTitulo.setText(modelo.getTitulo());
         holder.textDescripcion.setText(modelo.getDescripcion());
-        holder.textTitulo.setText(modelo.getTitulo());
-        holder.textTelefonos.setText("Telefóno fijo: "+modelo.getFijo()+"/n"+" Telefóno movil"+modelo.getCelular());
-       // holder.textTipoLocal.setText(modelo.getTipoLocal());
-       // holder.textGeoPoint.setText(modelo.getLocacion().toString());
-       // holder.textDepartamento.setText(modelo.getDepartamento());
-        //holder.btnMensaje.setOnClickListener();
+        holder.textTipoLocal.setText(modelo.getTipoLocal());
+        holder.textIdPublicacion.setText(modelo.getIdPublicacion());
+        holder.textDepartamento.setText(modelo.getDepartamento());
         List<SliderItem> sliderItems = new ArrayList<>();
         sliderItems.add(new SliderItem("Foto 1",modelo.getFotos().get(0)));
         sliderItems.add(new SliderItem("Foto 2",modelo.getFotos().get(1)));
-        //sliderItems.add(new SliderItem("Foto 3",modelo.getFotos().get(2)));
-        //sliderItems.add(new SliderItem("Foto 4",modelo.getFotos().get(3)));
+        sliderItems.add(new SliderItem("Foto 3",modelo.getFotos().get(2)));
+        sliderItems.add(new SliderItem("Foto 4",modelo.getFotos().get(3)));
         holder.easySlider.setPages(sliderItems);
-
-
-        holder.btnRuta.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, MapaPublicacion.class);
-                context.startActivity(intent);
             }
-        });
-       // holder.btnMensaje.setOnClickListener((View.OnClickListener) context);
-
-
-    }
     @Override
     public int getItemCount() {
         return modelos.size();

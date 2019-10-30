@@ -12,26 +12,8 @@
         <ahmed.easyslider.EasySlider
             android:layout_width="match_parent"
             android:layout_height="180dp"
-            android:id="@+id/sliderList"
+            android:id="@+id/sliderUnico"
             />
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:visibility="invisible"
-            android:id="@+id/txtGeoPointList"
-            ></TextView>
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:visibility="invisible"
-            android:id="@+id/txtDepartamentoList"
-            ></TextView>
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:visibility="invisible"
-            android:id="@+id/txtTipoLocalList"
-            ></TextView>
     </LinearLayout>
 
     <LinearLayout

@@ -41,12 +41,34 @@
                     android:textSize="25sp"
                     />
 
-                <ahmed.easyslider.EasySlider
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:id="@+id/sliderList"
-                    />
-
+                    android:layout_height="180dp"
+                    android:orientation="horizontal">
+                    <ahmed.easyslider.EasySlider
+                        android:layout_width="match_parent"
+                        android:layout_height="180dp"
+                        android:id="@+id/sliderList"
+                        />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:visibility="invisible"
+                        android:id="@+id/txtIdPubtList"
+                        ></TextView>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:visibility="invisible"
+                        android:id="@+id/txtDepartamentoList"
+                        ></TextView>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:visibility="invisible"
+                        android:id="@+id/txtTipoLocalList"
+                        ></TextView>
+                </LinearLayout>
                 <TextView
                     android:id="@+id/txtDescripcion"
                     android:layout_width="match_parent"

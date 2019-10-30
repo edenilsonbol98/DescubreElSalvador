@@ -43,6 +43,7 @@ import com.google.firebase.storage.UploadTask;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -199,10 +200,12 @@ public class AgregarPublicacion extends AppCompatActivity {
     }
 
     public void btnGuardar(View view) {
-        new CountDownTimer(30000, 1000) {
+        final boolean[] unaVez = {true};
+       new CountDownTimer(3000, 1000) {
             public void onFinish() {
                 ObtenerIntens();
                 SimpleDateFormat curFormater = new SimpleDateFormat("dd/MM/yyyy");
+                String date = curFormater.format(Calendar.getInstance().getTime());
                 String tipoLocal = tipo.getSelectedItem().toString();
                 myUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
                 Map<String,Object> publicacion = new HashMap<>();
@@ -215,8 +218,8 @@ public class AgregarPublicacion extends AppCompatActivity {
                 publicacion.put("idUsuario",myUser);
                 publicacion.put("direccionPub",direcPub);
                 publicacion.put("tipoLocal",tipoLocal);
-                publicacion.put("fechaCreacion",curFormater);
-                 publicacion.put("departamento",departamento);
+                publicacion.put("fechaCreacion",date);
+                publicacion.put("departamento",departamento);
                 myRef.collection("publicacion").document().set(publicacion).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
@@ -226,9 +229,13 @@ public class AgregarPublicacion extends AppCompatActivity {
             }
 
             public void onTick(long millisUntilFinished) {
-                Toast.makeText(AgregarPublicacion.this, "Obteniendo información", Toast.LENGTH_SHORT).show();
+                if (unaVez[0]) {
+                    Toast.makeText(AgregarPublicacion.this, "Obteniendo información", Toast.LENGTH_SHORT).show();
+                    unaVez[0] =false;
+                }
             }
         }.start();
+
 
     }
 
