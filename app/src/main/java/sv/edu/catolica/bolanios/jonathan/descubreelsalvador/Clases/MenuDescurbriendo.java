@@ -1,6 +1,5 @@
 package sv.edu.catolica.bolanios.jonathan.descubreelsalvador.Clases;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -20,20 +19,22 @@ import sv.edu.catolica.bolanios.jonathan.descubreelsalvador.Publicaciones;
 import sv.edu.catolica.bolanios.jonathan.descubreelsalvador.R;
 
 public class MenuDescurbriendo extends AppCompatActivity {
-    private Context mContext;
+    private Context context;
     private boolean init = false;
-    private Activity activity;
+   // private Activity activity;
+    private BoomMenuButton boomMenuButton;
 
-    public MenuDescurbriendo(Activity activity) {
-        this.activity = activity;
-    }
-    public void instanciar(BoomMenuButton btn, Context mContext){
-        btn = (BoomMenuButton)findViewById(R.id.boom);
-
-        mContext = this;
+    public MenuDescurbriendo(Context context, BoomMenuButton boomMenuButton) {
+        this.context = context;
+        this.boomMenuButton = boomMenuButton;
+       // instanciar();
     }
 
-    public void crearMenu(BoomMenuButton boomMenuButton){
+    public void instanciar(){
+        boomMenuButton = findViewById(R.id.boom);
+    }
+
+    public void crearMenu(){
         // Use a param to record whether the boom button has been initialized
         // Because we don't need to init it again when onResume()
         if (init) return;
@@ -51,62 +52,62 @@ public class MenuDescurbriendo extends AppCompatActivity {
 
         };
         for (int i = 0; i < 4; i++)
-            subButtonDrawables[i] = ContextCompat.getDrawable(this, drawablesResource[i]);
+            subButtonDrawables[i] = ContextCompat.getDrawable(context, drawablesResource[i]);
 
         String[] subButtonTexts = new String[]{"BoomMenuButton", "View source code", "Follow me", "Otra cosa","Otra cosa"};
 
         int[][] subButtonColors = new int[3][2];
         for (int i = 0; i < 3; i++) {
-            subButtonColors[i][1] = ContextCompat.getColor(this, R.color.azul);
+            subButtonColors[i][1] = ContextCompat.getColor(context, R.color.azul);
             subButtonColors[i][0] = Util.getInstance().getPressedColor(subButtonColors[i][1]);
 
         }
 
         // Now with Builder, you can init BMB more convenient
-        new BoomMenuButton.Builder()
+        final BoomMenuButton init = new BoomMenuButton.Builder()
 
-                .addSubButton(ContextCompat.getDrawable(this, R.drawable.acerca), subButtonColors[0], "Acerca de nosotros")
-                .addSubButton(ContextCompat.getDrawable(this, R.drawable.chat), subButtonColors[0], "Chat")
-                .addSubButton(ContextCompat.getDrawable(this, R.drawable.agregar), subButtonColors[0], "Agregar")
-                .addSubButton(ContextCompat.getDrawable(this, R.drawable.comida), subButtonColors[0], "Restaurantes")
-                .addSubButton(ContextCompat.getDrawable(this, R.drawable.turi), subButtonColors[0], "Turicentros")
-                .addSubButton(ContextCompat.getDrawable(this, R.drawable.hotel), subButtonColors[0], "Hoteles")
+                .addSubButton(ContextCompat.getDrawable(context, R.drawable.acerca), subButtonColors[0], "Acerca de nosotros")
+                .addSubButton(ContextCompat.getDrawable(context, R.drawable.chat), subButtonColors[0], "Chat")
+                .addSubButton(ContextCompat.getDrawable(context, R.drawable.agregar), subButtonColors[0], "Agregar")
+                .addSubButton(ContextCompat.getDrawable(context, R.drawable.comida), subButtonColors[0], "Restaurantes")
+                .addSubButton(ContextCompat.getDrawable(context, R.drawable.turi), subButtonColors[0], "Turicentros")
+                .addSubButton(ContextCompat.getDrawable(context, R.drawable.hotel), subButtonColors[0], "Hoteles")
 
 
                 .button(ButtonType.CIRCLE)
                 .boom(BoomType.HORIZONTAL_THROW_2)
                 .place(PlaceType.SHARE_6_6)
-                .subButtonTextColor(ContextCompat.getColor(this, R.color.Blanco))
+                .subButtonTextColor(ContextCompat.getColor(context, R.color.Blanco))
                 .subButtonsShadow(Util.getInstance().dp2px(1), Util.getInstance().dp2px(1))
                 .onSubButtonClick(new BoomMenuButton.OnSubButtonClickListener() {
                     @Override
                     public void onClick(int buttonIndex) {
                         if (buttonIndex == 0) {
-                            Intent llamar = new Intent(activity, Publicaciones.class);
+                            Intent llamar = new Intent(context, Publicaciones.class);
                             startActivity(llamar);
                             finish();
                         } else if (buttonIndex == 1) {
-                            Intent llamar = new Intent(activity,Publicaciones.class);
+                            Intent llamar = new Intent(context, Publicaciones.class);
                             startActivity(llamar);
                             finish();
                         } else if (buttonIndex == 2) {
-                            Intent llamar = new Intent(activity,AgregarPublicacion.class);
+                            Intent llamar = new Intent(context, AgregarPublicacion.class);
                             startActivity(llamar);
                             finish();
-                        }else if (buttonIndex == 3) {
-                            Intent llamar = new Intent(activity,Publicaciones.class);
+                        } else if (buttonIndex == 3) {
+                            Intent llamar = new Intent(context, Publicaciones.class);
                             startActivity(llamar);
                             finish();
-                        }else if (buttonIndex == 4) {
-                            Intent llamar = new Intent(activity,Publicaciones.class);
+                        } else if (buttonIndex == 4) {
+                            Intent llamar = new Intent(context, Publicaciones.class);
                             startActivity(llamar);
                             finish();
-                        }else if (buttonIndex == 5) {
-                            Intent llamar = new Intent(activity,Publicaciones.class);
+                        } else if (buttonIndex == 5) {
+                            Intent llamar = new Intent(context, Publicaciones.class);
                             startActivity(llamar);
                             finish();
-                        }else if (buttonIndex == 6) {
-                            Intent llamar = new Intent(activity, Perfil.class);
+                        } else if (buttonIndex == 6) {
+                            Intent llamar = new Intent(context, Perfil.class);
                             startActivity(llamar);
                             finish();
                         }

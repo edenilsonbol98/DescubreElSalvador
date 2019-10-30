@@ -6,6 +6,15 @@ public class VariablesCompartidas {
     public static double latitud;
     public static double longitud;
     public static String direccion;
+    public static String departammento;
+
+    public static String getDepartammento() {
+        return departammento;
+    }
+
+    public static void setDepartammento(String departammento) {
+        VariablesCompartidas.departammento = departammento;
+    }
 
     public static String getDireccion() {
         return direccion;

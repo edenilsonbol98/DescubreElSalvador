@@ -41,6 +41,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -70,7 +71,7 @@ public class AgregarPublicacion extends AppCompatActivity {
     private DatabaseReference reference;
     private MenuDescurbriendo classMenu;
     private Spinner tipo;
-
+    private String departamento;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,10 +91,13 @@ public class AgregarPublicacion extends AppCompatActivity {
         myRef = FirebaseFirestore.getInstance();
 
         mContext = this;
-        //classMenu = new MenuDescurbriendo(AgregarPublicacion.this);
+       // crearMenu();
+        boomMenuButton = findViewById(R.id.boom);
+        classMenu = new MenuDescurbriendo(AgregarPublicacion.this, boomMenuButton);
+        classMenu.crearMenu();
         //classMenu.crearMenu(boomMenuButton);
         //classMenu.instanciar(boomMenuButton,mContext);
-       // boomMenuButton = (BoomMenuButton)findViewById(R.id.boom);
+
 
         tipo=findViewById(R.id.spTipo);
 
@@ -139,6 +143,7 @@ public class AgregarPublicacion extends AppCompatActivity {
             fijo = VariablesCompartidas.getFijo();
             location = new GeoPoint(latitud,longitud);
             direcPub = VariablesCompartidas.getDireccion();
+            departamento = VariablesCompartidas.getDepartammento();
     }
     private void MostrarGaleria() {
         Intent intent = new Intent(Intent.ACTION_PICK);
@@ -196,9 +201,9 @@ public class AgregarPublicacion extends AppCompatActivity {
     public void btnGuardar(View view) {
         new CountDownTimer(30000, 1000) {
             public void onFinish() {
-                // When timer is finished
-                // Execute your code here
                 ObtenerIntens();
+                SimpleDateFormat curFormater = new SimpleDateFormat("dd/MM/yyyy");
+                String tipoLocal = tipo.getSelectedItem().toString();
                 myUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
                 Map<String,Object> publicacion = new HashMap<>();
                 publicacion.put("lonlan",location);
@@ -209,9 +214,9 @@ public class AgregarPublicacion extends AppCompatActivity {
                 publicacion.put("urlFotos",listFotos);
                 publicacion.put("idUsuario",myUser);
                 publicacion.put("direccionPub",direcPub);
-                //publicacion.put("tipoLocal",direcPub);
-                // publicacion.put("fechaCreacion",direcPub);
-                // publicacion.put("departamento",direcPub);
+                publicacion.put("tipoLocal",tipoLocal);
+                publicacion.put("fechaCreacion",curFormater);
+                 publicacion.put("departamento",departamento);
                 myRef.collection("publicacion").document().set(publicacion).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
@@ -227,6 +232,87 @@ public class AgregarPublicacion extends AppCompatActivity {
 
     }
 
+    public void crearMenu(){
+        // Use a param to record whether the boom button has been initialized
+        // Because we don't need to init it again when onResume()
+        if (init) return;
+        init = true;
 
+        Drawable[] subButtonDrawables = new Drawable[7];
+        int[] drawablesResource = new int[]{
+                R.drawable.agregar,
+                R.drawable.comida,
+                R.drawable.hotel,
+                R.drawable.chat,
+                R.drawable.turi,
+                R.drawable.acerca
+
+
+        };
+        for (int i = 0; i < 4; i++)
+            subButtonDrawables[i] = ContextCompat.getDrawable(this, drawablesResource[i]);
+
+        String[] subButtonTexts = new String[]{"BoomMenuButton", "View source code", "Follow me", "Otra cosa","Otra cosa"};
+
+        int[][] subButtonColors = new int[3][2];
+        for (int i = 0; i < 3; i++) {
+            subButtonColors[i][1] = ContextCompat.getColor(this, R.color.azul);
+            subButtonColors[i][0] = Util.getInstance().getPressedColor(subButtonColors[i][1]);
+
+        }
+
+        // Now with Builder, you can init BMB more convenient
+        final BoomMenuButton init = new BoomMenuButton.Builder()
+
+                .addSubButton(ContextCompat.getDrawable(this, R.drawable.acerca), subButtonColors[0], "Acerca de nosotros")
+                .addSubButton(ContextCompat.getDrawable(this, R.drawable.chat), subButtonColors[0], "Chat")
+                .addSubButton(ContextCompat.getDrawable(this, R.drawable.agregar), subButtonColors[0], "Agregar")
+                .addSubButton(ContextCompat.getDrawable(this, R.drawable.comida), subButtonColors[0], "Restaurantes")
+                .addSubButton(ContextCompat.getDrawable(this, R.drawable.turi), subButtonColors[0], "Turicentros")
+                .addSubButton(ContextCompat.getDrawable(this, R.drawable.hotel), subButtonColors[0], "Hoteles")
+
+
+                .button(ButtonType.CIRCLE)
+                .boom(BoomType.HORIZONTAL_THROW_2)
+                .place(PlaceType.SHARE_6_6)
+                .subButtonTextColor(ContextCompat.getColor(this, R.color.Blanco))
+                .subButtonsShadow(Util.getInstance().dp2px(1), Util.getInstance().dp2px(1))
+                .onSubButtonClick(new BoomMenuButton.OnSubButtonClickListener() {
+                    @Override
+                    public void onClick(int buttonIndex) {
+                        if (buttonIndex == 0) {
+                            Intent llamar = new Intent(AgregarPublicacion.this, Publicaciones.class);
+                            startActivity(llamar);
+                            finish();
+                        } else if (buttonIndex == 1) {
+                            Intent llamar = new Intent(AgregarPublicacion.this, Publicaciones.class);
+                            startActivity(llamar);
+                            finish();
+                        } else if (buttonIndex == 2) {
+                            Intent llamar = new Intent(AgregarPublicacion.this, AgregarPublicacion.class);
+                            startActivity(llamar);
+                            finish();
+                        } else if (buttonIndex == 3) {
+                            Intent llamar = new Intent(AgregarPublicacion.this, Publicaciones.class);
+                            startActivity(llamar);
+                            finish();
+                        } else if (buttonIndex == 4) {
+                            Intent llamar = new Intent(AgregarPublicacion.this, Publicaciones.class);
+                            startActivity(llamar);
+                            finish();
+                        } else if (buttonIndex == 5) {
+                            Intent llamar = new Intent(AgregarPublicacion.this, Publicaciones.class);
+                            startActivity(llamar);
+                            finish();
+                        } else if (buttonIndex == 6) {
+                            Intent llamar = new Intent(AgregarPublicacion.this, Perfil.class);
+                            startActivity(llamar);
+                            finish();
+                        }
+
+                    }
+                })
+                .init(boomMenuButton);
+    }
 
 }
