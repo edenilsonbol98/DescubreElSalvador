@@ -230,14 +230,16 @@
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:orientation="horizontal"
-        android:paddingTop="5dp">
+        android:layout_marginTop="15dp">
 
         <LinearLayout
             android:id="@+id/linear6"
             android:layout_width="220dp"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:orientation="vertical" >  <LinearLayout
+            android:orientation="vertical" >
+
+            <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:orientation="horizontal"
@@ -292,16 +294,25 @@
         android:orientation="horizontal"
         android:layout_gravity="center"/>
 
-    <com.nightonke.boommenu.BoomMenuButton
-        android:id="@+id/boom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:layout_margin="20dp"
-        app:boom_inActionBar="false"
-        app:boom_button_color="@color/naranja"
-        app:boom_button_pressed_color="@color/azul"
-        />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="168dp"
+        android:layout_marginTop="30dp">
+
+        <com.nightonke.boommenu.BoomMenuButton
+            android:id="@+id/boom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+
+            android:layout_margin="20dp"
+            app:boom_button_color="@color/naranja"
+            app:boom_button_pressed_color="@color/azul"
+            app:boom_inActionBar="false" />
+    </RelativeLayout>
+
 
 
 </LinearLayout>

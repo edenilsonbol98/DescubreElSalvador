@@ -12,6 +12,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.os.CountDownTimer;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -92,10 +93,8 @@ public class AgregarPublicacion extends AppCompatActivity {
         myRef = FirebaseFirestore.getInstance();
 
         mContext = this;
-       // crearMenu();
         boomMenuButton = findViewById(R.id.boom);
-        classMenu = new MenuDescurbriendo(AgregarPublicacion.this, boomMenuButton);
-        classMenu.crearMenu();
+
         //classMenu.crearMenu(boomMenuButton);
         //classMenu.instanciar(boomMenuButton,mContext);
 
@@ -239,7 +238,9 @@ public class AgregarPublicacion extends AppCompatActivity {
 
     }
 
-    public void crearMenu(){
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
         // Use a param to record whether the boom button has been initialized
         // Because we don't need to init it again when onResume()
         if (init) return;
@@ -288,11 +289,11 @@ public class AgregarPublicacion extends AppCompatActivity {
                     @Override
                     public void onClick(int buttonIndex) {
                         if (buttonIndex == 0) {
-                            Intent llamar = new Intent(AgregarPublicacion.this, Publicaciones.class);
+                            Intent llamar = new Intent(AgregarPublicacion.this, CargarLugares.class);
                             startActivity(llamar);
                             finish();
                         } else if (buttonIndex == 1) {
-                            Intent llamar = new Intent(AgregarPublicacion.this, Publicaciones.class);
+                            Intent llamar = new Intent(AgregarPublicacion.this, CargarLugares.class);
                             startActivity(llamar);
                             finish();
                         } else if (buttonIndex == 2) {
@@ -300,19 +301,15 @@ public class AgregarPublicacion extends AppCompatActivity {
                             startActivity(llamar);
                             finish();
                         } else if (buttonIndex == 3) {
-                            Intent llamar = new Intent(AgregarPublicacion.this, Publicaciones.class);
+                            Intent llamar = new Intent(AgregarPublicacion.this, CargarLugares.class);
                             startActivity(llamar);
                             finish();
                         } else if (buttonIndex == 4) {
-                            Intent llamar = new Intent(AgregarPublicacion.this, Publicaciones.class);
+                            Intent llamar = new Intent(AgregarPublicacion.this, CargarLugares.class);
                             startActivity(llamar);
                             finish();
                         } else if (buttonIndex == 5) {
-                            Intent llamar = new Intent(AgregarPublicacion.this, Publicaciones.class);
-                            startActivity(llamar);
-                            finish();
-                        } else if (buttonIndex == 6) {
-                            Intent llamar = new Intent(AgregarPublicacion.this, Perfil.class);
+                            Intent llamar = new Intent(AgregarPublicacion.this, CargarLugares.class);
                             startActivity(llamar);
                             finish();
                         }
@@ -320,6 +317,23 @@ public class AgregarPublicacion extends AppCompatActivity {
                     }
                 })
                 .init(boomMenuButton);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.perfil:
+                Intent llamar = new Intent(AgregarPublicacion.this, Perfil.class);
+                startActivity(llamar);
+                finish();
+                break;
+            case R.id.salir:
+                finish();
+                break;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }
