@@ -2,10 +2,12 @@ package sv.edu.catolica.bolanios.jonathan.descubreelsalvador;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -16,29 +18,28 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
+import ahmed.easyslider.EasySlider;
+import ahmed.easyslider.SliderItem;
 import sv.edu.catolica.bolanios.jonathan.descubreelsalvador.Clases.ModeloPublicacion;
-import sv.edu.catolica.bolanios.jonathan.descubreelsalvador.Clases.MyAdapterPublicaciones;
 
 public class Publicaciones extends AppCompatActivity {
 
-    ArrayList<String> listFotos;
-    ArrayList<ModeloPublicacion> listModelo;
-    FirebaseFirestore myRef;
-    RecyclerView recyclerView;
-    ModeloPublicacion classModelo;
-    MyAdapterPublicaciones adapter;
-    String url1="", url2="", url3="", url4="";
+    private FirebaseFirestore myRef;
+    private String url1="", url2="", url3="", url4="";
+    private TextView textTitulo, textDescripcion, textFijo, textCelular, textGeo;
+    private EasySlider slider;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_publicaciones);
-        listFotos=new ArrayList<>();
-        listModelo= new ArrayList<>();
-        classModelo=new ModeloPublicacion();
         myRef=FirebaseFirestore.getInstance();
-        recyclerView=findViewById(R.id.my_recycler_view);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        textTitulo=findViewById(R.id.pubTxtTitulo);
+        textDescripcion=findViewById(R.id.pubTxtDescripcion);
+        textCelular=findViewById(R.id.pubTxtCelular);
+        textFijo=findViewById(R.id.pubTxtFijo);
+        textGeo=findViewById(R.id.txtGeoPointPub);
+        slider= findViewById(R.id.pubSlider);
         mostrarPublicaciones();
     }
 
@@ -47,24 +48,27 @@ public class Publicaciones extends AppCompatActivity {
         myRef.collection("publicacion").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                String urls="";
+                Bundle extras = getIntent().getExtras();
+                String idPublicacion = extras.getString("idPublicacion");
+                String urls, idActual;
                 for (QueryDocumentSnapshot snapshot:task.getResult()) {
-                    classModelo.setTitulo(snapshot.get("titulo").toString());
-                    classModelo.setDireccionPublicacion(snapshot.get("direccionPub").toString());
-                    classModelo.setDescripcion(snapshot.get("descripcion").toString());
-                    classModelo.setCelular(snapshot.get("celular").toString());
-                    classModelo.setFijo(snapshot.get("telefono").toString());
-                    urls=snapshot.get("urlFotos").toString();
-                    separarUrls(urls);
-                    listFotos.add(url1);
-                    listFotos.add(url2);
-                    //   listFotos.add(url3);
-                    //   listFotos.add(url4);
-                    classModelo.setFotos(listFotos);
-                    listModelo.add(classModelo);
+                    idActual= snapshot.getId();
+                    if (idActual.equals(idPublicacion)) {
+                        textTitulo.setText(snapshot.get("titulo").toString());
+                        textDescripcion.setText(snapshot.get("descripcion").toString());
+                        textCelular.setText(snapshot.get("celular").toString());
+                        textFijo.setText(snapshot.get("telefono").toString());
+                        textGeo.setText(snapshot.get("lonlan").toString());
+                        urls=snapshot.get("urlFotos").toString();
+                        separarUrls(urls);
+                        ArrayList<SliderItem> sliderItems = new ArrayList<>();
+                        sliderItems.add(new SliderItem("Foto 1",url1));
+                        sliderItems.add(new SliderItem("Foto 2",url2));
+                        sliderItems.add(new SliderItem("Foto 3",url3));
+                        sliderItems.add(new SliderItem("Foto 4",url4));
+                        slider.setPages(sliderItems);
+                    }
                 }
-                adapter=new MyAdapterPublicaciones(Publicaciones.this,listModelo);
-                recyclerView.setAdapter(adapter);
             }
         });
 
@@ -97,5 +101,11 @@ public class Publicaciones extends AppCompatActivity {
                 }
             }
         }
+    }
+
+    public void GraficarRuta(View view) {
+    }
+
+    public void MandarMensajes(View view) {
     }
 }

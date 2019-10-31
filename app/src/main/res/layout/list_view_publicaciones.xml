@@ -21,7 +21,7 @@
 
             <LinearLayout
                 android:layout_width="389dp"
-                android:layout_height="321dp"
+                android:layout_height="351dp"
                 android:background="@drawable/blancoboton"
                 android:orientation="vertical">
 
@@ -45,11 +45,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="180dp"
                     android:orientation="horizontal">
-                    <ahmed.easyslider.EasySlider
+                    <ImageView
                         android:layout_width="match_parent"
-                        android:layout_height="180dp"
-                        android:id="@+id/sliderList"
-                        />
+                        android:layout_height="match_parent"
+                        android:id="@+id/imgPublicacionList"></ImageView>
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="0dp"
@@ -85,10 +84,10 @@
                     android:textSize="15sp"/>
 
                 <Button
-                    android:id="@+id/btnVermas"
+                    android:id="@+id/btnVermasList"
                     android:layout_width="288dp"
                     android:layout_height="wrap_content"
-                    android:text="Ver mas"
+                    android:text="@string/ver_mas"
                     android:gravity="center"
                     android:layout_gravity="center"
                     android:background="@drawable/boton_publicacion"/>

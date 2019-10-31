@@ -12,13 +12,29 @@ public class ModeloPublicacion {
     private String tipoLocal;
     private String departamento;
     private String titulo;
-    private ArrayList<String> fotos;
+    private String fotos;
     private GeoPoint locacion;
     private String idPublicacion;
+    private ArrayList<String> listFotos;
+
+    public ArrayList<String> getListFotos() {
+        return listFotos;
+    }
+
+    public void setListFotos(ArrayList<String> listFotos) {
+        this.listFotos = listFotos;
+    }
 
     public ModeloPublicacion() {
     }
 
+    public String getFotos() {
+        return fotos;
+    }
+
+    public void setFotos(String fotos) {
+        this.fotos = fotos;
+    }
 
     public String getIdPublicacion() {
         return idPublicacion;
@@ -92,11 +108,4 @@ public class ModeloPublicacion {
         this.titulo = titulo;
     }
 
-    public ArrayList<String> getFotos() {
-        return fotos;
-    }
-
-    public void setFotos(ArrayList<String> fotos) {
-        this.fotos = fotos;
-    }
 }

@@ -32,7 +32,7 @@ public class CargarLugares extends AppCompatActivity {
     RecyclerView recyclerView;
     ModeloPublicacion classModelo;
     MyAdapterPublicaciones adapter;
-    String url1="", url2="", url3="", url4="";
+    String url1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +40,7 @@ public class CargarLugares extends AppCompatActivity {
         setContentView(R.layout.activity_cargar_lugares);
 
         mAuth = FirebaseAuth.getInstance();
-        pruebaSalir=findViewById(R.id.btnVermas);
+      //  pruebaSalir=findViewById(R.id.btnVermas);
         listFotos=new ArrayList<>();
         listModelo= new ArrayList<>();
         classModelo=new ModeloPublicacion();
@@ -63,15 +63,10 @@ public class CargarLugares extends AppCompatActivity {
         myRef.collection("publicacion").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
-
                 for (QueryDocumentSnapshot snapshot:task.getResult()) {
-                    listFotos = new ArrayList<>();
                     classModelo = new ModeloPublicacion();
                     url1="";
-                    url2="";
-                    url3="";
-                    url4="";
-                    String urls="";
+                    String urls;
                     classModelo.setTitulo(snapshot.get("titulo").toString());
                     classModelo.setDescripcion(snapshot.get("descripcion").toString());
                     classModelo.setDepartamento(snapshot.get("departamento").toString());
@@ -79,11 +74,7 @@ public class CargarLugares extends AppCompatActivity {
                     classModelo.setIdPublicacion(snapshot.getId());
                     urls=snapshot.get("urlFotos").toString();
                     separarUrls(urls);
-                    listFotos.add(url1);
-                    listFotos.add(url2);
-                       listFotos.add(url3);
-                       listFotos.add(url4);
-                    classModelo.setFotos(listFotos);
+                    classModelo.setFotos(url1);
                     listModelo.add(classModelo);
                 }
                 adapter=new MyAdapterPublicaciones(CargarLugares.this,listModelo);
@@ -91,7 +82,7 @@ public class CargarLugares extends AppCompatActivity {
             }
         });
     }
-    private void separarUrls(String urls) {
+    /*private void separarUrls(String urls) {
         boolean foto3=false, foto4=false, foto2=false, foto1=true, caracterInvalido=false;
         int contador = urls.length()-1, i=0;
         for (int h=0; h<contador; h++)
@@ -117,6 +108,18 @@ public class CargarLugares extends AppCompatActivity {
                     foto4 = true;
                 }
             }
+        }
+    }*/
+    private void separarUrls(String urls) {
+        boolean  caracterInvalido=false;
+        int contador = urls.length()-1;
+        for (int h=0; h<contador; h++)
+        {
+            char c = urls.charAt(h);
+            String b = String.valueOf(c);
+            if (caracterInvalido && !(b.equals(","))) { url1+=b; }
+            else if (b.equals(",")) {break; }
+            else { caracterInvalido = true; }
         }
     }
 
