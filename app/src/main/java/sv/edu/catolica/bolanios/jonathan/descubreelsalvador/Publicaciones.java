@@ -3,6 +3,7 @@ package sv.edu.catolica.bolanios.jonathan.descubreelsalvador;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
@@ -31,19 +32,23 @@ import java.util.ArrayList;
 
 import ahmed.easyslider.EasySlider;
 import ahmed.easyslider.SliderItem;
+import sv.edu.catolica.bolanios.jonathan.descubreelsalvador.Adaptadores.MyAdapterFotos;
 import sv.edu.catolica.bolanios.jonathan.descubreelsalvador.Clases.ModeloPublicacion;
+import sv.edu.catolica.bolanios.jonathan.descubreelsalvador.Clases.MyAdapterPublicaciones;
+import sv.edu.catolica.bolanios.jonathan.descubreelsalvador.Clases.Publicacion;
 
 public class Publicaciones extends AppCompatActivity {
 
     private FirebaseFirestore myRef;
     private String url1="", url2="", url3="", url4="";
     private TextView textTitulo, textDescripcion, textFijo, textCelular, textGeo;
-    private EasySlider slider;
+    private ArrayList<String> listFotos;
 
     private Context mContext;
     private BoomMenuButton boomMenuButton;
     private boolean init = false;
-
+    private RecyclerView recyclerView;
+    private MyAdapterFotos adapterFotos;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,9 +59,15 @@ public class Publicaciones extends AppCompatActivity {
         textCelular=findViewById(R.id.pubTxtCelular);
         textFijo=findViewById(R.id.pubTxtFijo);
         textGeo=findViewById(R.id.txtGeoPointPub);
-        slider= findViewById(R.id.pubSlider);
+        listFotos= new ArrayList<>();
+       // slider= findViewById(R.id.pubSlider);
+        recyclerView=findViewById(R.id.recycler_fotos);
+        LinearLayoutManager horizontalLayoutManager
+                = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        recyclerView.setLayoutManager(horizontalLayoutManager);
+       // recyclerView.setHasFixedSize(true);
+       // recyclerView.setLayoutManager(new LinearLayoutManager(this));
         mostrarPublicaciones();
-
         mContext = this;
         boomMenuButton = findViewById(R.id.boom);
     }
@@ -85,14 +96,15 @@ public class Publicaciones extends AppCompatActivity {
                         textGeo.setText(snapshot.get("lonlan").toString());
                         urls=snapshot.get("urlFotos").toString();
                         separarUrls(urls);
-                        ArrayList<SliderItem> sliderItems = new ArrayList<>();
-                        sliderItems.add(new SliderItem("Foto 1",url1));
-                        sliderItems.add(new SliderItem("Foto 2",url2));
-                        sliderItems.add(new SliderItem("Foto 3",url3));
-                        sliderItems.add(new SliderItem("Foto 4",url4));
-                        slider.setPages(sliderItems);
+                        listFotos.add(url1);
+                        listFotos.add(url2);
+                        listFotos.add(url3);
+                        listFotos.add(url4);
+                        break;
                     }
                 }
+                adapterFotos=new MyAdapterFotos(Publicaciones.this,listFotos);
+                recyclerView.setAdapter(adapterFotos);
             }
         });
 

@@ -21,11 +21,17 @@
             android:visibility="invisible"
             android:id="@+id/txtGeoPointPub"
             ></TextView>
-        <ahmed.easyslider.EasySlider
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="15dp"
+            android:id="@+id/recycler_fotos"
             android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:id="@+id/pubSlider"
-            />
+            android:layout_height="match_parent"
+            android:scrollbars="vertical"
+            android:background="@color/transparent"/>
     </LinearLayout>
 
     <LinearLayout

@@ -22,7 +22,6 @@ import sv.edu.catolica.bolanios.jonathan.descubreelsalvador.R;
 public class MyAdapterPublicaciones extends RecyclerView.Adapter<MyAdapterPublicaciones.MyViewHolder> {
     private Context context;
     private ArrayList<ModeloPublicacion> modelos;
-    private String idPublicacion;
 
 
     public static class MyViewHolder extends RecyclerView.ViewHolder  {
