@@ -54,7 +54,13 @@
         <activity android:name=".CargarLugares" />
         <activity android:name=".PrincipalElSalvador" />
         <activity android:name=".Registrarse" />
-        <activity android:name=".AgregarPublicacion"></activity>
+        <activity android:name=".AgregarPublicacion">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
