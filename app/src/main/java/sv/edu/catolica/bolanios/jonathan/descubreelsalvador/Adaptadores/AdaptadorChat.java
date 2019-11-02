@@ -17,6 +17,7 @@ import com.google.firebase.auth.FirebaseUser;
 import java.util.List;
 
 import sv.edu.catolica.bolanios.jonathan.descubreelsalvador.Clases.Chat;
+import sv.edu.catolica.bolanios.jonathan.descubreelsalvador.Mensajes;
 import sv.edu.catolica.bolanios.jonathan.descubreelsalvador.R;
 
 public class AdaptadorChat extends RecyclerView.Adapter<AdaptadorChat.ViewHolder> {
@@ -81,7 +82,7 @@ public class AdaptadorChat extends RecyclerView.Adapter<AdaptadorChat.ViewHolder
     @Override
     public int getItemViewType(int position) {
         fuser= FirebaseAuth.getInstance().getCurrentUser();
-        if(mChat.get(position).getEnviador().equals(fuser.getUid())){
+        if(mChat.get(position).getEmisor().equals(fuser.getUid())){
             return MSG_TYPE_RIGHT;
         }else {
             return MSG_TYPE_LEFT;

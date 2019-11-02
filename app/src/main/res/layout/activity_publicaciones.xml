@@ -123,6 +123,22 @@
             android:background="@drawable/boton_publicacion"
             android:text="Marcar ruta"
             android:onClick="GraficarRuta"/>
+        <Button
+            android:layout_width="139dp"
+            android:layout_height="36dp"
+            android:layout_gravity="center"
+            android:background="@drawable/boton_publicacion"
+            android:text="Enviar mensaje"
+            android:onClick="MandarMensajes"
+            />
+        <Button
+            android:layout_width="139dp"
+            android:layout_height="36dp"
+            android:layout_gravity="center"
+            android:background="@drawable/boton_publicacion"
+            android:text="Mostrar bandeja"
+           android:id="@+id/bandeja"
+            />
     </LinearLayout>
 
     <LinearLayout
@@ -249,14 +265,7 @@
         android:orientation="horizontal"
         android:gravity="center">
 
-        <Button
-            android:layout_width="139dp"
-            android:layout_height="36dp"
-            android:layout_gravity="center"
-            android:background="@drawable/boton_publicacion"
-            android:text="Enviar mensaje"
-            android:onClick="MandarMensajes"
-            />
+
 
     </LinearLayout>
 

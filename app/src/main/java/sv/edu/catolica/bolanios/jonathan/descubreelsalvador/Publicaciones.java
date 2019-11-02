@@ -41,8 +41,9 @@ public class Publicaciones extends AppCompatActivity {
 
     private FirebaseFirestore myRef;
     private String url1="", url2="", url3="", url4="";
-    private TextView textTitulo, textDescripcion, textFijo, textCelular, textGeo;
+    private TextView textTitulo, textDescripcion, textFijo, textCelular, textGeo,usuarioPub;
     private ArrayList<String> listFotos;
+    private Button bandeja;
 
     private Context mContext;
     private BoomMenuButton boomMenuButton;
@@ -59,6 +60,7 @@ public class Publicaciones extends AppCompatActivity {
         textCelular=findViewById(R.id.pubTxtCelular);
         textFijo=findViewById(R.id.pubTxtFijo);
         textGeo=findViewById(R.id.txtGeoPointPub);
+        usuarioPub=findViewById(R.id.txtIdUsuarioPub);
         listFotos= new ArrayList<>();
        // slider= findViewById(R.id.pubSlider);
         recyclerView=findViewById(R.id.recycler_fotos);
@@ -70,6 +72,14 @@ public class Publicaciones extends AppCompatActivity {
         mostrarPublicaciones();
         mContext = this;
         boomMenuButton = findViewById(R.id.boom);
+        bandeja=findViewById(R.id.bandeja);
+        bandeja.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intentar=new Intent(Publicaciones.this,CargarChats.class);
+                startActivity(intentar);
+            }
+        });
     }
 
     @Override
@@ -94,6 +104,7 @@ public class Publicaciones extends AppCompatActivity {
                         textCelular.setText(snapshot.get("celular").toString());
                         textFijo.setText(snapshot.get("telefono").toString());
                         textGeo.setText(snapshot.get("lonlan").toString());
+                        usuarioPub.setText(snapshot.get("idUsuario").toString());
                         urls=snapshot.get("urlFotos").toString();
                         separarUrls(urls);
                         listFotos.add(url1);
@@ -143,6 +154,10 @@ public class Publicaciones extends AppCompatActivity {
     }
 
     public void MandarMensajes(View view) {
+        String usuario=usuarioPub.getText().toString();
+        Intent intención=new Intent(Publicaciones.this,Mensajes.class);
+        intención.putExtra("idUsua",usuario);
+        startActivity(intención);
     }
 
     @Override

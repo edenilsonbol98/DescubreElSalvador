@@ -24,8 +24,9 @@
         android:roundIcon="@mipmap/ic_index_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PantallaInicio"></activity>
-        <activity android:name=".Fragmentos.Mensajes" />
+        <activity android:name=".CargarChats"></activity>
+        <activity android:name=".Mensajes" />
+        <activity android:name=".PantallaInicio" />
         <activity android:name=".Perfil" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -50,7 +51,7 @@
         <activity android:name=".prueba" />
         <activity android:name=".Publicaciones" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".Login" >
+        <activity android:name=".Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -60,8 +61,7 @@
         <activity android:name=".CargarLugares" />
         <activity android:name=".PrincipalElSalvador" />
         <activity android:name=".Registrarse" />
-        <activity android:name=".AgregarPublicacion">
-        </activity>
+        <activity android:name=".AgregarPublicacion" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"

@@ -3,23 +3,21 @@ package sv.edu.catolica.bolanios.jonathan.descubreelsalvador;
 public class ReUsuario {
     private String id;
     private String nombre;
-    private String Apellido;
-    private int Telefono;
-    private String usuario;
-    private String contraseñ;
+    private String apellido;
+    private String telefono;
     private String departamento;
-    private String imagenURL;
+    private String imageURL;
 
-
-    public ReUsuario(String id, String nombre, String apellido, int telefono, String usuario, String contraseñ, String departamento, String imagenURL) {
+    public ReUsuario(String id, String nombre, String apellido, String telefono, String departamento, String imageURL) {
         this.id = id;
         this.nombre = nombre;
-        Apellido = apellido;
-        Telefono = telefono;
-        this.usuario = usuario;
-        this.contraseñ = contraseñ;
+        this.apellido = apellido;
+        this.telefono = telefono;
         this.departamento = departamento;
-        this.imagenURL = imagenURL;
+        this.imageURL = imageURL;
+    }
+
+    public ReUsuario() {
     }
 
     public String getId() {
@@ -28,17 +26,6 @@ public class ReUsuario {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getImagenURL() {
-        return imagenURL;
-    }
-
-    public void setImagenURL(String imagenURL) {
-        this.imagenURL = imagenURL;
-    }
-
-    public ReUsuario() {
     }
 
     public String getNombre() {
@@ -50,35 +37,19 @@ public class ReUsuario {
     }
 
     public String getApellido() {
-        return Apellido;
+        return apellido;
     }
 
     public void setApellido(String apellido) {
-        Apellido = apellido;
+        this.apellido = apellido;
     }
 
-    public int getTelefono(int telefo) {
-        return Telefono;
+    public String getTelefono() {
+        return telefono;
     }
 
-    public void setTelefono(int telefono) {
-        Telefono = telefono;
-    }
-
-    public String getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
-    }
-
-    public String getContraseñ() {
-        return contraseñ;
-    }
-
-    public void setContraseñ(String contraseñ) {
-        this.contraseñ = contraseñ;
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 
     public String getDepartamento() {
@@ -89,8 +60,11 @@ public class ReUsuario {
         this.departamento = departamento;
     }
 
-    @Override
-    public String toString() {
-        return nombre;
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
     }
 }

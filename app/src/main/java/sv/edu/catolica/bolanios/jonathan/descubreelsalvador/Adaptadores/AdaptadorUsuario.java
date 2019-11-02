@@ -15,7 +15,7 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
-import sv.edu.catolica.bolanios.jonathan.descubreelsalvador.Fragmentos.Mensajes;
+import sv.edu.catolica.bolanios.jonathan.descubreelsalvador.Mensajes;
 import sv.edu.catolica.bolanios.jonathan.descubreelsalvador.R;
 import sv.edu.catolica.bolanios.jonathan.descubreelsalvador.ReUsuario;
 
@@ -28,8 +28,6 @@ public class AdaptadorUsuario extends RecyclerView.Adapter<AdaptadorUsuario.View
         this.mContex=mCont;
     }
 
-
-
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -41,17 +39,17 @@ public class AdaptadorUsuario extends RecyclerView.Adapter<AdaptadorUsuario.View
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final ReUsuario user=mUsers.get(position);
         holder.username.setText(user.getNombre());
-        if(user.getImagenURL().equals("default")){
+        if(user.getImageURL().equals("default")){
             holder.profile_image.setImageResource(R.mipmap.ic_launcher);
         }else {
-            Glide.with(mContex).load(user.getImagenURL()).into(holder.profile_image);
+            Glide.with(mContex).load(user.getImageURL()).into(holder.profile_image);
         }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(mContex, Mensajes.class);
-                intent.putExtra("userid",user.getId());
+                intent.putExtra("idUsua",user.getId());
                 mContex.startActivity(intent);
             }
         });
@@ -78,4 +76,3 @@ public class AdaptadorUsuario extends RecyclerView.Adapter<AdaptadorUsuario.View
     }
 
 }
-

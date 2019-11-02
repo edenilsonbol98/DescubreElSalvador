@@ -1,33 +1,33 @@
 package sv.edu.catolica.bolanios.jonathan.descubreelsalvador.Clases;
 
 public class Chat {
-    private String enviador;
-    private String recibidor;
+    private String emisor;
+    private String receptor;
     private String mensaje;
 
-    public Chat(String enviador, String recibidor, String mensaje) {
-        this.enviador = enviador;
-        this.recibidor = recibidor;
+    public Chat(String emisor, String receptor, String mensaje) {
+        this.emisor = emisor;
+        this.receptor = receptor;
         this.mensaje = mensaje;
     }
 
     public Chat() {
     }
 
-    public String getEnviador() {
-        return enviador;
+    public String getEmisor() {
+        return emisor;
     }
 
-    public void setEnviador(String enviador) {
-        this.enviador = enviador;
+    public void setEmisor(String emisor) {
+        this.emisor = emisor;
     }
 
-    public String getRecibidor() {
-        return recibidor;
+    public String getReceptor() {
+        return receptor;
     }
 
-    public void setRecibidor(String recibidor) {
-        this.recibidor = recibidor;
+    public void setReceptor(String receptor) {
+        this.receptor = receptor;
     }
 
     public String getMensaje() {

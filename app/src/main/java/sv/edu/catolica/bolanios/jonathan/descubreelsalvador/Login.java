@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -27,6 +28,7 @@ public class Login extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private Button ingresar;
     private EditText txtCorreo,txtpass;
+    private TextView enviarRe;
 
 
 
@@ -41,6 +43,7 @@ public class Login extends AppCompatActivity {
 
          txtCorreo=findViewById(R.id.etNombre);
          txtpass=findViewById(R.id.etContraseña);
+         enviarRe=findViewById(R.id.textView8);
 
          ingresar=findViewById(R.id.btnLogin);
 
@@ -65,13 +68,14 @@ public class Login extends AppCompatActivity {
              }
          });
 
-
+         enviarRe.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View view) {
+                 Intent intencion1=new Intent(Login.this,Registrarse.class);
+                 startActivity(intencion1);
+             }
+         });
 
     }
-
-
-
-
-
 
 }

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -18,6 +19,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -33,7 +35,7 @@ public class Registrarse extends AppCompatActivity {
     private Button Registrarse;
 
     private FirebaseAuth mAuth;
-    private DatabaseReference mDatabase;
+    private DatabaseReference reference;
 
 
     @Override
@@ -42,7 +44,6 @@ public class Registrarse extends AppCompatActivity {
         setContentView(R.layout.activity_registrarse);
 
         mAuth = FirebaseAuth.getInstance();
-        mDatabase= FirebaseDatabase.getInstance().getReference("User");
 
         nombre=findViewById(R.id.etNombre);
         apellido=findViewById(R.id.etApellido);
@@ -62,31 +63,21 @@ public class Registrarse extends AppCompatActivity {
             public void onClick(View view) {
          final String nom =nombre.getText().toString();
            final String apell =apellido.getText().toString();
-           final int telef =Integer.parseInt(telefono.getText().toString()) ;
+           final String telef =telefono.getText().toString();
            final String email =usuario.getText().toString();
            final String password= contraseña.getText().toString();
            final String select=departamento.getSelectedItem().toString();
 
-           mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(Registrarse.this,new OnCompleteListener<AuthResult>() {
-               @Override
-               public void onComplete(@NonNull Task<AuthResult> task) {
-                   if(task.isSuccessful()){
-                       ReUsuario datos=new ReUsuario();
-                       datos.setNombre(nom);
-                       datos.setApellido(apell);
-                       datos.setTelefono(telef);
-                       datos.setUsuario(email);
-                       datos.setContraseñ(password);
-                       datos.setDepartamento(select);
-                       mDatabase.push().setValue(datos);
-                       limpiar();
-                       Toast.makeText(Registrarse.this,"Registrado con éxito",Toast.LENGTH_SHORT).show();
-                   }else {
-                       Log.w(TAG, "signInWithEmail:failure", task.getException());
-                       Toast.makeText(Registrarse.this,"La autenticación fallo",Toast.LENGTH_SHORT).show();
-                   }
-               }
-           });
+           if(TextUtils.isEmpty(nom) || TextUtils.isEmpty(apell) || TextUtils.isEmpty(telef) || TextUtils.isEmpty(email)|| TextUtils.isEmpty(password)){
+               Toast.makeText(Registrarse.this,"Debes de completar los campos",Toast.LENGTH_LONG).show();
+           }else if (password.length()<6){
+               Toast.makeText(Registrarse.this,"Tu contraseña debe ser mayor a 6 caracteres",Toast.LENGTH_LONG).show();
+           }else {
+                registrar(nom,apell,telef,email,password,select);
+           }
+
+
+
        }
    });
 
@@ -100,5 +91,43 @@ public class Registrarse extends AppCompatActivity {
         contraseña.setText("");
        }
 
+       private void registrar(final String nombre, final String apellido, final String telefono, String usuario, String contra, final String departamento){
+           mAuth.createUserWithEmailAndPassword(usuario,contra).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+               @Override
+               public void onComplete(@NonNull Task<AuthResult> task) {
+                   if(task.isSuccessful()){
+                       FirebaseUser firebaseUser=mAuth.getCurrentUser();
+                       assert firebaseUser != null;
+                       String id=firebaseUser.getUid();
+                       reference= FirebaseDatabase.getInstance().getReference("Usuarios").child(id);
+
+                       HashMap<String,String> hashMap=new HashMap<>();
+                       hashMap.put("id",id);
+                       hashMap.put("nombre",nombre);
+                       hashMap.put("apellido",apellido);
+                       hashMap.put("telefono",telefono);
+                       hashMap.put("departamento",departamento);
+                       hashMap.put("imageURL","default");
+
+                       reference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                           @Override
+                           public void onComplete(@NonNull Task<Void> task2) {
+                               if(task2.isSuccessful()){
+                                   Intent intent=new Intent(Registrarse.this,Login.class);
+                                   intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                   Toast.makeText(Registrarse.this,"Almacenado con éxito",Toast.LENGTH_LONG).show();
+                                   startActivity(intent);
+                                   finish();
+                               }
+                           }
+                       });
+                   }else {
+                       Toast.makeText(Registrarse.this,"No quiere",Toast.LENGTH_LONG).show();
+                   }
+               }
+           });
+
+
+       }
 
 }
