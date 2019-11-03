@@ -83,7 +83,10 @@ public class AgregarPublicacion extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_agregar_publicacion);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setIcon(R.mipmap.ic_index);
         Inicializacion();
+
     }
 
     private void Inicializacion() {
