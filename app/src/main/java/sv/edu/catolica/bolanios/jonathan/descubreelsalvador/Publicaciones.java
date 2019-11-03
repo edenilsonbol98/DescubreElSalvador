@@ -63,6 +63,8 @@ public class Publicaciones extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_publicaciones);
         Inicializar();
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setIcon(R.mipmap.logo_foreground);
     }
 
     private void Inicializar() {

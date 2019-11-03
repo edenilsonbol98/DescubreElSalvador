@@ -84,7 +84,7 @@ public class AgregarPublicacion extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_agregar_publicacion);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setIcon(R.mipmap.ic_index);
+        getSupportActionBar().setIcon(R.mipmap.logo_foreground);
         Inicializacion();
 
     }

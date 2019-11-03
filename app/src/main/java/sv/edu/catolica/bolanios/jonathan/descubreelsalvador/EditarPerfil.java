@@ -19,6 +19,8 @@ public class EditarPerfil extends AppCompatActivity {
 
         ArrayAdapter<String> adaptador = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,opcionesDepartamento);
         departamento.setAdapter(adaptador);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setIcon(R.mipmap.logo_foreground);
     }
 
     @Override

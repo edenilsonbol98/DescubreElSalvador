@@ -29,6 +29,8 @@ public class Perfil extends AppCompatActivity {
         setContentView(R.layout.activity_perfil);
         mContext = this;
         boomMenuButton = (BoomMenuButton)findViewById(R.id.boom);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setIcon(R.mipmap.logo_foreground);
     }
 
     @Override

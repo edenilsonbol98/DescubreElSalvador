@@ -72,6 +72,8 @@ public class CargarLugares extends AppCompatActivity {
         });*/
         mContext = this;
         boomMenuButton = findViewById(R.id.boom);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setIcon(R.mipmap.logo_foreground);
 
     }
 

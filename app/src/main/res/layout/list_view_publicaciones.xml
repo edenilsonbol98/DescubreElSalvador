@@ -21,13 +21,13 @@
             android:orientation="horizontal">
 
             <LinearLayout
-                android:layout_width="208dp"
+                android:layout_width="184dp"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/txtTituloList"
-                    android:layout_width="191dp"
+                    android:layout_width="163dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
@@ -53,7 +53,7 @@
 
                 <Button
                     android:id="@+id/btnVermasList"
-                    android:layout_width="152dp"
+                    android:layout_width="102dp"
                     android:layout_height="26dp"
                     android:layout_gravity="center"
                     android:background="@drawable/boton_publicacion"
@@ -62,15 +62,15 @@
             </LinearLayout>
 
             <androidx.cardview.widget.CardView
-                android:layout_width="173dp"
+                android:layout_width="197dp"
                 android:layout_height="match_parent"
                 android:background="@drawable/contorno_negro"
                 app:cardCornerRadius="10dp">
 
                 <ImageView
                     android:id="@+id/imgPublicacionList"
-                    android:layout_width="253dp"
-                    android:layout_height="271dp"
+                    android:layout_width="334dp"
+                    android:layout_height="342dp"
                     android:layout_gravity="center"
                     android:layout_marginLeft="0dp"
                     android:layout_marginRight="0dp" />

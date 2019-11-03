@@ -12,7 +12,7 @@
         android:id="@+id/salir"
         android:orderInCategory="5"
         android:icon="@drawable/cerrar"
-        app:showAsAction="ifRoom|withText"
+        app:showAsAction="withText"
         />
 
 
