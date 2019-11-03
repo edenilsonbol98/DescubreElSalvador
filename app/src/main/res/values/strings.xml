@@ -67,6 +67,7 @@
     <string name="salir">Salir</string>
     <string name="cerrar_sesi_n">Cerrar sesión</string>
     <string name="ver_mas">Ver mas</string>
+    <string name="title_activity_mapa_ruta_publicaciones">Map</string>
 
 
 </resources>

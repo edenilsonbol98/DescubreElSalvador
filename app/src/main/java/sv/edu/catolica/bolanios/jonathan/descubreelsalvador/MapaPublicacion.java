@@ -29,6 +29,8 @@ public class MapaPublicacion extends FragmentActivity implements GoogleMap.OnMap
     private GoogleMap mMap;
     Location lugar;
     Geocoder decod;
+    LatLng move = new LatLng(13.733008, -88.883351);
+    public static LatLng LocationExistente;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +58,13 @@ public class MapaPublicacion extends FragmentActivity implements GoogleMap.OnMap
         mMap = googleMap;
         mMap.getUiSettings().setZoomControlsEnabled(true);
         mMap.setOnMapLongClickListener(this);
+        if (AgregarPublicacion.valorRecibido!=null) {
+            Marker mo =mMap.addMarker(new MarkerOptions().position(AgregarPublicacion.valorRecibido).title("Tu ubicación"));
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(AgregarPublicacion.valorRecibido,8));
+        }
+        else {
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(move,8));
+        }
 //        mMap.setOnMapClickListener((GoogleMap.OnMapClickListener) MapaPublicacion.this);
        // mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
     }
@@ -65,14 +74,16 @@ public class MapaPublicacion extends FragmentActivity implements GoogleMap.OnMap
 
         mMap.clear();
         Marker mo =mMap.addMarker(new MarkerOptions().position(latLng).title("Tu ubicación"));
-
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,15));
         if (mo!=null) {
-            String tty = String.valueOf(latLng.longitude);
             lugar= new Location("location");
             lugar.setLatitude(latLng.latitude);
             lugar.setLongitude(latLng.longitude);
+            LocationExistente = new LatLng(latLng.latitude,latLng.longitude);
             mandarLocation(lugar);
+
+        }
+        else {
+
         }
     }
 
@@ -83,13 +94,12 @@ public class MapaPublicacion extends FragmentActivity implements GoogleMap.OnMap
             decod= new Geocoder(MapaPublicacion.this, Locale.getDefault());
             List<Address> direc = decod.getFromLocation(locat.getLatitude(), locat.getLongitude(),1);
             VariablesCompartidas.setDireccion(direc.get(0).getAddressLine(0));
-            VariablesCompartidas.setDepartammento(direc.get(0).getLocality());
+            VariablesCompartidas.setDepartammento(direc.get(0).getAdminArea());
+            VariablesCompartidas.setLatitud(locat.getLatitude());
+            VariablesCompartidas.setLongitud(locat.getLongitude());
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        VariablesCompartidas.setLatitud(locat.getLatitude());
-        VariablesCompartidas.setLongitud(locat.getLongitude());
       //  Toast.makeText(MapaPublicacion.this, "Pasando valores", Toast.LENGTH_SHORT).show();
     }
 

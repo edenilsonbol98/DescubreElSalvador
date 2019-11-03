@@ -18,8 +18,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.model.LatLng;
 import com.nightonke.boommenu.BoomMenuButton;
 import com.nightonke.boommenu.Types.BoomType;
 import com.nightonke.boommenu.Types.ButtonType;
@@ -53,6 +55,7 @@ import sv.edu.catolica.bolanios.jonathan.descubreelsalvador.Clases.Localizacion;
 import sv.edu.catolica.bolanios.jonathan.descubreelsalvador.Clases.MenuDescurbriendo;
 import sv.edu.catolica.bolanios.jonathan.descubreelsalvador.Clases.Publicacion;
 import sv.edu.catolica.bolanios.jonathan.descubreelsalvador.Clases.VariablesCompartidas;
+import sv.edu.catolica.bolanios.jonathan.descubreelsalvador.Dialogos.DialogoSimpleFotos;
 
 public class AgregarPublicacion extends AppCompatActivity {
     private Context mContext;
@@ -66,7 +69,7 @@ public class AgregarPublicacion extends AppCompatActivity {
     private static final int GALLERY_INTENT =1;
     private EditText txtDescrip,txtTitulo;
     private List<String> listFotos= new ArrayList<>();
-    private GeoPoint location;
+    private GeoPoint location=null;
     private String cel, fijo, direcPub,myUser;
     private FirebaseFirestore myRef;
     private FirebaseUser firebaseUser;
@@ -74,10 +77,16 @@ public class AgregarPublicacion extends AppCompatActivity {
     private MenuDescurbriendo classMenu;
     private Spinner tipo;
     private String departamento;
+    public static LatLng valorRecibido;
+    private TextView txtDireccion;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_agregar_publicacion);
+        Inicializacion();
+    }
+
+    private void Inicializacion() {
         contexto= this;
         storageReference = FirebaseStorage.getInstance().getReference();
         txtDescrip = findViewById(R.id.txtDescripcion);
@@ -91,20 +100,13 @@ public class AgregarPublicacion extends AppCompatActivity {
             }
         });
         myRef = FirebaseFirestore.getInstance();
-
         mContext = this;
         boomMenuButton = findViewById(R.id.boom);
-
-        //classMenu.crearMenu(boomMenuButton);
-        //classMenu.instanciar(boomMenuButton,mContext);
-
-
         tipo=findViewById(R.id.spTipo);
-
         String [] opcionesTipo={"Hospedaje", "Turicentro", "Restaurante"};
-
         ArrayAdapter<String> adaptador = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,opcionesTipo);
         tipo.setAdapter(adaptador);
+        txtDireccion = findViewById(R.id.direccion);
     }
 
     @Override
@@ -113,129 +115,49 @@ public class AgregarPublicacion extends AppCompatActivity {
         return true;
     }
 
-    private void prueba() {
-        //Button botonAgregarcel = (Button) findViewById(R.id.btnagreCel);
-       /* botonAgregarTel.setOnClickListener(new View.OnClickListener() {
-            @Override
-                public void onClick(View view) {
-                new Dialogo_telefono(contexto);
-            }
-        });*/
-
-        firebaseUser=FirebaseAuth.getInstance().getCurrentUser();
-        reference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid());
-    }
-
-    public void ObtenerFotos(View view) {
-        if (!(txtTitulo.getText().toString().isEmpty()&& txtDescrip.getText().toString().isEmpty())) {
-            Toast.makeText(AgregarPublicacion.this, "Elija solo 4 fotos", Toast.LENGTH_SHORT).show();
-            MostrarGaleria();
-        }
-        else {
-            //mensaje
-        }
-    }
-
-    public void  ObtenerIntens(){
-            double longitud = VariablesCompartidas.getLongitud();
-            double latitud = VariablesCompartidas.getLatitud();
-            cel = VariablesCompartidas.getTelefono();
-            fijo = VariablesCompartidas.getFijo();
-            location = new GeoPoint(latitud,longitud);
-            direcPub = VariablesCompartidas.getDireccion();
-            departamento = VariablesCompartidas.getDepartammento();
-    }
-    private void MostrarGaleria() {
-        Intent intent = new Intent(Intent.ACTION_PICK);
-        intent.setType("image/*");
-        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent, "Seleccionar fotos"),GALLERY_INTENT);
-    }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode==GALLERY_INTENT&& resultCode==RESULT_OK) {
             Uri uri = data.getData();
-            if (data.getClipData()!=null) {
-                for(int i =0; i <= data.getClipData().getItemCount()-1; i++){
-                    ClipData.Item itemClip = data.getClipData().getItemAt(i);
-                    uri = itemClip.getUri();
-                    SubiendoImagenes(uri);
+            int numFotos = data.getClipData().getItemCount();
+            if (!(numFotos>4)) {
+                if (data.getClipData()!=null) {
+                    for(int i =0; i <= data.getClipData().getItemCount()-1; i++){
+                        ClipData.Item itemClip = data.getClipData().getItemAt(i);
+                        uri = itemClip.getUri();
+                        SubiendoImagenes(uri);
+                    }
                 }
-                Toast.makeText(AgregarPublicacion.this, "Imagenes subidas", Toast.LENGTH_LONG).show();
             }
-            else if (data.getData()!=null) {
-
-                SubiendoImagenes(uri);
-                Toast.makeText(AgregarPublicacion.this, "Imagenen subida", Toast.LENGTH_LONG).show();
+            else{
+                new DialogoSimpleFotos().show(getSupportFragmentManager(), "DialogoSimpleFotos");
+                if (DialogoSimpleFotos.entro) {
+                    MostrarGaleria();
+                }
             }
         }
     }
 
-    private void SubiendoImagenes(Uri uri) {
-        final StorageReference filePatch = storageReference.child("publicacion").child(uri.getLastPathSegment());
-        filePatch.putFile(uri).continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
-            @Override
-            public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
-               // listFotos.add(filePatch.getDownloadUrl().getResult().toString());
-                return filePatch.getDownloadUrl();
-            }
-        }).addOnCompleteListener(new OnCompleteListener<Uri>() {
-            @Override
-            public void onComplete(@NonNull Task<Uri> task) {
-                if (task.isSuccessful()){
-                    Uri downloadUrl = task.getResult();
-                    listFotos.add(downloadUrl.toString());
-                }
-            }
-        });
+    @Override
+    protected void onResume() {
+        super.onResume();
+        txtDireccion.setText(direcPub);
+        if (direcPub!=null) {
+            txtDireccion.setText(direcPub);
+        }
+        else{
+            txtDireccion.setText("Dirección");
+        }
     }
 
-    public void MostrarMapa(View view) {
-        Intent intent = new Intent(this, MapaPublicacion.class);
-        startActivity(intent);
-    }
-
-    public void btnGuardar(View view) {
-        final boolean[] unaVez = {true};
-       new CountDownTimer(3000, 1000) {
-            public void onFinish() {
-                ObtenerIntens();
-                SimpleDateFormat curFormater = new SimpleDateFormat("dd/MM/yyyy");
-                String date = curFormater.format(Calendar.getInstance().getTime());
-                String tipoLocal = tipo.getSelectedItem().toString();
-                myUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                Map<String,Object> publicacion = new HashMap<>();
-                publicacion.put("lonlan",location);
-                publicacion.put("titulo",txtTitulo.getText().toString());
-                publicacion.put("descripcion",txtDescrip.getText().toString());
-                publicacion.put("telefono",fijo);
-                publicacion.put("celular",cel);
-                publicacion.put("urlFotos",listFotos);
-                publicacion.put("idUsuario",myUser);
-                publicacion.put("direccionPub",direcPub);
-                publicacion.put("tipoLocal",tipoLocal);
-                publicacion.put("fechaCreacion",date);
-                publicacion.put("departamento",departamento);
-                myRef.collection("publicacion").document().set(publicacion).addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Toast.makeText(AgregarPublicacion.this, "Publicacion hechá", Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }
-
-            public void onTick(long millisUntilFinished) {
-                if (unaVez[0]) {
-                    Toast.makeText(AgregarPublicacion.this, "Obteniendo información", Toast.LENGTH_SHORT).show();
-                    unaVez[0] =false;
-                }
-            }
-        }.start();
-
-
+    private static boolean isNumeric(String cadena){
+        try {
+            Integer.parseInt(cadena);
+            return true;
+        } catch (NumberFormatException nfe){
+            return false;
+        }
     }
 
     @Override
@@ -334,6 +256,120 @@ public class AgregarPublicacion extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void ObtenerFotos(View view) {
+        MostrarGaleria();
+    }
+
+    public void  ObtenerIntens(){
+        double longitud = VariablesCompartidas.getLongitud();
+        double latitud = VariablesCompartidas.getLatitud();
+        cel = VariablesCompartidas.getTelefono();
+        fijo = VariablesCompartidas.getFijo();
+        location = new GeoPoint(latitud,longitud);
+        direcPub = VariablesCompartidas.getDireccion();
+        departamento = VariablesCompartidas.getDepartammento();
+    }
+
+    public void MostrarGaleria() {
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setType("image/*");
+        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Seleccionar fotos"),GALLERY_INTENT);
+    }
+
+    public void btnGuardar(View view) {
+        boolean validaciones = true;
+        ObtenerIntens();
+        if (txtTitulo.getText().toString().isEmpty()&& txtDescrip.getText().toString().isEmpty()) {
+            Toast.makeText(AgregarPublicacion.this, "No puede dejar campos vacios", Toast.LENGTH_SHORT).show();
+            validaciones= false;
+        }
+        else if (isNumeric(txtTitulo.getText().toString())|| isNumeric(txtDescrip.getText().toString())) {
+            Toast.makeText(AgregarPublicacion.this, "Titulo y/o descripción no pueden ser numeros", Toast.LENGTH_SHORT).show();
+            validaciones= false;
+        }
+        else if (location.getLongitude()== 0.0 && location.getLatitude()==0.0) {
+            Toast.makeText(AgregarPublicacion.this, "Tiene que elegir una ubicación", Toast.LENGTH_SHORT).show();
+            validaciones= false;
+        } else if (listFotos.size()==0) {
+            Toast.makeText(AgregarPublicacion.this, "Por favor seleccione 4 fotos", Toast.LENGTH_SHORT).show();
+            validaciones= false;
+        }
+        else if (cel==null && fijo==null) {
+            Toast.makeText(AgregarPublicacion.this, "No puede dejar vacio los telefónos", Toast.LENGTH_SHORT).show();
+            validaciones= false;
+        }
+        else if( validaciones) {
+            final boolean[] unaVez = {true};
+            new CountDownTimer(2000, 1000) {
+                public void onFinish() {
+
+                    SimpleDateFormat curFormater = new SimpleDateFormat("dd/MM/yyyy");
+                    String date = curFormater.format(Calendar.getInstance().getTime());
+                    String tipoLocal = tipo.getSelectedItem().toString();
+                    myUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                    Map<String,Object> publicacion = new HashMap<>();
+                    publicacion.put("lonlan",location);
+                    publicacion.put("titulo",txtTitulo.getText().toString());
+                    publicacion.put("descripcion",txtDescrip.getText().toString());
+                    publicacion.put("telefono",fijo);
+                    publicacion.put("celular",cel);
+                    publicacion.put("urlFotos",listFotos);
+                    publicacion.put("idUsuario",myUser);
+                    publicacion.put("direccionPub",direcPub);
+                    publicacion.put("tipoLocal",tipoLocal);
+                    publicacion.put("fechaCreacion",date);
+                    publicacion.put("departamento",departamento);
+                    myRef.collection("publicacion").document().set(publicacion).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Toast.makeText(AgregarPublicacion.this, "Publicacion hechá", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+
+                public void onTick(long millisUntilFinished) {
+                    if (unaVez[0]) {
+                        Toast.makeText(AgregarPublicacion.this, "Obteniendo información", Toast.LENGTH_SHORT).show();
+                        unaVez[0] =false;
+                    }
+                }
+            }.start();
+        }
+    }
+
+    private void SubiendoImagenes(Uri uri) {
+        final StorageReference filePatch = storageReference.child("publicacion").child(uri.getLastPathSegment());
+        filePatch.putFile(uri).continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+            @Override
+            public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                // listFotos.add(filePatch.getDownloadUrl().getResult().toString());
+                return filePatch.getDownloadUrl();
+            }
+        }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+            @Override
+            public void onComplete(@NonNull Task<Uri> task) {
+                if (task.isSuccessful()){
+                    Uri downloadUrl = task.getResult();
+                    listFotos.add(downloadUrl.toString());
+                }
+            }
+        });
+    }
+
+    public void MostrarMapa(View view) {
+        if (MapaPublicacion.LocationExistente==null) {
+            Intent intent = new Intent(this, MapaPublicacion.class);
+            startActivity(intent);
+        }
+        else{
+            Intent intent = new Intent(this, MapaPublicacion.class);
+            valorRecibido= MapaPublicacion.LocationExistente;
+            startActivity(intent);
+        }
     }
 
 }

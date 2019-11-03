@@ -9,14 +9,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.location.Location;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -29,6 +35,8 @@ import com.nightonke.boommenu.Types.PlaceType;
 import com.nightonke.boommenu.Util;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import ahmed.easyslider.EasySlider;
 import ahmed.easyslider.SliderItem;
@@ -44,7 +52,7 @@ public class Publicaciones extends AppCompatActivity {
     private TextView textTitulo, textDescripcion, textFijo, textCelular, textGeo,usuarioPub;
     private ArrayList<String> listFotos;
     private Button bandeja;
-
+    private FusedLocationProviderClient fusedLocationClient;
     private Context mContext;
     private BoomMenuButton boomMenuButton;
     private boolean init = false;
@@ -54,7 +62,11 @@ public class Publicaciones extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_publicaciones);
-        myRef=FirebaseFirestore.getInstance();
+        Inicializar();
+    }
+
+    private void Inicializar() {
+        myRef= FirebaseFirestore.getInstance();
         textTitulo=findViewById(R.id.pubTxtTitulo);
         textDescripcion=findViewById(R.id.pubTxtDescripcion);
         textCelular=findViewById(R.id.pubTxtCelular);
@@ -62,13 +74,10 @@ public class Publicaciones extends AppCompatActivity {
         textGeo=findViewById(R.id.txtGeoPointPub);
         usuarioPub=findViewById(R.id.txtIdUsuarioPub);
         listFotos= new ArrayList<>();
-       // slider= findViewById(R.id.pubSlider);
         recyclerView=findViewById(R.id.recycler_fotos);
         LinearLayoutManager horizontalLayoutManager
                 = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(horizontalLayoutManager);
-       // recyclerView.setHasFixedSize(true);
-       // recyclerView.setLayoutManager(new LinearLayoutManager(this));
         mostrarPublicaciones();
         mContext = this;
         boomMenuButton = findViewById(R.id.boom);
@@ -76,12 +85,36 @@ public class Publicaciones extends AppCompatActivity {
         bandeja.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intentar=new Intent(Publicaciones.this,CargarChats.class);
+                Intent intentar=new Intent(Publicaciones.this, CargarChats.class);
                 startActivity(intentar);
             }
         });
-    }
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+        extraerLocacion();
 
+    }
+    private void extraerLocacion() {
+        fusedLocationClient.getLastLocation()
+                .addOnSuccessListener(this, new OnSuccessListener<Location>() {
+                    @Override
+                    public void onSuccess(Location location) {
+                        // Got last known location. In some rare situations this can be null.
+                        try {
+
+                            if (location != null) {
+                                Map<String,Object> lonLat= new HashMap<>();
+                                lonLat.put("longitud",location.getLongitude());
+                                lonLat.put("latitud",location.getLatitude());
+                                //   referenceDataB.setValue(lonLat);
+
+                            }
+                        }
+                        catch (Exception e){
+                            Toast.makeText(getApplicationContext(), "Error "+e.getMessage(),Toast.LENGTH_LONG);
+                        }
+                    }
+                });
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_slider, menu);
@@ -151,6 +184,8 @@ public class Publicaciones extends AppCompatActivity {
     }
 
     public void GraficarRuta(View view) {
+        Intent intent = new Intent(this, Mapa_ruta_publicaciones.class);
+        startActivity(intent);
     }
 
     public void MandarMensajes(View view) {
