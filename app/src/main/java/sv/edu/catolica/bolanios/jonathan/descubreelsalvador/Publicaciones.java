@@ -21,11 +21,13 @@ import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.GeoPoint;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.nightonke.boommenu.BoomMenuButton;
@@ -58,6 +60,8 @@ public class Publicaciones extends AppCompatActivity {
     private boolean init = false;
     private RecyclerView recyclerView;
     private MyAdapterFotos adapterFotos;
+    public static LatLng locacionUsuario, locationLocal;
+    public static String idPubMapa;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,24 +95,29 @@ public class Publicaciones extends AppCompatActivity {
                 startActivity(intentar);
             }
         });
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         extraerLocacion();
-
     }
+
+    private void ActualizandoUbicacion() {
+        new CountDownTimer(10000, 1000) {
+            public void onFinish() {
+
+            }
+            public void onTick(long millisUntilFinished) {
+                extraerLocacion();
+            }
+        }.start();
+    }
+
     private void extraerLocacion() {
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         fusedLocationClient.getLastLocation()
                 .addOnSuccessListener(this, new OnSuccessListener<Location>() {
                     @Override
                     public void onSuccess(Location location) {
-                        // Got last known location. In some rare situations this can be null.
                         try {
-
                             if (location != null) {
-                                Map<String,Object> lonLat= new HashMap<>();
-                                lonLat.put("longitud",location.getLongitude());
-                                lonLat.put("latitud",location.getLatitude());
-                                //   referenceDataB.setValue(lonLat);
-
+                                locacionUsuario =new LatLng( location.getLatitude(), location.getLongitude());
                             }
                         }
                         catch (Exception e){
@@ -117,12 +126,12 @@ public class Publicaciones extends AppCompatActivity {
                     }
                 });
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_slider, menu);
         return true;
     }
-
 
     public void mostrarPublicaciones(){
         myRef.collection("publicacion").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -130,7 +139,9 @@ public class Publicaciones extends AppCompatActivity {
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 Bundle extras = getIntent().getExtras();
                 String idPublicacion = extras.getString("idPublicacion");
-                String urls, idActual;
+                //creo que lo borrare
+                idPubMapa= idPublicacion;
+                String urls, idActual, prueba;
                 for (QueryDocumentSnapshot snapshot:task.getResult()) {
                     idActual= snapshot.getId();
                     if (idActual.equals(idPublicacion)) {
@@ -139,13 +150,10 @@ public class Publicaciones extends AppCompatActivity {
                         textCelular.setText(snapshot.get("celular").toString());
                         textFijo.setText(snapshot.get("telefono").toString());
                         textGeo.setText(snapshot.get("lonlan").toString());
+                        GeoPoint geoVar = snapshot.getGeoPoint("lonlan");
+                        locationLocal = new LatLng(geoVar.getLatitude(),geoVar.getLongitude());
                         usuarioPub.setText(snapshot.get("idUsuario").toString());
-                        urls=snapshot.get("urlFotos").toString();
-                        separarUrls(urls);
-                        listFotos.add(url1);
-                        listFotos.add(url2);
-                        listFotos.add(url3);
-                        listFotos.add(url4);
+                        listFotos = (ArrayList<String>) snapshot.getData().get("urlFotos");
                         break;
                     }
                 }

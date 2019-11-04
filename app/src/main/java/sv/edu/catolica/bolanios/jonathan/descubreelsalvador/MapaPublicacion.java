@@ -65,8 +65,6 @@ public class MapaPublicacion extends FragmentActivity implements GoogleMap.OnMap
         else {
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(move,8));
         }
-//        mMap.setOnMapClickListener((GoogleMap.OnMapClickListener) MapaPublicacion.this);
-       // mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
     }
 
     @Override
@@ -87,8 +85,6 @@ public class MapaPublicacion extends FragmentActivity implements GoogleMap.OnMap
         }
     }
 
-
-
     private void mandarLocation(Location locat) {
         try {
             decod= new Geocoder(MapaPublicacion.this, Locale.getDefault());
@@ -100,7 +96,6 @@ public class MapaPublicacion extends FragmentActivity implements GoogleMap.OnMap
         } catch (IOException e) {
             e.printStackTrace();
         }
-      //  Toast.makeText(MapaPublicacion.this, "Pasando valores", Toast.LENGTH_SHORT).show();
     }
 
 }

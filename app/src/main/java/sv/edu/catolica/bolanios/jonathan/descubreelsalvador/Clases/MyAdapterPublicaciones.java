@@ -62,7 +62,6 @@ public class MyAdapterPublicaciones extends RecyclerView.Adapter<MyAdapterPublic
                 holder.textIdPublicacion.setText(modelo.getIdPublicacion());
                 holder.textDepartamento.setText(modelo.getDepartamento());
                 Glide.with(context).load(modelo.getFotos()).into(holder.img);
-               // holder.btnVermas.setOnClickListener(this);
                 holder.btnVermas.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

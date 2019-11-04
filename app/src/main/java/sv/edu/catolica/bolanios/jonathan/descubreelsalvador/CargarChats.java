@@ -69,12 +69,8 @@ public class CargarChats extends AppCompatActivity {
 
         TabLayout tabLayout=findViewById(R.id.tab_layout);
         ViewPager viewPager=findViewById(R.id.view_pager);
-
         ViewPagerAdapter viewPagerAdapter=new ViewPagerAdapter(getSupportFragmentManager());
-
         viewPagerAdapter.addFragment(new FragmentChat(),"Chats");
-
-
         viewPager.setAdapter(viewPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
     }
