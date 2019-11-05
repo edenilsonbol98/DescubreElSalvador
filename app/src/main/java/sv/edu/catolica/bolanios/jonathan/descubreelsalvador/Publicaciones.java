@@ -95,16 +95,17 @@ public class Publicaciones extends AppCompatActivity {
                 startActivity(intentar);
             }
         });
-        extraerLocacion();
+        fusedLocationClient=null;
+        ActualizandoUbicacion();
     }
 
     private void ActualizandoUbicacion() {
-        new CountDownTimer(10000, 1000) {
+        new CountDownTimer(900000, 240000) {
             public void onFinish() {
-
             }
             public void onTick(long millisUntilFinished) {
                 extraerLocacion();
+               // Toast.makeText(Publicaciones.this, "actualizando ubicacion", Toast.LENGTH_LONG).show();
             }
         }.start();
     }

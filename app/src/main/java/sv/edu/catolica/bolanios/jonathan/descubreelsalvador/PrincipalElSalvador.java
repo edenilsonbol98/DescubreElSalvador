@@ -114,7 +114,7 @@ callM=CallbackManager.Factory.create();
                 Toast.makeText(PrincipalElSalvador.this,"Usuario no logueado",Toast.LENGTH_LONG).show();
             }else {
                 loguearse(currentAccessToken);
-                startActivity(new Intent(PrincipalElSalvador.this,AgregarPublicacion.class));
+                startActivity(new Intent(PrincipalElSalvador.this,Login.class));
 
             }
         }
@@ -276,7 +276,7 @@ callM=CallbackManager.Factory.create();
     protected void onStart() {
         super.onStart();
         if(mAuth.getCurrentUser()!=null){
-            startActivity(new Intent(PrincipalElSalvador.this,AgregarPublicacion.class));
+            startActivity(new Intent(PrincipalElSalvador.this,Login.class));
             finish();
         }
 
