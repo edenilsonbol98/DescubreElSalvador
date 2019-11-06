@@ -5,16 +5,26 @@ public class ReUsuario {
     private String nombre;
     private String apellido;
     private String telefono;
+    private String correo;
     private String departamento;
     private String imageURL;
 
-    public ReUsuario(String id, String nombre, String apellido, String telefono, String departamento, String imageURL) {
+    public ReUsuario(String id, String nombre, String apellido, String telefono, String correo, String departamento, String imageURL) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;
+        this.correo = correo;
         this.departamento = departamento;
         this.imageURL = imageURL;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
 
     public ReUsuario() {

@@ -91,7 +91,7 @@ public class Registrarse extends AppCompatActivity {
         contraseña.setText("");
        }
 
-       private void registrar(final String nombre, final String apellido, final String telefono, String usuario, String contra, final String departamento){
+       private void registrar(final String nombre, final String apellido, final String telefono, final String usuario, String contra, final String departamento){
            mAuth.createUserWithEmailAndPassword(usuario,contra).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                @Override
                public void onComplete(@NonNull Task<AuthResult> task) {
@@ -106,6 +106,7 @@ public class Registrarse extends AppCompatActivity {
                        hashMap.put("nombre",nombre);
                        hashMap.put("apellido",apellido);
                        hashMap.put("telefono",telefono);
+                       hashMap.put("correo",usuario);
                        hashMap.put("departamento",departamento);
                        hashMap.put("imageURL","default");
 

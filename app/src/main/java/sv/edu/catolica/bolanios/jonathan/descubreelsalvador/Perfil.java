@@ -1,5 +1,6 @@
 package sv.edu.catolica.bolanios.jonathan.descubreelsalvador;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
@@ -8,7 +9,17 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Menu;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.nightonke.boommenu.BoomMenuButton;
 import com.nightonke.boommenu.Types.BoomType;
 import com.nightonke.boommenu.Types.ButtonType;
@@ -22,6 +33,12 @@ public class Perfil extends AppCompatActivity {
     private Context mContext;
     private BoomMenuButton boomMenuButton;
     private boolean init = false;
+    private TextView nombre,departamento,correo,telefono;
+    private ImageView perfil;
+    DatabaseReference reference;
+    FirebaseUser fuser;
+    private FirebaseAuth mAuth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +48,40 @@ public class Perfil extends AppCompatActivity {
         boomMenuButton = (BoomMenuButton)findViewById(R.id.boom);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setIcon(R.mipmap.logo_foreground);
+
+        nombre=findViewById(R.id.txtUsuarioNombre);
+        departamento=findViewById(R.id.txtdepartamento);
+        correo=findViewById(R.id.txtCorreo);
+        telefono=findViewById(R.id.txtTelefono);
+        perfil=findViewById(R.id.imgPerfil);
+
+        mAuth = FirebaseAuth.getInstance();
+        String myUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        reference= FirebaseDatabase.getInstance().getReference("Usuarios").child(myUser);
+
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                ReUsuario reUsuario=dataSnapshot.getValue(ReUsuario.class);
+                nombre.setText(reUsuario.getNombre());
+                departamento.setText(reUsuario.getDepartamento());
+                telefono.setText(reUsuario.getTelefono());
+                correo.setText(reUsuario.getCorreo());
+                if(reUsuario.getImageURL().equals("default")){
+                    perfil.setImageResource(R.mipmap.ic_launcher);
+                }else {
+                    Glide.with(Perfil.this).load(reUsuario.getImageURL()).into(perfil);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
     }
 
     @Override

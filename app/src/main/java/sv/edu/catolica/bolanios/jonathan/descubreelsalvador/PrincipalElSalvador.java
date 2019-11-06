@@ -35,13 +35,23 @@ import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FacebookAuthCredential;
+import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class PrincipalElSalvador extends AppCompatActivity {
     private static final int ERROR_DIALOG_REQUEST = 9001;
@@ -54,6 +64,7 @@ public class PrincipalElSalvador extends AppCompatActivity {
     private LoginButton logueoFace;
     private CallbackManager callM;
     private AccessToken accessToken;
+    private DatabaseReference db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,18 +72,18 @@ public class PrincipalElSalvador extends AppCompatActivity {
         setContentView(R.layout.activity_principal_el_salvador);
 
         mAuth = FirebaseAuth.getInstance();
-logueoFace=findViewById(R.id.btnLoginFacebook);
-callM=CallbackManager.Factory.create();
+        logueoFace=findViewById(R.id.btnLoginFacebook);
+        callM=CallbackManager.Factory.create();
 
- accessToken = AccessToken.getCurrentAccessToken();
-        FacebookSdk.sdkInitialize(getApplicationContext());
-        AppEventsLogger.activateApp(this);
 
-        logueoFace.setReadPermissions("email");
-        LoginManager.getInstance().registerCallback(callM, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                startActivity(new Intent(PrincipalElSalvador.this,AgregarPublicacion.class));
+
+        accessToken = AccessToken.getCurrentAccessToken();
+        logueoFace.setReadPermissions("email","public_profile");
+        logueoFace.registerCallback(callM, new FacebookCallback<LoginResult>() {
+        @Override
+        public void onSuccess(LoginResult loginResult) {
+            handleFacebookAccessToken(loginResult.getAccessToken());
+
             }
 
             @Override
@@ -85,73 +96,63 @@ callM=CallbackManager.Factory.create();
 
             }
         });
- logueoFace.registerCallback(callM, new FacebookCallback<LoginResult>() {
-    @Override
-    public void onSuccess(LoginResult loginResult) {
-        startActivity(new Intent(PrincipalElSalvador.this,AgregarPublicacion.class));
-    }
-
-    @Override
-    public void onCancel() {
 
     }
 
-    @Override
-    public void onError(FacebookException error) {
+    private void handleFacebookAccessToken(AccessToken nuevoAccessToken) {
+        final AuthCredential credential = FacebookAuthProvider.getCredential(nuevoAccessToken.getToken());
 
+        mAuth.signInWithCredential(credential).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    String id=mAuth.getCurrentUser().getUid();
+                    db=FirebaseDatabase.getInstance().getReference("Usuarios").child(id);
+                    Map<String, String> hashMap = new HashMap<>();
+                    hashMap.put("id", task.getResult().getUser().getUid());
+                    hashMap.put("nombre", task.getResult().getUser().getDisplayName());
+                    hashMap.put("apellido", "");
+                    hashMap.put("telefono", "");
+                    hashMap.put("correo", task.getResult().getUser().getEmail());
+                    hashMap.put("departamento", "");
+                    hashMap.put("imageURL", "https://graph.facebook.com/"+task.getResult().getAdditionalUserInfo().getProviderId()+"/picture?type=normal");
+
+
+
+                    db.setValue(hashMap);
+                    startActivity(new Intent(PrincipalElSalvador.this,CargarLugares.class));
+
+
+                }
+
+            }
+        });
     }
-});
-
-    }
 
 
 
-    AccessTokenTracker tokenTracker=new AccessTokenTracker() {
+   /* AccessTokenTracker tokenTracker=new AccessTokenTracker() {
         @Override
         protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken, AccessToken currentAccessToken) {
             if(currentAccessToken==null){
 
                 Toast.makeText(PrincipalElSalvador.this,"Usuario no logueado",Toast.LENGTH_LONG).show();
             }else {
-                loguearse(currentAccessToken);
+               handleFacebookAccessToken(currentAccessToken);
                 startActivity(new Intent(PrincipalElSalvador.this,Login.class));
 
             }
         }
 
-        private void loguearse(AccessToken nuevoAccessToken){
-            final GraphRequest request=GraphRequest.newMeRequest(nuevoAccessToken, new GraphRequest.GraphJSONObjectCallback() {
-                @Override
-                public void onCompleted(JSONObject object, GraphResponse response) {
-                    try {
-                        String first_name=object.getString("first_name");
-                        String last_name=object.getString("last_name");
-                        String email=object.getString("email");
-                        String id=object.getString("id");
 
-
-
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-            });
-            Bundle parameters=new Bundle();
-            parameters.putString("fields","first_name,last_name,email,id");
-            request.setParameters(parameters);
-            request.executeAsync();
-        }
         public void checkLoginStatus(){
             if(AccessToken.getCurrentAccessToken()!=null){
-                loguearse(AccessToken.getCurrentAccessToken());
+               handleFacebookAccessToken(AccessToken.getCurrentAccessToken());
                 startActivity(new Intent(PrincipalElSalvador.this,AgregarPublicacion.class));
             }
         }
 
-    };
-
-
+    };*/
 
 
     public void irSesion(View view) {
@@ -251,7 +252,6 @@ callM=CallbackManager.Factory.create();
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         callM.onActivityResult(requestCode,resultCode,data);
         super.onActivityResult(requestCode, resultCode, data);
-        callM.onActivityResult(requestCode,resultCode,data);
         Log.d(TAG, "onActivityResult: called.");
         switch (requestCode) {
             case PERMISSIONS_REQUEST_ENABLE_GPS: {
@@ -281,4 +281,7 @@ callM=CallbackManager.Factory.create();
         }
 
     }
+
+
+
 }

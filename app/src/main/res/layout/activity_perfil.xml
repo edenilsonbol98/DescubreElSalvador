@@ -27,6 +27,7 @@
                 app:cardCornerRadius="64dp">
 
                 <ImageView
+                    android:id="@+id/imgPerfil"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
@@ -45,7 +46,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/textView4"
+                    android:id="@+id/txtUsuarioNombre"
                     android:layout_width="197dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="60sp"
@@ -60,7 +61,7 @@
                 android:orientation="horizontal" >
 
                 <TextView
-                    android:id="@+id/textView5"
+                    android:id="@+id/txtdepartamento"
                     android:layout_width="197dp"
                     android:layout_height="wrap_content"
                     android:text="Santa Ana"
