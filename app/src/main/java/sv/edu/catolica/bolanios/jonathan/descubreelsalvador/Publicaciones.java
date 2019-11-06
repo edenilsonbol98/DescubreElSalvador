@@ -96,7 +96,7 @@ public class Publicaciones extends AppCompatActivity {
             }
         });
         fusedLocationClient=null;
-        ActualizandoUbicacion();
+
     }
 
     private void ActualizandoUbicacion() {
@@ -111,14 +111,16 @@ public class Publicaciones extends AppCompatActivity {
     }
 
     private void extraerLocacion() {
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(Publicaciones.this);
         fusedLocationClient.getLastLocation()
-                .addOnSuccessListener(this, new OnSuccessListener<Location>() {
+                .addOnSuccessListener(Publicaciones.this, new OnSuccessListener<Location>() {
                     @Override
                     public void onSuccess(Location location) {
                         try {
+                           // Toast.makeText(Publicaciones.this, "actualizando ubicacio2n", Toast.LENGTH_LONG).show();
                             if (location != null) {
                                 locacionUsuario =new LatLng( location.getLatitude(), location.getLongitude());
+                                Toast.makeText(Publicaciones.this, "actualizando ubicacion3333", Toast.LENGTH_LONG).show();
                             }
                         }
                         catch (Exception e){
@@ -160,6 +162,7 @@ public class Publicaciones extends AppCompatActivity {
                 }
                 adapterFotos=new MyAdapterFotos(Publicaciones.this,listFotos);
                 recyclerView.setAdapter(adapterFotos);
+                ActualizandoUbicacion();
             }
         });
 
