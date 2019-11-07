@@ -100,14 +100,12 @@ public class Mapa_ruta_publicaciones extends FragmentActivity implements OnMapRe
 
     private void Marcadores() {
         mMap.getUiSettings().setZoomControlsEnabled(true);
-       // Toast.makeText(Mapa_ruta_publicaciones.this, ""+Publicaciones.locacionUsuario, Toast.LENGTH_LONG).show();
         lugarOrigen = new MarkerOptions().position(Publicaciones.locationLocal).title("Tú destino");
-        lugarDestino = new MarkerOptions().position(Publicaciones.locationLocal).title("Tú ubicación actual");
+        lugarDestino = new MarkerOptions().position(Publicaciones.locacionUsuario).title("Tú ubicación actual");
         mMap.addMarker(lugarOrigen);
         mMap.addMarker(lugarDestino);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Publicaciones.locationLocal,8));
-        Toast.makeText(Mapa_ruta_publicaciones.this, ""+Publicaciones.locationLocal, Toast.LENGTH_LONG).show();
-       String objUrl = getUrl(Publicaciones.locacionUsuario, Publicaciones.locationLocal, "driving");
+        String objUrl = getUrl(Publicaciones.locacionUsuario, Publicaciones.locationLocal, "driving");
         TaskRequestDirections directions = new TaskRequestDirections();
         directions.execute(objUrl);
     }

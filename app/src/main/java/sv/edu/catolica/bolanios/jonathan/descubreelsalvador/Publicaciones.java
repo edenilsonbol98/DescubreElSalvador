@@ -120,7 +120,6 @@ public class Publicaciones extends AppCompatActivity {
                            // Toast.makeText(Publicaciones.this, "actualizando ubicacio2n", Toast.LENGTH_LONG).show();
                             if (location != null) {
                                 locacionUsuario =new LatLng( location.getLatitude(), location.getLongitude());
-                                Toast.makeText(Publicaciones.this, "actualizando ubicacion3333", Toast.LENGTH_LONG).show();
                             }
                         }
                         catch (Exception e){
