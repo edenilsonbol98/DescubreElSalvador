@@ -3,12 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/fondo_edit">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="180dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        >
         <TextView
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -39,22 +41,31 @@
         android:layout_height="49dp"
         android:orientation="horizontal"
         android:layout_marginTop="10dp"
-        android:layout_gravity="center">
+        >
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@android:drawable/btn_star_big_on"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"/>
 
         <TextView
             android:id="@+id/pubTxtTitulo"
-            android:layout_width="284dp"
+            android:layout_width="285dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/contorno_negro"
-            android:gravity="center"
-            android:paddingStart="20dp"
+
+            android:paddingStart="10dp"
             android:paddingTop="10dp"
             android:paddingEnd="20dp"
             android:paddingBottom="10dp"
             android:text="TITULO"
             android:textSize="25sp"
             android:textStyle="bold" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -112,39 +123,28 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="94dp"
-        android:orientation="horizontal"
-        android:gravity="center">
+        android:layout_height="51dp"
+        android:gravity="center"
+        android:orientation="horizontal" >
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
+            android:layout_width="177dp"
+            android:layout_height="27dp"
             android:layout_gravity="center"
-            android:background="@drawable/boton_publicacion"
-            android:text="Marcar ruta"
-            android:onClick="GraficarRuta"/>
-        <Button
-            android:layout_width="139dp"
-            android:layout_height="36dp"
-            android:layout_gravity="center"
-            android:background="@drawable/boton_publicacion"
-            android:text="Enviar mensaje"
-            android:onClick="MandarMensajes"
-            />
-        <Button
-            android:layout_width="139dp"
-            android:layout_height="36dp"
-            android:layout_gravity="center"
-            android:background="@drawable/boton_publicacion"
-            android:text="Mostrar bandeja"
-           android:id="@+id/bandeja"
-            />
+            android:background="@drawable/negrolleno"
+            android:gravity="center"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="Enviar Mensaje"
+            android:textColor="@color/Blanco"
+            android:onClick="MandarMensajes"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="109dp"
-        android:orientation="horizontal">
+        android:layout_height="51dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="30dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -157,11 +157,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:paddingStart="20dp"
+                android:paddingStart="30dp"
                 android:paddingTop="10dp"
                 android:paddingEnd="20dp"
                 android:paddingBottom="0dp"
-                android:paddingLeft="10dp"
                 android:text="CONTACTANOS"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -260,12 +259,26 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="106dp"
-        android:orientation="horizontal"
-        android:gravity="center">
+        android:layout_width="204dp"
+        android:layout_height="97dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/mapaboton"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:layout_marginBottom="35dp">
 
+        <ImageView
+            android:layout_width="72dp"
+            android:layout_height="64dp"
+            android:background="@drawable/icono_mapa"
+            android:onClick="GraficarRuta" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MOSTRAR RUTA"
+            android:textStyle="bold|italic" />
 
     </LinearLayout>
 

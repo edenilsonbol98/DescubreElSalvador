@@ -87,14 +87,14 @@ public class Publicaciones extends AppCompatActivity {
         mostrarPublicaciones();
         mContext = this;
         boomMenuButton = findViewById(R.id.boom);
-        bandeja=findViewById(R.id.bandeja);
-        bandeja.setOnClickListener(new View.OnClickListener() {
+        //bandeja=findViewById(R.id.bandeja);
+       /* bandeja.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intentar=new Intent(Publicaciones.this, CargarChats.class);
                 startActivity(intentar);
             }
-        });
+        });*/
         fusedLocationClient=null;
 
     }
@@ -264,8 +264,8 @@ public class Publicaciones extends AppCompatActivity {
                             startActivity(llamar);
                             finish();
                         } else if (buttonIndex == 1) {
-                            Intent llamar = new Intent(Publicaciones.this, Publicaciones.class);
-                            startActivity(llamar);
+                            Intent intentar=new Intent(Publicaciones.this, CargarChats.class);
+                            startActivity(intentar);
                             finish();
                         } else if (buttonIndex == 2) {
                             Intent llamar = new Intent(Publicaciones.this, AgregarPublicacion.class);
