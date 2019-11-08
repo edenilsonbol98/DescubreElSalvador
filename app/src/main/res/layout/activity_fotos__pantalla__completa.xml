@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fotos_Pantalla_Completa"
+    android:background="@color/negro">
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/my_recycler_Fotos_Completa"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"
+        android:background="@color/transparent"/>
+
+</LinearLayout>

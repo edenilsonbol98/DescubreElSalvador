@@ -69,6 +69,9 @@
     <string name="ver_mas">Ver mas</string>
     <string name="title_activity_mapa_ruta_publicaciones">Map</string>
     <string name="info">Inormación de perfil</string>
+    <string name="editar_publicaci_n">Editar Publicación</string>
+    <string name="title_activity_mapa_publicacion_edit">Map</string>
+    <string name="editar_fotos">Editar fotos</string>
 
 
 </resources>

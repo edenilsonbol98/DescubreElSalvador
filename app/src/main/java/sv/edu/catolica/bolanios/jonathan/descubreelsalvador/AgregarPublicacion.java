@@ -105,7 +105,7 @@ public class AgregarPublicacion extends AppCompatActivity {
         myRef = FirebaseFirestore.getInstance();
         mContext = this;
         boomMenuButton = findViewById(R.id.boom);
-        tipo=findViewById(R.id.spTipo);
+        tipo=findViewById(R.id.spTipoEdit);
         String [] opcionesTipo={"Hospedaje", "Turicentro", "Restaurante"};
         ArrayAdapter<String> adaptador = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,opcionesTipo);
         tipo.setAdapter(adaptador);
@@ -141,11 +141,17 @@ public class AgregarPublicacion extends AppCompatActivity {
             }
         }
     }
-
+    public void MostrarGaleria() {
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setType("image/*");
+        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Seleccionar fotos"),GALLERY_INTENT);
+    }
     @Override
     protected void onResume() {
         super.onResume();
-        txtDireccion.setText(direcPub);
+       // txtDireccion.setText(direcPub);
         if (direcPub!=null) {
             txtDireccion.setText(direcPub);
         }
@@ -275,13 +281,7 @@ public class AgregarPublicacion extends AppCompatActivity {
         departamento = VariablesCompartidas.getDepartammento();
     }
 
-    public void MostrarGaleria() {
-        Intent intent = new Intent(Intent.ACTION_PICK);
-        intent.setType("image/*");
-        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent, "Seleccionar fotos"),GALLERY_INTENT);
-    }
+
 
     public void btnGuardar(View view) {
         boolean validaciones = true;

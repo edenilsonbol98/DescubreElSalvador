@@ -3,6 +3,8 @@ package sv.edu.catolica.bolanios.jonathan.descubreelsalvador;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,6 +15,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -20,6 +24,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.nightonke.boommenu.BoomMenuButton;
 import com.nightonke.boommenu.Types.BoomType;
 import com.nightonke.boommenu.Types.ButtonType;
@@ -28,6 +35,12 @@ import com.nightonke.boommenu.Util;
 
 
 import com.nightonke.boommenu.BoomMenuButton;
+
+import java.util.ArrayList;
+
+import sv.edu.catolica.bolanios.jonathan.descubreelsalvador.Clases.ModeloPublicacion;
+import sv.edu.catolica.bolanios.jonathan.descubreelsalvador.Clases.MyAdapterEditarPublicaciones;
+
 
 public class Perfil extends AppCompatActivity {
     private Context mContext;
@@ -38,12 +51,22 @@ public class Perfil extends AppCompatActivity {
     DatabaseReference reference;
     FirebaseUser fuser;
     private FirebaseAuth mAuth;
-
-
+    private FirebaseFirestore myRef;
+    private ArrayList<ModeloPublicacion> listModelo;
+    private ModeloPublicacion classModelo;
+    private  ArrayList<String> listFotos;
+    private RecyclerView recyclerView;
+    private MyAdapterEditarPublicaciones adaptador;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil);
+        Inicializar();
+
+
+    }
+
+    private void Inicializar() {
         mContext = this;
         boomMenuButton = (BoomMenuButton)findViewById(R.id.boom);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -80,8 +103,35 @@ public class Perfil extends AppCompatActivity {
 
             }
         });
+        myRef=FirebaseFirestore.getInstance();
+        listModelo = new ArrayList<>();
+        recyclerView=findViewById(R.id.recycler_editar_perfil);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mostrarPublicaciones();
+    }
 
-
+    public void mostrarPublicaciones(){
+        final String myUser =  FirebaseAuth.getInstance().getCurrentUser().getUid();
+        myRef.collection("publicacion").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                for (QueryDocumentSnapshot snapshot:task.getResult()) {
+                    if (myUser.equals(snapshot.get("idUsuario"))) {
+                        classModelo = new ModeloPublicacion();
+                       // listFotos = new ArrayList<>();
+                        classModelo.setTitulo(snapshot.get("titulo").toString());
+                        classModelo.setDescripcion(snapshot.get("descripcion").toString());
+                        classModelo.setIdPublicacion(snapshot.getId());
+                        listFotos = (ArrayList<String>) snapshot.getData().get("urlFotos");
+                        classModelo.setFotos(listFotos.get(0));
+                        listModelo.add(classModelo);
+                    }
+                }
+                adaptador=new MyAdapterEditarPublicaciones(Perfil.this,listModelo);
+                recyclerView.setAdapter(adaptador);
+            }
+        });
     }
 
     @Override

@@ -4,34 +4,52 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AgregarPublicacion"
+    tools:context=".Editar_Publicacion"
     android:orientation="vertical"
     android:background="@drawable/fondo_todo">
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="208dp"
+        android:layout_height="130dp"
+        android:orientation="horizontal"
+        >
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_fotos_edit"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical"
+            android:background="@color/transparent"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/btnEditarFotos"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/boton_publicacion"
+            android:drawableLeft="@android:drawable/ic_menu_add"
+
+            android:drawableStart="@android:drawable/ic_menu_add"
+            android:text="@string/editar_fotos"
+            android:onClick="editarFotos"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
         android:orientation="vertical"
         android:layout_marginLeft="15dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="10dp"
         android:layout_marginRight="15dp"
         android:layout_marginBottom="15dp">
 
-        <TextView
-            android:id="@+id/nueva"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginBottom="15dp"
-            android:gravity="center"
-            android:text="@string/nuevap"
-            android:textSize="25sp"
-            android:textStyle="bold"/>
 
         <EditText
-            android:id="@+id/txtnombre"
+            android:id="@+id/txtnombreEdit"
             android:layout_width="match_parent"
             android:layout_height="39dp"
             android:layout_marginLeft="5dp"
@@ -45,9 +63,9 @@
             android:inputType="text"/>
 
         <EditText
-            android:id="@+id/txtDescripcion"
+            android:id="@+id/txtDescripcionPubEdit"
             android:layout_width="match_parent"
-            android:layout_height="101dp"
+            android:layout_height="39dp"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="5dp"
             android:layout_marginRight="5dp"
@@ -98,13 +116,14 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/btnMapa"
+                android:id="@+id/btnMapaEdit"
                 android:layout_width="36dp"
                 android:layout_height="35dp"
                 android:background="@android:color/transparent"
                 android:drawableLeft="@android:drawable/ic_input_add"
                 android:gravity="center"
-                android:onClick="MostrarMapa" />
+                android:onClick="btnMapaEdit"
+                 />
 
         </LinearLayout>
     </LinearLayout>
@@ -138,7 +157,7 @@
             android:paddingTop="10dp">
 
             <Spinner
-                android:id="@+id/spTipo"
+                android:id="@+id/spTipoEdit"
                 android:layout_width="174dp"
                 android:layout_height="30dp"
                 android:background="@color/Blanco"
@@ -148,46 +167,7 @@
         </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:layout_marginTop="40dp"
-        android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="243dp"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="179dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="50dp"
-                android:gravity="start"
-                android:text="@string/addFotos"
-                android:textStyle="bold"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/linear5"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="start"
-            android:orientation="vertical"
-            android:paddingTop="10dp">
-
-            <Button
-                android:id="@+id/btnFotos"
-                android:layout_width="32dp"
-                android:layout_height="31dp"
-                android:background="@android:color/transparent"
-                android:drawableLeft="@android:drawable/ic_input_add"
-                android:gravity="left"
-                android:onClick="ObtenerFotos"/>
-        </LinearLayout>
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -219,12 +199,13 @@
             android:paddingTop="10dp">
 
             <Button
-                android:id="@+id/btnagreCel"
+                android:id="@+id/btnagreCelEdit"
                 android:layout_width="32dp"
                 android:layout_height="31dp"
                 android:background="@android:color/transparent"
                 android:drawableStart="@android:drawable/ic_input_add"
                 android:gravity="start"
+                android:onClick="btnTelefonosEdit"
                 />
         </LinearLayout>
     </LinearLayout>
@@ -243,25 +224,25 @@
             android:orientation="vertical" >
 
             <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:orientation="horizontal"
-            android:layout_gravity="center">
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:layout_gravity="center">
 
-            <Button
-                android:id="@+id/btnAgregar"
-                android:layout_width="0dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="10dp"
-                android:paddingLeft="5dp"
-                android:paddingRight="10dp"
-                android:layout_weight="1"
-                android:background="@drawable/boton_publicacion"
-                android:drawableLeft="@android:drawable/ic_menu_add"
-                android:onClick="btnGuardar"
-                android:drawableStart="@android:drawable/ic_menu_add"
-                android:text="@string/agregar_publicaci_n" />
-        </LinearLayout>
+                <Button
+                    android:id="@+id/btnAgregarEdit"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="10dp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/boton_publicacion"
+                    android:drawableLeft="@android:drawable/ic_menu_add"
+                    android:onClick="btnActualizar"
+                    android:drawableStart="@android:drawable/ic_menu_add"
+                    android:text="@string/agregar_publicaci_n" />
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -279,7 +260,7 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/btnCancelar"
+                    android:id="@+id/btnCancelarEdit"
                     android:layout_width="139dp"
                     android:layout_height="30dp"
                     android:paddingLeft="10dp"
@@ -319,7 +300,5 @@
             app:boom_button_pressed_color="@color/azul"
             app:boom_inActionBar="false" />
     </RelativeLayout>
-
-
 
 </LinearLayout>

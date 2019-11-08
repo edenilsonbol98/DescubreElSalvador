@@ -50,7 +50,6 @@ import sv.edu.catolica.bolanios.jonathan.descubreelsalvador.Clases.Publicacion;
 public class Publicaciones extends AppCompatActivity {
 
     private FirebaseFirestore myRef;
-    private String url1="", url2="", url3="", url4="";
     private TextView textTitulo, textDescripcion, textFijo, textCelular, textGeo,usuarioPub;
     private ArrayList<String> listFotos;
     private Button bandeja;
@@ -87,15 +86,7 @@ public class Publicaciones extends AppCompatActivity {
         mostrarPublicaciones();
         mContext = this;
         boomMenuButton = findViewById(R.id.boom);
-        //bandeja=findViewById(R.id.bandeja);
-       /* bandeja.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intentar=new Intent(Publicaciones.this, CargarChats.class);
-                startActivity(intentar);
-            }
-        });*/
-        fusedLocationClient=null;
+       // fusedLocationClient=null;
 
     }
 
@@ -105,7 +96,6 @@ public class Publicaciones extends AppCompatActivity {
             }
             public void onTick(long millisUntilFinished) {
                 extraerLocacion();
-               // Toast.makeText(Publicaciones.this, "actualizando ubicacion", Toast.LENGTH_LONG).show();
             }
         }.start();
     }
@@ -117,7 +107,6 @@ public class Publicaciones extends AppCompatActivity {
                     @Override
                     public void onSuccess(Location location) {
                         try {
-                           // Toast.makeText(Publicaciones.this, "actualizando ubicacio2n", Toast.LENGTH_LONG).show();
                             if (location != null) {
                                 locacionUsuario =new LatLng( location.getLatitude(), location.getLongitude());
                             }
@@ -141,9 +130,8 @@ public class Publicaciones extends AppCompatActivity {
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 Bundle extras = getIntent().getExtras();
                 String idPublicacion = extras.getString("idPublicacion");
-                //creo que lo borrare
                 idPubMapa= idPublicacion;
-                String urls, idActual, prueba;
+                String idActual;
                 for (QueryDocumentSnapshot snapshot:task.getResult()) {
                     idActual= snapshot.getId();
                     if (idActual.equals(idPublicacion)) {
@@ -165,35 +153,6 @@ public class Publicaciones extends AppCompatActivity {
             }
         });
 
-    }
-
-    private void separarUrls(String urls) {
-        boolean foto3=false, foto4=false, foto2=false, foto1=true, caracterInvalido=false;
-        int contador = urls.length()-1, i=0;
-        for (int h=0; h<contador; h++)
-        {
-            char c = urls.charAt(h);
-            String b = String.valueOf(c);
-            if (caracterInvalido && !(b.equals(",")) && !(b.equals(" "))) {
-                if (foto1) { url1+=b;i=1;}
-                else if (foto2) { url2+=b; i=2;}
-                else if (foto3) { url3+=b; i=3;}
-                else if (foto4) { url4+=b;}
-            }
-            else{
-                if (i==0) {foto1=true;caracterInvalido = true;}
-                else if (i == 1) {
-                    foto1 = false;
-                    foto2 = true;
-                } else if (i == 2) {
-                    foto2 = false;
-                    foto3 = true;
-                } else if (i == 3) {
-                    foto3 = false;
-                    foto4 = true;
-                }
-            }
-        }
     }
 
     public void GraficarRuta(View view) {

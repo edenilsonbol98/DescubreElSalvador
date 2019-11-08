@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="364dp"
+        android:layout_height="197dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/contorno_negro"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:visibility="invisible"
+                android:id="@+id/txtIdPubEditar"
+                ></TextView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="57dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/txtTituloEdit"
+                    android:layout_width="157dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Hotel Tolteka"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <ImageButton
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/btnPublicacionEdit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="41dp"
+
+                    app:srcCompat="@drawable/lapiz" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/txtDescripcionEdit"
+                android:layout_width="325dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:text="Es un hotel para toda la familia y amigos, incluye piscina televisor y cuartos"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:id="@+id/imgPublicacionEdit"
+                android:layout_width="118dp"
+                android:layout_height="104dp"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/tolteka" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

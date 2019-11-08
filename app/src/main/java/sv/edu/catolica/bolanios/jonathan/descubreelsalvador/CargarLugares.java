@@ -52,9 +52,7 @@ public class CargarLugares extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cargar_lugares);
-
         mAuth = FirebaseAuth.getInstance();
-      //  pruebaSalir=findViewById(R.id.btnVermas);
         listFotos=new ArrayList<>();
         listModelo= new ArrayList<>();
         classModelo=new ModeloPublicacion();

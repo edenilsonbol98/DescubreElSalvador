@@ -34,7 +34,10 @@ public class Dialogo_telefono extends AppCompatActivity {
             Button btnagregar = dialogo.findViewById(R.id.btnAgregarTel);
             telFijo.setInputType(InputType.TYPE_CLASS_NUMBER);
             telCel.setInputType(InputType.TYPE_CLASS_NUMBER);
-
+        if (Editar_Publicacion.cel!=null && Editar_Publicacion.fijo!=null) {
+            telCel.setText(Editar_Publicacion.cel);
+            telFijo.setText(Editar_Publicacion.fijo);
+        }
 
             btnagregar.setOnClickListener(new View.OnClickListener() {
                 @Override
