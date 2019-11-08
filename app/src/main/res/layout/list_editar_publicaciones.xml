@@ -4,9 +4,10 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <LinearLayout
-        android:layout_width="364dp"
-        android:layout_height="197dp"
+        android:layout_width="365dp"
+        android:layout_height="208dp"
         android:layout_marginLeft="25dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/contorno_negro"
@@ -16,16 +17,18 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
             <TextView
+                android:id="@+id/txtIdPubEditar"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:visibility="invisible"
-                android:id="@+id/txtIdPubEditar"
-                ></TextView>
+                android:visibility="invisible"></TextView>
+
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="258dp"
                 android:layout_height="57dp"
                 android:orientation="horizontal">
+
                 <TextView
                     android:id="@+id/txtTituloEdit"
                     android:layout_width="157dp"
@@ -36,12 +39,13 @@
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
-                <ImageButton
-                    android:layout_marginTop="10dp"
+
+                <ImageView
                     android:id="@+id/btnPublicacionEdit"
                     android:layout_width="wrap_content"
-                    android:layout_height="41dp"
-
+                    android:layout_height="36dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="1"
                     app:srcCompat="@drawable/lapiz" />
             </LinearLayout>
 

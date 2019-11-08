@@ -28,7 +28,7 @@ public class MyAdapterEditarPublicaciones extends RecyclerView.Adapter<MyAdapter
     public static class MyViewHolder extends RecyclerView.ViewHolder  {
         public TextView textTitulo, textDescripcion,textIdPublicacion;
         public ImageView img;
-        public ImageButton btnEditar;
+        public ImageView btnEditar;
         public MyViewHolder(View v) {
             super(v);
             textTitulo = v.findViewById(R.id.txtTituloEdit);

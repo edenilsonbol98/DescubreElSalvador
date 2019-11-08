@@ -56,7 +56,7 @@
             android:hint="@string/descrip"
             android:paddingRight="10dp"
             android:paddingLeft="10dp"
-            android:inputType="text"/>
+            android:inputType="textMultiLine"/>
 
     </LinearLayout>
 

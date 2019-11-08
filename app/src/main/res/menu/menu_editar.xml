@@ -9,4 +9,10 @@
         android:orderInCategory="5"
         android:title="Guardar"
         app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/cancelarEdit"
+        android:icon="@android:drawable/ic_menu_close_clear_cancel"
+        android:orderInCategory="5"
+        android:title="Guardar"
+        app:showAsAction="ifRoom" />
 </menu>
