@@ -124,7 +124,7 @@ public class EditarPerfil extends AppCompatActivity {
         final String nom =nombre.getText().toString();
         final String apell =apellido.getText().toString();
         final String telef =telefono.getText().toString();
-        final String select=departamento.getSelectedItem().toString();
+        final String[] select = {departamento.getSelectedItem().toString()};
         final String myUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
         reference= FirebaseDatabase.getInstance().getReference("Usuarios").child(myUser);
         reference.addValueEventListener(new ValueEventListener() {
@@ -134,8 +134,7 @@ public class EditarPerfil extends AppCompatActivity {
                 hashMap.put("nombre",nom);
                 hashMap.put("apellido",apell);
                 hashMap.put("telefono",telef);
-                hashMap.put("departamento",select);
-
+                hashMap.put("departamento", select);
                 reference.updateChildren(hashMap);
 
             }

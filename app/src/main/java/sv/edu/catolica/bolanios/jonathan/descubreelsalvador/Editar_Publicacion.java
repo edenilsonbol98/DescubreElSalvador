@@ -136,14 +136,15 @@ public class Editar_Publicacion extends AppCompatActivity {
     }
 
     public void  ObtenerIntens(){
-        if (cel!=null && location!=null) {
-            double longitud = VariablesCompartidas.getLongitud();
-            double latitud = VariablesCompartidas.getLatitud();
+        double longitud = VariablesCompartidas.getLongitud();
+        double latitud = VariablesCompartidas.getLatitud();
+        if (VariablesCompartidas.getTelefono()!=null && VariablesCompartidas.getFijo()!=null) {
             cel = VariablesCompartidas.getTelefono();
             fijo = VariablesCompartidas.getFijo();
+        } else if (longitud!=0.0 && latitud!=0.0) {
             location = new GeoPoint(latitud,longitud);
-            direccionPub = VariablesCompartidas.getDireccion();
-            departamento = VariablesCompartidas.getDepartammento();
+            direccionPub = MapaPublicacionEdit.direccionMapa;
+            departamento = MapaPublicacionEdit.departamentoMapa;
         }
     }
     @Override
@@ -234,7 +235,7 @@ public class Editar_Publicacion extends AppCompatActivity {
             @Override
             public void onSuccess(Void aVoid) {
                 StorageReference storageRef = storage.getReference();
-                for (String item: listFotos) {
+               /* for (String item: listFotos) {
                     StorageReference desertRef = storageRef.child("publicacion/"+item);
                     desertRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
@@ -247,7 +248,7 @@ public class Editar_Publicacion extends AppCompatActivity {
                             // Uh-oh, an error occurred!
                         }
                     });
-                }
+                }*/
 
             }
         }).addOnFailureListener(new OnFailureListener() {

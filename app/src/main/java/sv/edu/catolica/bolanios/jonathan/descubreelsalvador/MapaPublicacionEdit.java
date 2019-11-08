@@ -28,6 +28,7 @@ public class MapaPublicacionEdit extends FragmentActivity implements GoogleMap.O
     public static LatLng LocationExistente;
     Geocoder decod;
     List<Address> direc;
+    public static String direccionMapa, departamentoMapa;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,8 +79,8 @@ public class MapaPublicacionEdit extends FragmentActivity implements GoogleMap.O
         try {
             decod= new Geocoder(MapaPublicacionEdit.this, Locale.getDefault());
             direc = decod.getFromLocation(locat.getLatitude(), locat.getLongitude(),1);
-            VariablesCompartidas.setDireccion(direc.get(0).getAddressLine(0));
-            VariablesCompartidas.setDepartammento(direc.get(0).getAdminArea());
+            direccionMapa=direc.get(0).getAddressLine(0);
+            departamentoMapa = direc.get(0).getAdminArea();
             VariablesCompartidas.setLatitud(locat.getLatitude());
             VariablesCompartidas.setLongitud(locat.getLongitude());
         } catch (IOException e) {
