@@ -11,6 +11,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -69,6 +71,12 @@ public class Editar_Publicacion extends AppCompatActivity {
         setContentView(R.layout.activity_editar__publicacion);
         Inicializar();
         mostrarDatos();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_editar, menu);
+        return true;
     }
 
     private void Inicializar() {
@@ -258,5 +266,25 @@ public class Editar_Publicacion extends AppCompatActivity {
             }
         } );
         //
+    }
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.guardarEdit:
+                ObtenerIntens();
+                ActualizarPublicacion();
+                Toast.makeText(Editar_Publicacion.this,"Actualizado",Toast.LENGTH_LONG).show();
+                Intent llamar = new Intent(Editar_Publicacion.this, Perfil.class);
+                startActivity(llamar);
+                finish();
+
+                break;
+            case R.id.cancelarEdit:
+                Intent llamar2 = new Intent(Editar_Publicacion.this, Perfil.class);
+                startActivity(llamar2);
+                finish();
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

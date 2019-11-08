@@ -221,7 +221,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
                         android:layout_marginTop="10dp"
-                        android:text="PUBLICACION HECHA POR TI"
+                        android:text="PUBLICACIONES HECHAS POR TI"
                         android:textSize="18sp"
                         android:textStyle="bold" />
                 </LinearLayout>

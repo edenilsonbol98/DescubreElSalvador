@@ -154,6 +154,10 @@ public class EditarPerfil extends AppCompatActivity {
                         finish();
 
                 break;
+            case R.id.cancelarEdit:
+                Intent llamar2 = new Intent(EditarPerfil.this, Perfil.class);
+                startActivity(llamar2);
+                finish();
             default:
                 return super.onOptionsItemSelected(item);
         }

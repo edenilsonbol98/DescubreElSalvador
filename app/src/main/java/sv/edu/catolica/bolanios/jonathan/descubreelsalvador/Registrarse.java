@@ -62,18 +62,18 @@ public class Registrarse extends AppCompatActivity {
             @Override
             public void onClick(View view) {
          final String nom =nombre.getText().toString();
-           final String apell =apellido.getText().toString();
-           final String telef =telefono.getText().toString();
-           final String email =usuario.getText().toString();
-           final String password= contraseña.getText().toString();
-           final String select=departamento.getSelectedItem().toString();
+           final String apelli =apellido.getText().toString().trim();
+           final String telefo =telefono.getText().toString().trim();
+           final String email =usuario.getText().toString().trim().trim();
+           final String password= contraseña.getText().toString().trim();
+           final String select=departamento.getSelectedItem().toString().trim();
 
-           if(TextUtils.isEmpty(nom) || TextUtils.isEmpty(apell) || TextUtils.isEmpty(telef) || TextUtils.isEmpty(email)|| TextUtils.isEmpty(password)){
+           if(TextUtils.isEmpty(nom) || TextUtils.isEmpty(apelli) || TextUtils.isEmpty(telefo) || TextUtils.isEmpty(email)|| TextUtils.isEmpty(password)){
                Toast.makeText(Registrarse.this,"Debes de completar los campos",Toast.LENGTH_LONG).show();
            }else if (password.length()<6){
                Toast.makeText(Registrarse.this,"Tu contraseña debe ser mayor a 6 caracteres",Toast.LENGTH_LONG).show();
            }else {
-                registrar(nom,apell,telef,email,password,select);
+                registrar(nom,apelli,telefo,email,password,select);
            }
 
 
@@ -123,7 +123,7 @@ public class Registrarse extends AppCompatActivity {
                            }
                        });
                    }else {
-                       Toast.makeText(Registrarse.this,"No quiere",Toast.LENGTH_LONG).show();
+                       Toast.makeText(Registrarse.this,"No se puede registrar",Toast.LENGTH_LONG).show();
                    }
                }
            });

@@ -172,7 +172,7 @@ public class CargarLugares extends AppCompatActivity {
                             startActivity(llamar);
                             finish();
                         } else if (buttonIndex == 1) {
-                            Intent llamar = new Intent(CargarLugares.this, CargarLugares.class);
+                            Intent llamar = new Intent(CargarLugares.this, CargarChats.class);
                             startActivity(llamar);
                             finish();
                         } else if (buttonIndex == 2) {
