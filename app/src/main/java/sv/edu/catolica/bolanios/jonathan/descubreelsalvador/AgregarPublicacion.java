@@ -330,6 +330,8 @@ public class AgregarPublicacion extends AppCompatActivity {
                         @Override
                         public void onSuccess(Void aVoid) {
                             Toast.makeText(AgregarPublicacion.this, "Publicacion hechá", Toast.LENGTH_SHORT).show();
+                            Intent cargar=new Intent(AgregarPublicacion.this,CargarLugares.class);
+                            startActivity(cargar);
                         }
                     });
                 }
