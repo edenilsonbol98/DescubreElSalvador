@@ -85,7 +85,12 @@ public class AgregarPublicacion extends AppCompatActivity {
         setContentView(R.layout.activity_agregar_publicacion);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setIcon(R.mipmap.logo_foreground);
+        tipo=findViewById(R.id.spTipo);
+        String [] opcionesTipo={"Hospedaje", "Turicentro", "Restaurante"};
+        ArrayAdapter<String> adaptador = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,opcionesTipo);
+        tipo.setAdapter(adaptador);
         Inicializacion();
+
 
     }
 
@@ -105,10 +110,8 @@ public class AgregarPublicacion extends AppCompatActivity {
         myRef = FirebaseFirestore.getInstance();
         mContext = this;
         boomMenuButton = findViewById(R.id.boom);
-        tipo=findViewById(R.id.spTipoEdit);
-        String [] opcionesTipo={"Hospedaje", "Turicentro", "Restaurante"};
-        ArrayAdapter<String> adaptador = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,opcionesTipo);
-        tipo.setAdapter(adaptador);
+
+
         txtDireccion = findViewById(R.id.direccion);
     }
 

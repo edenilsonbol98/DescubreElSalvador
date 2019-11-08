@@ -180,7 +180,7 @@ public class CargarLugares extends AppCompatActivity {
                             startActivity(llamar);
                             finish();
                         } else if (buttonIndex == 3) {
-                            Intent llamar = new Intent(CargarLugares.this, CargarLugares.class);
+                            Intent llamar = new Intent(CargarLugares.this, AgregarPublicacion.class);
                             startActivity(llamar);
                             finish();
                         } else if (buttonIndex == 4) {
