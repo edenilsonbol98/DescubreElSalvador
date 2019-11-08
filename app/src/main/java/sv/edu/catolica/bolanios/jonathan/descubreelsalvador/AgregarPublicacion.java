@@ -256,9 +256,9 @@ public class AgregarPublicacion extends AppCompatActivity {
             case R.id.perfil:
                 Intent llamar = new Intent(AgregarPublicacion.this, Perfil.class);
                 startActivity(llamar);
-                finish();
                 break;
             case R.id.salir:
+                FirebaseAuth.getInstance().signOut();
                 finish();
                 break;
             default:

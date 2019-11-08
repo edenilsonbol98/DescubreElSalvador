@@ -115,8 +115,7 @@ public class PrincipalElSalvador extends AppCompatActivity {
                     hashMap.put("telefono", "");
                     hashMap.put("correo", task.getResult().getUser().getEmail());
                     hashMap.put("departamento", "");
-                    hashMap.put("imageURL", "https://graph.facebook.com/"+task.getResult().getAdditionalUserInfo().getProviderId()+"/picture?type=normal");
-
+                    hashMap.put("imageURL", String.valueOf(task.getResult().getUser().getPhotoUrl()));
 
 
                     db.setValue(hashMap);
@@ -131,21 +130,22 @@ public class PrincipalElSalvador extends AppCompatActivity {
 
 
 
-   /* AccessTokenTracker tokenTracker=new AccessTokenTracker() {
+    /*AccessTokenTracker tokenTracker=new AccessTokenTracker() {
         @Override
         protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken, AccessToken currentAccessToken) {
-            if(currentAccessToken==null){
+            if (currentAccessToken == null) {
 
-                Toast.makeText(PrincipalElSalvador.this,"Usuario no logueado",Toast.LENGTH_LONG).show();
-            }else {
-               handleFacebookAccessToken(currentAccessToken);
-                startActivity(new Intent(PrincipalElSalvador.this,Login.class));
+                Toast.makeText(PrincipalElSalvador.this, "Usuario no logueado", Toast.LENGTH_LONG).show();
+            } else {
+                handleFacebookAccessToken(currentAccessToken);
+                startActivity(new Intent(PrincipalElSalvador.this, Login.class));
 
             }
         }
+    };*/
 
 
-        public void checkLoginStatus(){
+       /* public void checkLoginStatus(){
             if(AccessToken.getCurrentAccessToken()!=null){
                handleFacebookAccessToken(AccessToken.getCurrentAccessToken());
                 startActivity(new Intent(PrincipalElSalvador.this,AgregarPublicacion.class));
@@ -276,7 +276,7 @@ public class PrincipalElSalvador extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         if(mAuth.getCurrentUser()!=null){
-            startActivity(new Intent(PrincipalElSalvador.this,Login.class));
+            startActivity(new Intent(PrincipalElSalvador.this,CargarLugares.class));
             finish();
         }
 

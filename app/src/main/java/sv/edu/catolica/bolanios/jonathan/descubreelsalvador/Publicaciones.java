@@ -19,12 +19,14 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.login.LoginManager;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.GeoPoint;
@@ -256,7 +258,12 @@ public class Publicaciones extends AppCompatActivity {
                 startActivity(llamar);
                 break;
             case R.id.salir:
+                FirebaseAuth.getInstance().signOut();
+                LoginManager.getInstance().logOut();
+                Intent llamada = new Intent(Publicaciones.this, PrincipalElSalvador.class);
+                startActivity(llamada);
                 finish();
+
                 break;
             default:
                 return super.onOptionsItemSelected(item);

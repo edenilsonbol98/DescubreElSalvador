@@ -11,10 +11,13 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.facebook.login.LoginManager;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -47,10 +50,9 @@ public class Perfil extends AppCompatActivity {
     private BoomMenuButton boomMenuButton;
     private boolean init = false;
     private TextView nombre,departamento,correo,telefono;
-    private ImageView perfil;
+    private ImageView perfil,editar;
     DatabaseReference reference;
-    FirebaseUser fuser;
-    private FirebaseAuth mAuth;
+
     private FirebaseFirestore myRef;
     private ArrayList<ModeloPublicacion> listModelo;
     private ModeloPublicacion classModelo;
@@ -63,6 +65,13 @@ public class Perfil extends AppCompatActivity {
         setContentView(R.layout.activity_perfil);
         Inicializar();
 
+        editar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent editar=new Intent(Perfil.this,EditarPerfil.class);
+                startActivity(editar);
+            }
+        });
 
     }
 
@@ -77,38 +86,18 @@ public class Perfil extends AppCompatActivity {
         correo=findViewById(R.id.txtCorreo);
         telefono=findViewById(R.id.txtTelefono);
         perfil=findViewById(R.id.imgPerfil);
+        editar=findViewById(R.id.btnMensaje);
 
-        mAuth = FirebaseAuth.getInstance();
-        String myUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-        reference= FirebaseDatabase.getInstance().getReference("Usuarios").child(myUser);
 
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                ReUsuario reUsuario=dataSnapshot.getValue(ReUsuario.class);
-                nombre.setText(reUsuario.getNombre());
-                departamento.setText(reUsuario.getDepartamento());
-                telefono.setText(reUsuario.getTelefono());
-                correo.setText(reUsuario.getCorreo());
-                if(reUsuario.getImageURL().equals("default")){
-                    perfil.setImageResource(R.mipmap.ic_launcher);
-                }else {
-                    Glide.with(Perfil.this).load(reUsuario.getImageURL()).into(perfil);
-                }
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
         myRef=FirebaseFirestore.getInstance();
         listModelo = new ArrayList<>();
         recyclerView=findViewById(R.id.recycler_editar_perfil);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         mostrarPublicaciones();
+        MostrarPerfil();
     }
 
     public void mostrarPublicaciones(){
@@ -130,6 +119,32 @@ public class Perfil extends AppCompatActivity {
                 }
                 adaptador=new MyAdapterEditarPublicaciones(Perfil.this,listModelo);
                 recyclerView.setAdapter(adaptador);
+            }
+        });
+    }
+
+    private void MostrarPerfil(){
+        String myUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        reference= FirebaseDatabase.getInstance().getReference("Usuarios").child(myUser);
+
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                ReUsuario reUsuario=dataSnapshot.getValue(ReUsuario.class);
+                nombre.setText(reUsuario.getNombre()+" "+reUsuario.getApellido());
+                departamento.setText(reUsuario.getDepartamento());
+                telefono.setText(reUsuario.getTelefono());
+                correo.setText(reUsuario.getCorreo());
+                if(reUsuario.getImageURL().equals("default")){
+                    perfil.setImageResource(R.mipmap.ic_launcher);
+                }else {
+                    Glide.with(Perfil.this).load(reUsuario.getImageURL()).into(perfil);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
             }
         });
     }
@@ -224,6 +239,26 @@ public class Perfil extends AppCompatActivity {
                 })
                 .init(boomMenuButton);
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.perfil:
+                Intent llamar = new Intent(Perfil.this, Perfil.class);
+                startActivity(llamar);
+                break;
+            case R.id.salir:
+                FirebaseAuth.getInstance().signOut();
+                LoginManager.getInstance().logOut();
+                Intent llamada = new Intent(Perfil.this, PrincipalElSalvador.class);
+                startActivity(llamada);
+                finish();
+                break;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
 

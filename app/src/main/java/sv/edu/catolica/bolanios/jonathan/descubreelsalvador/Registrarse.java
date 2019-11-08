@@ -54,7 +54,7 @@ public class Registrarse extends AppCompatActivity {
 
         String [] opcionesDepartamento={"Ahuachapán","Sonsonate","Santa Ana","San Salvador","Cuscatlán","Cabañas","Chalatenango","La Libertad","La Paz","San Vicente","Morazán","Usulután","San Miguel","La Unión"};
 
-   ArrayAdapter<String> adaptador = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,opcionesDepartamento);
+   ArrayAdapter<String> adaptador = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,opcionesDepartamento);
    departamento.setAdapter(adaptador);
    Registrarse=findViewById(R.id.btnRegistrarse);
 

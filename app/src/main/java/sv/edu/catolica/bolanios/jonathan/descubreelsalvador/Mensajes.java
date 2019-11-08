@@ -62,7 +62,6 @@ public class Mensajes extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         final String idUser = extras.getString("idUsua");
-        Toast.makeText(Mensajes.this,"hola"+idUser+"",Toast.LENGTH_LONG).show();
         fuser= FirebaseAuth.getInstance().getCurrentUser();
 
         btn_send.setOnClickListener(new View.OnClickListener() {
