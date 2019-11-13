@@ -105,7 +105,7 @@ public class EditarPerfil extends AppCompatActivity {
                 correo.setText(reUsuario.getCorreo());
                 departamento.equals(reUsuario.getDepartamento());
                 if(reUsuario.getImageURL().equals("default")){
-                    perfil.setImageResource(R.mipmap.ic_launcher);
+                    perfil.setImageResource(R.drawable.usuarion);
                 }else {
                     Glide.with(EditarPerfil.this).load(reUsuario.getImageURL()).into(perfil);
                 }

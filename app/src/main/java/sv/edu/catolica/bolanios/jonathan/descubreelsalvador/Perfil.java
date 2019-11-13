@@ -136,7 +136,7 @@ public class Perfil extends AppCompatActivity {
                 telefono.setText(reUsuario.getTelefono());
                 correo.setText(reUsuario.getCorreo());
                 if(reUsuario.getImageURL().equals("default")){
-                    perfil.setImageResource(R.mipmap.ic_launcher);
+                    perfil.setImageResource(R.drawable.usuarion);
                 }else {
                     Glide.with(Perfil.this).load(reUsuario.getImageURL()).into(perfil);
                 }
@@ -210,9 +210,9 @@ public class Perfil extends AppCompatActivity {
                             startActivity(llamar);
                             finish();
                         } else if (buttonIndex == 1) {
-                            Intent llamar = new Intent(Perfil.this,Publicaciones.class);
+                            Intent llamar = new Intent(Perfil.this,CargarChats.class);
                             startActivity(llamar);
-                            finish();
+
                         } else if (buttonIndex == 2) {
                             Intent llamar = new Intent(Perfil.this,AgregarPublicacion.class);
                             startActivity(llamar);

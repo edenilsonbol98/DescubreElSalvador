@@ -229,7 +229,7 @@ public class AgregarPublicacion extends AppCompatActivity {
                         } else if (buttonIndex == 1) {
                             Intent intentar=new Intent(AgregarPublicacion.this, CargarChats.class);
                             startActivity(intentar);
-                            finish();
+
                         } else if (buttonIndex == 2) {
                             Intent llamar = new Intent(AgregarPublicacion.this, AgregarPublicacion.class);
                             startActivity(llamar);

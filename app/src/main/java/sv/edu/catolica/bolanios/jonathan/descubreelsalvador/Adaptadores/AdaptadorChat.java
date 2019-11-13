@@ -55,7 +55,7 @@ public class AdaptadorChat extends RecyclerView.Adapter<AdaptadorChat.ViewHolder
         holder.show_message.setText(chat.getMensaje());
 
         if(imageurl.equals("default")){
-            holder.profile_image.setImageResource(R.mipmap.ic_launcher);
+            holder.profile_image.setImageResource(R.drawable.usuarion);
         }else {
             Glide.with(mContex).load(imageurl).into(holder.profile_image);
         }

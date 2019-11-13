@@ -53,7 +53,7 @@ public class CargarChats extends AppCompatActivity {
                 ReUsuario user=dataSnapshot.getValue(ReUsuario.class);
                 username.setText(user.getNombre());
                 if(user.getImageURL().equals("default")){
-                    profile_image.setImageResource(R.mipmap.ic_launcher);
+                    profile_image.setImageResource(R.drawable.usuarion);
                 }else {
                     Glide.with(CargarChats.this).load(user.getImageURL()).into(profile_image);
 
