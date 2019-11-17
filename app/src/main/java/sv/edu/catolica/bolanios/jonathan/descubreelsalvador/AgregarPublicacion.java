@@ -144,6 +144,7 @@ public class AgregarPublicacion extends AppCompatActivity {
             }
         }
     }
+
     public void MostrarGaleria() {
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType("image/*");

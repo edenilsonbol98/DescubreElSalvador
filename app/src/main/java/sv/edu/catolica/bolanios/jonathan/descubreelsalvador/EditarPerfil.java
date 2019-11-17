@@ -22,7 +22,10 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.facebook.login.LoginManager;
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FacebookAuthCredential;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
@@ -35,7 +38,9 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class EditarPerfil extends AppCompatActivity {
     private Spinner departamento;
@@ -46,6 +51,7 @@ public class EditarPerfil extends AppCompatActivity {
     private StorageReference mStorage;
     private FirebaseAuth mAuth;
     private static final int GALLERY_INTENT=1;
+    private String listFotos;
 
 
     @Override
@@ -78,11 +84,11 @@ public class EditarPerfil extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent=new Intent(Intent.ACTION_PICK);
                 intent.setType("image/*");
-                startActivityForResult(intent,GALLERY_INTENT);
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent, "Seleccione una foto"),GALLERY_INTENT);
             }
         });
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -144,6 +150,7 @@ public class EditarPerfil extends AppCompatActivity {
             }
         });
     }
+
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.guardarEdit:
@@ -167,18 +174,25 @@ public class EditarPerfil extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
-        if(resultCode==GALLERY_INTENT && resultCode==RESULT_OK){
+        if( resultCode==RESULT_OK){
             final Uri uri=data.getData();
-            StorageReference filepath=mStorage.child("usuario").child(uri.getLastPathSegment());
-            filepath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            final StorageReference filePath=mStorage.child("usuario").child(uri.getLastPathSegment());
+            filePath.putFile(uri).continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
                 @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-Toast.makeText(EditarPerfil.this,"siii",Toast.LENGTH_LONG);
+                public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                    return filePath.getDownloadUrl();
+                }
+            }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                @Override
+                public void onComplete(@NonNull Task<Uri> task) {
+                    if (task.isSuccessful()){
+                        Uri downloadUrl = task.getResult();
+                        listFotos=downloadUrl.toString(); //aqui obtener la url de la foto
+                    }
                 }
             });
 
-
         }
     }
+
 }
