@@ -7,20 +7,70 @@
     tools:context=".CargarLugares"
     >
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"><TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/filtrar_por"></TextView></LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="10dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tipo_de_local"></TextView>
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/spnTipo"></Spinner>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp">
+            <Button
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:text="Bus"
+                android:onClick="btnBuscar"></Button>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp">
+            <Button
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:text="Act"
+                android:onClick="btnRecargar"></Button>
+
+        </LinearLayout>
+    </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginBottom="15dp"
         android:id="@+id/my_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="vertical"
-        android:background="@color/transparent"/>
+        android:layout_height="650dp"
 
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="59dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="23dp"
+        android:background="@color/transparent"
+        android:scrollbars="vertical" />
 
-
-        <com.nightonke.boommenu.BoomMenuButton
+    <com.nightonke.boommenu.BoomMenuButton
             android:id="@+id/boom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
