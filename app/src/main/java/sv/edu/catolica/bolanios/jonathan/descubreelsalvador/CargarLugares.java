@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -55,7 +56,7 @@ public class CargarLugares extends AppCompatActivity {
     ModeloPublicacion classModelo;
     MyAdapterPublicaciones adapter;
     String url1;
-    private Spinner tipo;
+    private Spinner tipo, departamento;
     private Context mContext;
     private BoomMenuButton boomMenuButton;
     private boolean init = false;
@@ -78,9 +79,91 @@ public class CargarLugares extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setIcon(R.mipmap.logo_foreground);
         tipo=findViewById(R.id.spnTipo);
-        String [] opcionesTipo={"Hospedaje", "Turicentro", "Restaurante"};
+        String [] opcionesTipo={"","Hospedaje", "Turicentro", "Restaurante"};
         ArrayAdapter<String> adaptador = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,opcionesTipo);
         tipo.setAdapter(adaptador);
+        tipo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                FiltrarTipo();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        String [] opcionesDepartamento={"","Ahuachapán","Sonsonate","Santa Ana","San Salvador","Cuscatlán","Cabañas","Chalatenango","La Libertad","La Paz","San Vicente","Morazán","Usulután","San Miguel","La Unión"};
+        departamento=findViewById(R.id.spnDepartamento);
+        ArrayAdapter<String> adaptador2 = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,opcionesDepartamento);
+        departamento.setAdapter(adaptador2);
+        departamento.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                FiltrarDepartamento();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
+
+    private void FiltrarTipo() {
+        final String tipoLocal = tipo.getSelectedItem().toString();
+        if (tipoLocal!="") {
+            myRef.collection("publicacion").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    listModelo = new ArrayList<>();
+
+                    for (QueryDocumentSnapshot snapshot:task.getResult()) {
+                        String tipoLocalBD = snapshot.get("tipoLocal").toString();
+                        if (tipoLocal.equals(tipoLocalBD)) {
+                            classModelo = new ModeloPublicacion();
+                            classModelo.setTitulo(snapshot.get("titulo").toString());
+                            classModelo.setDescripcion(snapshot.get("descripcion").toString());
+                            classModelo.setDepartamento(snapshot.get("departamento").toString());
+                            classModelo.setTipoLocal(snapshot.get("tipoLocal").toString());
+                            classModelo.setIdPublicacion(snapshot.getId());
+                            listFotos = (ArrayList<String>) snapshot.getData().get("urlFotos");
+                            classModelo.setFotos(listFotos.get(0));
+                            listModelo.add(classModelo);
+                        }
+                    }
+                    adapter=new MyAdapterPublicaciones(CargarLugares.this,listModelo);
+                    recyclerView.setAdapter(adapter);
+                }
+            });
+        }
+    }
+    private void FiltrarDepartamento() {
+        final String departamentoSp = departamento.getSelectedItem().toString();
+        if (departamentoSp!="") {
+            myRef.collection("publicacion").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    listModelo = new ArrayList<>();
+                    for (QueryDocumentSnapshot snapshot:task.getResult()) {
+                        String deparmanetoBD = snapshot.get("departamento").toString();
+                        if (departamentoSp.equals(deparmanetoBD)) {
+                            classModelo = new ModeloPublicacion();
+                            classModelo.setTitulo(snapshot.get("titulo").toString());
+                            classModelo.setDescripcion(snapshot.get("descripcion").toString());
+                            classModelo.setDepartamento(snapshot.get("departamento").toString());
+                            classModelo.setTipoLocal(snapshot.get("tipoLocal").toString());
+                            classModelo.setIdPublicacion(snapshot.getId());
+                            listFotos = (ArrayList<String>) snapshot.getData().get("urlFotos");
+                            classModelo.setFotos(listFotos.get(0));
+                            listModelo.add(classModelo);
+                        }
+                    }
+                    adapter=new MyAdapterPublicaciones(CargarLugares.this,listModelo);
+                    recyclerView.setAdapter(adapter);
+                }
+            });
+        }
     }
 
     @Override
@@ -222,36 +305,6 @@ public class CargarLugares extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    public void btnBuscar(View view) {
-        FiltrarPub();
-    }
-
-    private void FiltrarPub() {
-        myRef.collection("publicacion").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                listModelo = new ArrayList<>();
-                String tipoLocal = tipo.getSelectedItem().toString();
-                for (QueryDocumentSnapshot snapshot:task.getResult()) {
-                    String tipoLocalBD = snapshot.get("tipoLocal").toString();
-                    if (tipoLocal.equals(tipoLocalBD)) {
-                        classModelo = new ModeloPublicacion();
-                        classModelo.setTitulo(snapshot.get("titulo").toString());
-                        classModelo.setDescripcion(snapshot.get("descripcion").toString());
-                        classModelo.setDepartamento(snapshot.get("departamento").toString());
-                        classModelo.setTipoLocal(snapshot.get("tipoLocal").toString());
-                        classModelo.setIdPublicacion(snapshot.getId());
-                        listFotos = (ArrayList<String>) snapshot.getData().get("urlFotos");
-                        classModelo.setFotos(listFotos.get(0));
-                        listModelo.add(classModelo);
-                    }
-                }
-                adapter=new MyAdapterPublicaciones(CargarLugares.this,listModelo);
-                recyclerView.setAdapter(adapter);
-            }
-        });
     }
 
     public void btnRecargar(View view) {
