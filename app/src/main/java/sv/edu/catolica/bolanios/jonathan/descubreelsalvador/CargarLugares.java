@@ -137,6 +137,7 @@ public class CargarLugares extends AppCompatActivity {
                 }
             });
         }
+        else{mostrarPublicaciones();}
     }
     private void FiltrarDepartamento() {
         final String departamentoSp = departamento.getSelectedItem().toString();
@@ -164,6 +165,7 @@ public class CargarLugares extends AppCompatActivity {
                 }
             });
         }
+        else{mostrarPublicaciones();}
     }
 
     @Override
