@@ -64,6 +64,7 @@ public class Perfil extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil);
         Inicializar();
+        ReUsuario reUsuario=new ReUsuario();
 
         editar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -139,6 +140,11 @@ public class Perfil extends AppCompatActivity {
                     perfil.setImageResource(R.drawable.usuarion);
                 }else {
                     Glide.with(Perfil.this).load(reUsuario.getImageURL()).into(perfil);
+                }
+                if(reUsuario.getApellido().isEmpty() && reUsuario.getDepartamento().isEmpty() && reUsuario.getTelefono().isEmpty()){
+                    editar.setEnabled(false);
+                }else{
+                    editar.setEnabled(true);
                 }
             }
 

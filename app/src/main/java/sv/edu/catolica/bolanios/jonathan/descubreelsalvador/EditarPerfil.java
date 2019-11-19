@@ -67,6 +67,8 @@ public class EditarPerfil extends AppCompatActivity {
         perfil=findViewById(R.id.imgPerf);
         departamento=findViewById(R.id.spDepartamento);
         cambio=findViewById(R.id.cambioDefoto);
+         String myUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        reference= FirebaseDatabase.getInstance().getReference("Usuarios").child(myUser);
 
         mStorage= FirebaseStorage.getInstance().getReference();
 
@@ -97,10 +99,6 @@ public class EditarPerfil extends AppCompatActivity {
     }
 
     private void mostrar(){
-        mAuth.getInstance().getCurrentUser().getProviderData();
-        String myUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        reference= FirebaseDatabase.getInstance().getReference("Usuarios").child(myUser);
-
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -129,9 +127,8 @@ public class EditarPerfil extends AppCompatActivity {
         final String nom =nombre.getText().toString();
         final String apell =apellido.getText().toString();
         final String telef =telefono.getText().toString();
-        final String[] select = {departamento.getSelectedItem().toString()};
-        final String myUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        reference= FirebaseDatabase.getInstance().getReference("Usuarios").child(myUser);
+        final String select = departamento.getSelectedItem().toString();
+
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -141,7 +138,6 @@ public class EditarPerfil extends AppCompatActivity {
                 hashMap.put("telefono",telef);
                 hashMap.put("departamento", select);
                 reference.updateChildren(hashMap);
-
             }
 
             @Override
@@ -155,7 +151,7 @@ public class EditarPerfil extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.guardarEdit:
                         actualizar();
-                        Toast.makeText(EditarPerfil.this,"Actualizado",Toast.LENGTH_LONG).show();
+                        Toast.makeText(EditarPerfil.this,"Actualizado con éxito",Toast.LENGTH_LONG).show();
                         Intent llamar = new Intent(EditarPerfil.this, Perfil.class);
                         startActivity(llamar);
                         finish();
@@ -187,7 +183,20 @@ public class EditarPerfil extends AppCompatActivity {
                 public void onComplete(@NonNull Task<Uri> task) {
                     if (task.isSuccessful()){
                         Uri downloadUrl = task.getResult();
-                        listFotos=downloadUrl.toString(); //aqui obtener la url de la foto
+                        listFotos=downloadUrl.toString();//aqui obtener la url de la foto
+                        reference.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                HashMap<String,Object> hashMap=new HashMap<>();
+                                hashMap.put("imageURL",listFotos);
+                                reference.updateChildren(hashMap);
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
                     }
                 }
             });
