@@ -95,7 +95,8 @@
                     android:paddingEnd="10dp"
                     android:paddingBottom="10dp"
                     android:textColor="@color/Blanco"
-                    android:textColorHint="@color/Blanco" />
+                    android:textColorHint="@color/Blanco"
+                    android:importantForAutofill="no" />
 
 
                 <EditText
@@ -113,7 +114,8 @@
                     android:paddingBottom="10dp"
                     android:textColor="@color/Blanco"
 
-                    android:textColorHint="@color/Blanco" />
+                    android:textColorHint="@color/Blanco"
+                    android:importantForAutofill="no" />
             </LinearLayout>
         </LinearLayout>
 

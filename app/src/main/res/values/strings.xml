@@ -78,6 +78,24 @@
     <string name="cancelar">Cancelar</string>
     <string name="cambiar_fotos">Cambiar fotos</string>
     <string name="tipo_de_publicaci_n">Tipo de publicación</string>
+    <string name="todo">TODO</string>
+    <string name="cambiar_foto_de_perfil">Cambiar foto de perfil</string>
+    <string name="aqui_se_cargara_el_correo">Aqui se cargara el correo</string>
+    <string name="cargando">Cargando</string>
+    <string name="editar_perfil">Editar Perfil</string>
+    <string name="publicaciones_hechas_por_ti">PUBLICACIONES HECHAS POR TI</string>
+    <string name="titulo">TITULO</string>
+    <string name="descripci_n">DESCRIPCIÓN</string>
+    <string name="aqui_se_cargara_la_descripcion">Aqui se cargara la descripcion</string>
+    <string name="enviar_mensaje">Enviar Mensaje</string>
+    <string name="contactanos">CONTACTANOS</string>
+    <string name="telefono_fijo">TELEFONO FIJO</string>
+    <string name="celular">CELULAR</string>
+    <string name="mostrar_ruta">MOSTRAR RUTA</string>
+    <string name="puntos">..</string>
+    <string name="agregar">Agregar</string>
+    <string name="username">Username</string>
+    <string name="escribe_tu_mensaje">Escribe tu mensaje</string>
 
 
 </resources>

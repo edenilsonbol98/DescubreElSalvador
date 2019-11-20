@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -7,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        >
+        tools:ignore="UselessParent">
 
         <TextView
             android:id="@+id/textView"
@@ -29,7 +30,10 @@
             android:layout_gravity="center"
             android:background="@drawable/inputnegro"
             android:hint="@string/fijo"
-            android:paddingLeft="20sp" />
+            android:paddingStart="20sp"
+            android:importantForAutofill="no"
+            android:inputType="number"
+            tools:ignore="RtlSymmetry" />
 
 
         <EditText
@@ -41,8 +45,11 @@
             android:layout_marginLeft="10dp"
             android:background="@drawable/inputnegro"
             android:hint="@string/de_celular"
-            android:paddingLeft="20sp"
-            android:layout_gravity="center"/>
+            android:paddingStart="20sp"
+            android:layout_gravity="center"
+            android:importantForAutofill="no"
+            android:inputType="number"
+            tools:ignore="RtlSymmetry" />
 
         <Button
             android:id="@+id/btnAgregarTel"
@@ -51,7 +58,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="20sp"
             android:background="@drawable/boton_publicacion"
-            android:text="Agregar"
+            android:text="@string/agregar"
             android:layout_marginBottom="10dp"
             android:onClick="btnSave"
 

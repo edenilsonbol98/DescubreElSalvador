@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -8,10 +9,11 @@
     <LinearLayout
         android:layout_width="365dp"
         android:layout_height="208dp"
-        android:layout_marginLeft="25dp"
+        android:layout_marginStart="25dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/contorno_negro"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        tools:ignore="UselessParent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -22,7 +24,9 @@
                 android:id="@+id/txtIdPubEditar"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:visibility="invisible"></TextView>
+                android:visibility="invisible">
+
+            </TextView>
 
             <LinearLayout
                 android:layout_width="258dp"
@@ -33,29 +37,30 @@
                     android:id="@+id/txtTituloEdit"
                     android:layout_width="157dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
-                    android:text="Hotel Tolteka"
+                    android:text="@string/cargando"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
 
                 <ImageView
                     android:id="@+id/btnPublicacionEdit"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="36dp"
                     android:layout_marginTop="5dp"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/lapiz" />
+                    app:srcCompat="@drawable/lapiz"
+                    android:contentDescription="@string/todo" />
             </LinearLayout>
 
             <TextView
                 android:id="@+id/txtDescripcionEdit"
                 android:layout_width="325dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
-                android:text="Es un hotel para toda la familia y amigos, incluye piscina televisor y cuartos"
+                android:text="@string/cargando"
                 android:textSize="15sp" />
 
             <ImageView
@@ -63,7 +68,8 @@
                 android:layout_width="118dp"
                 android:layout_height="104dp"
                 android:layout_gravity="center"
-                app:srcCompat="@drawable/tolteka" />
+                app:srcCompat="@drawable/tolteka"
+                android:contentDescription="@string/todo" />
         </LinearLayout>
     </LinearLayout>
 

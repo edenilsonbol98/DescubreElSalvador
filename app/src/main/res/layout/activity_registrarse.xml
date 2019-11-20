@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
        android:background="@drawable/fondoesa"
         android:scaleType="centerCrop"
-        />
+        android:contentDescription="@string/todo" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,12 +24,13 @@
         <ImageView
             android:layout_width="303dp"
             android:layout_height="113dp"
-            android:background="@drawable/descubrelogo" />
+            android:background="@drawable/descubrelogo"
+            android:contentDescription="@string/todo" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text=".."
+            android:text="@string/puntos"
             android:textSize="25sp"
             android:textColor="#ffffff"
             android:textAlignment="center"/>
@@ -47,10 +48,13 @@
                 android:layout_marginBottom="15dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:paddingLeft="10dp"
+                android:paddingStart="10dp"
                 android:paddingBottom="10dp"
                 android:textColorHint="@color/Blanco"
-                android:textColor="@color/Blanco"/>
+                android:textColor="@color/Blanco"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                tools:ignore="RtlSymmetry" />
 
 
             <EditText
@@ -62,10 +66,13 @@
                 android:layout_marginBottom="15dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:paddingLeft="10dp"
+                android:paddingStart="10dp"
                 android:paddingBottom="10dp"
                 android:textColorHint="@color/Blanco"
-                android:textColor="@color/Blanco"/>
+                android:textColor="@color/Blanco"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                tools:ignore="RtlSymmetry"/>
 
 
             <EditText
@@ -78,10 +85,13 @@
                 android:layout_marginBottom="15dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:paddingLeft="10dp"
+                android:paddingStart="10dp"
                 android:paddingBottom="10dp"
                 android:textColorHint="@color/Blanco"
-                android:textColor="@color/Blanco"/>
+                android:textColor="@color/Blanco"
+                android:importantForAutofill="no"
+
+                tools:ignore="RtlSymmetry"/>
 
 
             <EditText
@@ -93,10 +103,13 @@
                 android:layout_marginBottom="15dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:paddingLeft="10dp"
+                android:paddingStart="10dp"
                 android:paddingBottom="10dp"
                 android:textColorHint="@color/Blanco"
-                android:textColor="@color/Blanco"/>
+                android:textColor="@color/Blanco"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                tools:ignore="RtlSymmetry"/>
 
 
 
@@ -107,13 +120,15 @@
                 android:layout_marginBottom="15dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:paddingLeft="10dp"
+                android:paddingStart="10dp"
                 android:paddingBottom="10dp"
                 android:textColor="@color/Blanco"
                 android:background="@drawable/input"
                 android:hint="@string/contrase_a"
                 android:inputType="textPassword"
+                android:importantForAutofill="no"
 
+                tools:ignore="RtlSymmetry"
                 android:textColorHint="@color/Blanco" />
         </LinearLayout>
 
@@ -129,7 +144,8 @@
                 android:text="@string/departamento"
                 android:textSize="20sp"
                 android:textColor="@color/Blanco"
-                android:paddingRight="10dp"/>
+                android:paddingEnd="10dp"
+                tools:ignore="RtlSymmetry" />
 
             <Spinner
                 android:id="@+id/spDepartamento"
@@ -151,9 +167,10 @@
             android:layout_marginBottom="15dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:paddingLeft="10dp"
+            android:paddingStart="10dp"
             android:paddingBottom="10dp"
-            android:layout_marginTop="40dp"/>
+            android:layout_marginTop="40dp"
+            tools:ignore="RtlSymmetry" />
 
     </LinearLayout>
 
