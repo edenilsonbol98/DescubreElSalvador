@@ -142,12 +142,13 @@ public class EditarPerfil extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.guardarEdit:
+                Intent llamar = new Intent(EditarPerfil.this, Perfil.class);
+                startActivity(llamar);
                         actualizar();
                         Toast.makeText(EditarPerfil.this,"Actualizado con éxito",Toast.LENGTH_LONG).show();
                         //finish();
                          System.exit(0);
-                        Intent llamar = new Intent(EditarPerfil.this, Perfil.class);
-                        startActivity(llamar);
+
 
                 break;
             case R.id.cancelarEdit:

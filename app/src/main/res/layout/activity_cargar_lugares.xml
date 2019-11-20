@@ -10,14 +10,22 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/contorno_negro">
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingLeft="10dp"><TextView
+            android:paddingLeft="10dp">
+            <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/filtrar_por"></TextView></LinearLayout>
+            android:text="@string/filtrar_por"
+                android:paddingTop="10dp"
+                android:textStyle="bold|italic">
+
+            </TextView>
+        </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -51,11 +59,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="10dp">
+
             <Button
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:text="Act"
-                android:onClick="btnRecargar"></Button>
+                android:background="@drawable/act"
+                android:onClick="btnRecargar" />
+
+
 
         </LinearLayout>
     </LinearLayout>
