@@ -52,14 +52,13 @@ public class EditarPerfil extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private static final int GALLERY_INTENT=1;
     private String listFotos;
+    private String myUser;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editar_perfil);
-
-
         nombre=findViewById(R.id.edtNombre);
         apellido=findViewById(R.id.edtApellido);
         telefono=findViewById(R.id.edtTelefono);
@@ -67,20 +66,13 @@ public class EditarPerfil extends AppCompatActivity {
         perfil=findViewById(R.id.imgPerf);
         departamento=findViewById(R.id.spDepartamento);
         cambio=findViewById(R.id.cambioDefoto);
-         String myUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        myUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
         reference= FirebaseDatabase.getInstance().getReference("Usuarios").child(myUser);
-
         mStorage= FirebaseStorage.getInstance().getReference();
-
         String [] opcionesDepartamento={"Ahuachapán","Sonsonate","Santa Ana","San Salvador","Cuscatlán","Cabañas","Chalatenango","La Libertad","La Paz","San Vicente","Morazán","Usulután","San Miguel","La Unión"};
-
         ArrayAdapter<String> adaptador = new ArrayAdapter<>(this,android.R.layout.simple_spinner_dropdown_item,opcionesDepartamento);
         departamento.setAdapter(adaptador);
-
-
-
         mostrar();
-
         cambio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -88,6 +80,7 @@ public class EditarPerfil extends AppCompatActivity {
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
                 startActivityForResult(Intent.createChooser(intent, "Seleccione una foto"),GALLERY_INTENT);
+                intent = new Intent();
             }
         });
     }
@@ -111,7 +104,7 @@ public class EditarPerfil extends AppCompatActivity {
                 if(reUsuario.getImageURL().equals("default")){
                     perfil.setImageResource(R.drawable.usuarion);
                 }else {
-                    Glide.with(EditarPerfil.this).load(reUsuario.getImageURL()).into(perfil);
+                    Glide.with(getApplicationContext()).load(reUsuario.getImageURL()).into(perfil);
                 }
             }
 
@@ -128,7 +121,6 @@ public class EditarPerfil extends AppCompatActivity {
         final String apell =apellido.getText().toString();
         final String telef =telefono.getText().toString();
         final String select = departamento.getSelectedItem().toString();
-
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -152,9 +144,10 @@ public class EditarPerfil extends AppCompatActivity {
             case R.id.guardarEdit:
                         actualizar();
                         Toast.makeText(EditarPerfil.this,"Actualizado con éxito",Toast.LENGTH_LONG).show();
+                        //finish();
+                         System.exit(0);
                         Intent llamar = new Intent(EditarPerfil.this, Perfil.class);
                         startActivity(llamar);
-                        finish();
 
                 break;
             case R.id.cancelarEdit:

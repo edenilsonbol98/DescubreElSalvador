@@ -139,7 +139,7 @@ public class Perfil extends AppCompatActivity {
                 if(reUsuario.getImageURL().equals("default")){
                     perfil.setImageResource(R.drawable.usuarion);
                 }else {
-                    Glide.with(Perfil.this).load(reUsuario.getImageURL()).into(perfil);
+                    Glide.with(getApplicationContext()).load(reUsuario.getImageURL()).into(perfil);
                 }
                 if(reUsuario.getApellido().isEmpty() && reUsuario.getDepartamento().isEmpty() && reUsuario.getTelefono().isEmpty()){
                     editar.setEnabled(false);
