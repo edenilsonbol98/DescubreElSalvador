@@ -42,7 +42,8 @@
             android:paddingRight="10dp"
             android:background="@drawable/inputnegro"
             android:hint="@string/t_tulo"
-            android:inputType="text"/>
+            android:inputType="text"
+            android:importantForAutofill="no" />
 
         <EditText
             android:id="@+id/txtDescripcion"
@@ -56,7 +57,8 @@
             android:hint="@string/descrip"
             android:paddingRight="10dp"
             android:paddingLeft="10dp"
-            android:inputType="textMultiLine"/>
+            android:inputType="textMultiLine"
+            android:importantForAutofill="no" />
 
     </LinearLayout>
 
@@ -84,10 +86,11 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_marginBottom="5dp"
-                android:paddingRight="10dp"
+                android:paddingEnd="10dp"
                 android:text="@string/direcci_n"
                 android:textSize="18sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                tools:ignore="RtlSymmetry" />
         </LinearLayout>
 
         <LinearLayout
@@ -102,7 +105,7 @@
                 android:layout_width="36dp"
                 android:layout_height="35dp"
                 android:background="@android:color/transparent"
-                android:drawableLeft="@android:drawable/ic_input_add"
+                android:drawableStart="@android:drawable/ic_input_add"
                 android:gravity="center"
                 android:onClick="MostrarMapa" />
 
@@ -119,14 +122,14 @@
             android:layout_height="45dp"
             android:orientation="vertical"
             android:paddingTop="15dp"
-            android:paddingLeft="20dp"
-            >
+            android:paddingStart="20dp"
+            tools:ignore="RtlSymmetry">
 
             <TextView
                 android:id="@+id/textView9"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Tipo de publicación"
+                android:text="@string/tipo_de_publicaci_n"
                 android:textSize="15sp"
                 android:textStyle="bold"/>
         </LinearLayout>
@@ -183,9 +186,10 @@
                 android:layout_width="32dp"
                 android:layout_height="31dp"
                 android:background="@android:color/transparent"
-                android:drawableLeft="@android:drawable/ic_input_add"
+                android:drawableStart="@android:drawable/ic_input_add"
                 android:gravity="left"
-                android:onClick="ObtenerFotos"/>
+                android:onClick="ObtenerFotos"
+                tools:ignore="RtlHardcoded" />
         </LinearLayout>
     </LinearLayout>
 
@@ -205,10 +209,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="50dp"
-                android:paddingLeft="10dp"
+                android:paddingStart="10dp"
                 android:gravity="start"
                 android:text="@string/tel"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                tools:ignore="RtlSymmetry" />
         </LinearLayout>
 
         <LinearLayout
@@ -246,21 +251,23 @@
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:orientation="horizontal"
-            android:layout_gravity="center">
+            android:layout_gravity="center"
+                tools:ignore="UselessParent">
 
             <Button
                 android:id="@+id/btnAgregar"
                 android:layout_width="0dp"
                 android:layout_height="30dp"
                 android:layout_marginTop="10dp"
-                android:paddingLeft="5dp"
-                android:paddingRight="10dp"
+                android:paddingStart="5dp"
+                android:paddingEnd="10dp"
                 android:layout_weight="1"
                 android:background="@drawable/boton_publicacion"
                 android:drawableLeft="@android:drawable/ic_menu_add"
                 android:onClick="btnGuardar"
                 android:drawableStart="@android:drawable/ic_menu_add"
-                android:text="@string/agregar_publicaci_n" />
+                android:text="@string/agregar_publicaci_n"
+                tools:ignore="RtlHardcoded" />
         </LinearLayout>
 
         </LinearLayout>
@@ -276,11 +283,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                tools:ignore="UselessParent">
 
                 <Button
                     android:id="@+id/btnCancelar"
-                    android:layout_width="139dp"
+                    android:layout_width="0dp"
                     android:layout_height="30dp"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
@@ -289,17 +297,12 @@
                     android:background="@drawable/botonrojo"
                     android:drawableStart="@android:drawable/ic_menu_close_clear_cancel"
                     android:drawableLeft="@android:drawable/ic_menu_close_clear_cancel"
-                    android:text="Cancelar" />
+                    android:text="@string/cancelar"
+                    tools:ignore="RtlHardcoded" />
             </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="center"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -317,7 +320,8 @@
             android:layout_margin="20dp"
             app:boom_button_color="@color/naranja"
             app:boom_button_pressed_color="@color/azul"
-            app:boom_inActionBar="false" />
+            app:boom_inActionBar="false"
+            tools:ignore="RtlHardcoded" />
     </RelativeLayout>
 
 

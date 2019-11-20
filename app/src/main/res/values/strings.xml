@@ -74,6 +74,10 @@
     <string name="editar_fotos">Editar fotos</string>
     <string name="tipo_de_local">Tipo de local</string>
     <string name="filtrar_por">Filtrar por:</string>
+    <string name="tipo_de_publicaci_n">Tipo de publicación</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="cambiar_fotos">Cambiar fotos</string>
+    <string name="tipo_de_publicaci_n">Tipo de publicación</string>
 
 
 </resources>

@@ -16,7 +16,8 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingLeft="10dp">
+            android:paddingStart="10dp"
+            tools:ignore="RtlSymmetry">
             <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -30,35 +31,46 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingLeft="10dp">
+            android:paddingStart="10dp"
+            tools:ignore="RtlSymmetry">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/tipo_de_local"></TextView>
+                android:text="@string/tipo_de_local">
+
+            </TextView>
             <Spinner
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/spnTipo"></Spinner>
+                android:id="@+id/spnTipo">
+
+            </Spinner>
         </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingLeft="10dp">
+            android:paddingStart="10dp"
+            tools:ignore="RtlSymmetry">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/departamento"></TextView>
+                android:text="@string/departamento">
+
+            </TextView>
             <Spinner
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/spnDepartamento"></Spinner>
+                android:id="@+id/spnDepartamento">
+
+            </Spinner>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingLeft="10dp">
+            android:paddingStart="10dp"
+            tools:ignore="RtlSymmetry">
 
             <Button
                 android:layout_width="50dp"
@@ -96,6 +108,7 @@
             android:layout_margin="20dp"
             app:boom_button_color="@color/naranja"
             app:boom_button_pressed_color="@color/azul"
-            app:boom_inActionBar="false" />
+            app:boom_inActionBar="false"
+        tools:ignore="RtlHardcoded" />
 
 </RelativeLayout>
