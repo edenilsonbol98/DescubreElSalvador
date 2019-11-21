@@ -30,6 +30,11 @@ public class DialogoSimpleFotos extends DialogFragment {
                     public void onClick(DialogInterface dialog, int id) {
                         // FIRE ZE MISSILES!
                        entro = true;
+                        try {
+                            this.finalize();
+                        } catch (Throwable throwable) {
+                            throwable.printStackTrace();
+                        }
                     }
                 })
                 .setNegativeButton("No", new DialogInterface.OnClickListener() {

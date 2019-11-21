@@ -60,6 +60,7 @@ public class CargarLugares extends AppCompatActivity {
     private Context mContext;
     private BoomMenuButton boomMenuButton;
     private boolean init = false;
+    private boolean entro = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,7 +86,11 @@ public class CargarLugares extends AppCompatActivity {
         tipo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                FiltrarTipo();
+               // FiltrarTipo();
+                if (entro) {
+                    FiltrarTipo();
+                }
+                entro= true;
             }
 
             @Override
@@ -93,14 +98,17 @@ public class CargarLugares extends AppCompatActivity {
 
             }
         });
-        String [] opcionesDepartamento={"","Ahuachapán","Sonsonate","Santa Ana","San Salvador","Cuscatlán","Cabañas","Chalatenango","La Libertad","La Paz","San Vicente","Morazán","Usulután","San Miguel","La Unión"};
+        String [] opcionesDepartamento={"","Ahuachapan","Sonsonate","Santa Ana","San Salvador","Cuscatlan","Cabañas","Chalatenango","La Libertad","La Paz","San Vicente","Morazan","Usulutan","San Miguel","La Union"};
         departamento=findViewById(R.id.spnDepartamento);
         ArrayAdapter<String> adaptador2 = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,opcionesDepartamento);
         departamento.setAdapter(adaptador2);
         departamento.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                FiltrarDepartamento();
+                if (entro) {
+                   // entro=false;
+                    FiltrarDepartamento();
+                }
             }
 
             @Override
@@ -112,15 +120,16 @@ public class CargarLugares extends AppCompatActivity {
 
     private void FiltrarTipo() {
         final String tipoLocal = tipo.getSelectedItem().toString();
-        if (tipoLocal!="") {
+        final String departamentoSp = departamento.getSelectedItem().toString();
+        if (tipoLocal!="" && departamentoSp!="") {
             myRef.collection("publicacion").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                     listModelo = new ArrayList<>();
-
                     for (QueryDocumentSnapshot snapshot:task.getResult()) {
                         String tipoLocalBD = snapshot.get("tipoLocal").toString();
-                        if (tipoLocal.equals(tipoLocalBD)) {
+                        String departamentoBD = snapshot.get("departamento").toString();
+                        if (tipoLocal.equals(tipoLocalBD)&& departamentoSp.equals(departamentoBD)) {
                             classModelo = new ModeloPublicacion();
                             classModelo.setTitulo(snapshot.get("titulo").toString());
                             classModelo.setDescripcion(snapshot.get("descripcion").toString());
@@ -141,14 +150,16 @@ public class CargarLugares extends AppCompatActivity {
     }
     private void FiltrarDepartamento() {
         final String departamentoSp = departamento.getSelectedItem().toString();
-        if (departamentoSp!="") {
+        final String tipoLocal = tipo.getSelectedItem().toString();
+        if (departamentoSp!=""&& departamentoSp!="") {
             myRef.collection("publicacion").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                     listModelo = new ArrayList<>();
                     for (QueryDocumentSnapshot snapshot:task.getResult()) {
                         String deparmanetoBD = snapshot.get("departamento").toString();
-                        if (departamentoSp.equals(deparmanetoBD)) {
+                        String tipoLocalBD = snapshot.get("tipoLocal").toString();
+                        if (departamentoSp.equals(deparmanetoBD)&& tipoLocal.equals(tipoLocalBD)) {
                             classModelo = new ModeloPublicacion();
                             classModelo.setTitulo(snapshot.get("titulo").toString());
                             classModelo.setDescripcion(snapshot.get("descripcion").toString());

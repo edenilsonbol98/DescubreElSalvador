@@ -243,20 +243,6 @@ public class Editar_Publicacion extends AppCompatActivity {
             @Override
             public void onSuccess(Void aVoid) {
                 StorageReference storageRef = storage.getReference();
-               /* for (String item: listFotos) {
-                    StorageReference desertRef = storageRef.child("publicacion/"+item);
-                    desertRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-                            // File deleted successfully
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception exception) {
-                            // Uh-oh, an error occurred!
-                        }
-                    });
-                }*/
 
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -265,7 +251,6 @@ public class Editar_Publicacion extends AppCompatActivity {
 
             }
         } );
-        //
     }
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){

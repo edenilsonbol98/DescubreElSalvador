@@ -1,6 +1,7 @@
 package sv.edu.catolica.bolanios.jonathan.descubreelsalvador.Adaptadores;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 
 import sv.edu.catolica.bolanios.jonathan.descubreelsalvador.Editar_Publicacion;
+import sv.edu.catolica.bolanios.jonathan.descubreelsalvador.Fotos_Pantalla_Completa;
 import sv.edu.catolica.bolanios.jonathan.descubreelsalvador.R;
 
 
@@ -47,6 +49,9 @@ public class MyAdapterFotosEdit extends RecyclerView.Adapter<MyAdapterFotosEdit.
         holder.img1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(context, Fotos_Pantalla_Completa.class);
+                intent.putExtra("listFotos", fotos);
+                context.startActivity(intent);
             }
         });
     }
