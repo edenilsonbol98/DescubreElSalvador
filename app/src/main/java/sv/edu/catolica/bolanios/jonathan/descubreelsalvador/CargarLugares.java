@@ -241,7 +241,7 @@ public class CargarLugares extends AppCompatActivity {
         for (int i = 0; i < 4; i++)
             subButtonDrawables[i] = ContextCompat.getDrawable(this, drawablesResource[i]);
 
-        String[] subButtonTexts = new String[]{"BoomMenuButton", "View source code", "Follow me", "Otra cosa","Otra cosa"};
+
 
         int[][] subButtonColors = new int[3][2];
         for (int i = 0; i < 3; i++) {
@@ -253,17 +253,17 @@ public class CargarLugares extends AppCompatActivity {
         // Now with Builder, you can init BMB more convenient
         final BoomMenuButton init = new BoomMenuButton.Builder()
 
-                .addSubButton(ContextCompat.getDrawable(this, R.drawable.acerca), subButtonColors[0], "Acerca de nosotros")
-                .addSubButton(ContextCompat.getDrawable(this, R.drawable.chat), subButtonColors[0], "Chat")
                 .addSubButton(ContextCompat.getDrawable(this, R.drawable.agregar), subButtonColors[0], "Agregar")
-                .addSubButton(ContextCompat.getDrawable(this, R.drawable.comida), subButtonColors[0], "Restaurantes")
-                .addSubButton(ContextCompat.getDrawable(this, R.drawable.turi), subButtonColors[0], "Turicentros")
-                .addSubButton(ContextCompat.getDrawable(this, R.drawable.hotel), subButtonColors[0], "Hoteles")
+                .addSubButton(ContextCompat.getDrawable(this, R.drawable.chat), subButtonColors[0], "Chat")
+                .addSubButton(ContextCompat.getDrawable(this, R.drawable.acerca), subButtonColors[0], "Acerca de nosotros")
+
+
+
 
 
                 .button(ButtonType.CIRCLE)
                 .boom(BoomType.HORIZONTAL_THROW_2)
-                .place(PlaceType.SHARE_6_6)
+                .place(PlaceType.SHARE_3_1)
                 .subButtonTextColor(ContextCompat.getColor(this, R.color.Blanco))
                 .subButtonsShadow(Util.getInstance().dp2px(1), Util.getInstance().dp2px(1))
                 .onSubButtonClick(new BoomMenuButton.OnSubButtonClickListener() {
