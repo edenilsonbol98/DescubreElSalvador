@@ -79,7 +79,6 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/txtDireccionAdd"
                 android:layout_width="140dp"
                 android:layout_height="43dp"
                 android:layout_marginLeft="5dp"
@@ -109,7 +108,7 @@
                 android:gravity="center"
                 android:onClick="MostrarMapa" />
             <TextView
-                android:id="@+id/txtcheque3"
+                android:id="@+id/txtDireccionAdd"
                 android:layout_width="64dp"
                 android:layout_height="31dp"
                 android:gravity="start"
@@ -170,7 +169,6 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/txtFotosAdd"
                 android:layout_width="179dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="50dp"
@@ -198,7 +196,7 @@
                 tools:ignore="RtlHardcoded" />
 
             <TextView
-                android:id="@+id/txtcheque"
+                android:id="@+id/txtFotosAdd"
                 android:layout_width="64dp"
                 android:layout_height="31dp"
                 android:gravity="start"
@@ -218,7 +216,6 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/txtTelAdd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="50dp"
@@ -245,7 +242,7 @@
                 android:gravity="start"
                 />
             <TextView
-                android:id="@+id/txtcheque2"
+                android:id="@+id/txtTelAdd"
                 android:layout_width="64dp"
                 android:layout_height="31dp"
                 android:gravity="start"

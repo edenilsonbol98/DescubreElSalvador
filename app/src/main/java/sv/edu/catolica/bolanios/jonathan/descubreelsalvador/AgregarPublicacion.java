@@ -79,7 +79,7 @@ public class AgregarPublicacion extends AppCompatActivity {
     private String departamento;
     public static LatLng valorRecibido;
     private TextView txtDireccion, textTel, textFotos;
-    private boolean entroTel = false, entroFotos;
+    private boolean entroTel = false, entroFotos = false, entroMapa=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -105,8 +105,8 @@ public class AgregarPublicacion extends AppCompatActivity {
         botonAgregarcel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new Dialogo_telefono(contexto);
                 entroTel=true;
+                new Dialogo_telefono(contexto);
             }
         });
         myRef = FirebaseFirestore.getInstance();
@@ -158,7 +158,7 @@ public class AgregarPublicacion extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
        // txtDireccion.setText(direcPub);
-        if (direcPub!=null) {
+        if (entroMapa) {
             txtDireccion.setText("✔");
         } else if (entroTel) {
             textTel.setText("✔");
@@ -275,8 +275,8 @@ public class AgregarPublicacion extends AppCompatActivity {
     }
 
     public void ObtenerFotos(View view) {
-        MostrarGaleria();
         entroFotos=true;
+        MostrarGaleria();
     }
 
     public void  ObtenerIntens(){
@@ -373,6 +373,7 @@ public class AgregarPublicacion extends AppCompatActivity {
 
     public void MostrarMapa(View view) {
         if (MapaPublicacion.LocationExistente==null) {
+            entroMapa=true;
             Intent intent = new Intent(this, MapaPublicacion.class);
             startActivity(intent);
         }
