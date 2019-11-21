@@ -270,7 +270,7 @@ public class CargarLugares extends AppCompatActivity {
                     @Override
                     public void onClick(int buttonIndex) {
                         if (buttonIndex == 0) {
-                            Intent llamar = new Intent(CargarLugares.this, CargarLugares.class);
+                            Intent llamar = new Intent(CargarLugares.this, AgregarPublicacion.class);
                             startActivity(llamar);
                             finish();
                         } else if (buttonIndex == 1) {
@@ -278,9 +278,9 @@ public class CargarLugares extends AppCompatActivity {
                             startActivity(llamar);
 
                         } else if (buttonIndex == 2) {
-                            Intent llamar = new Intent(CargarLugares.this, AgregarPublicacion.class);
+                            Intent llamar = new Intent(CargarLugares.this, acerca.class);
                             startActivity(llamar);
-                            finish();
+
                         } else if (buttonIndex == 3) {
                             Intent llamar = new Intent(CargarLugares.this, AgregarPublicacion.class);
                             startActivity(llamar);

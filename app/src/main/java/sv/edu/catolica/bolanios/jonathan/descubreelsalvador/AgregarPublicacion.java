@@ -158,25 +158,39 @@ public class AgregarPublicacion extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
        // txtDireccion.setText(direcPub);
-        if (entroMapa) {
-            txtDireccion.setText("✔");
-        } else if (entroTel) {
-            textTel.setText("✔");
-        } else if(entroFotos){
-            textFotos.setText("✔");
-        }
+        new CountDownTimer(6000, 1000) {
+            public void onFinish() {
+            }
+
+            public void onTick(long millisUntilFinished) {
+                if (entroMapa) {
+                    txtDireccion.setText("✔");
+                } else if (entroTel) {
+                    textTel.setText("✔");
+                } else if(entroFotos){
+                    textFotos.setText("✔");
+                }
+            }
+        }.start();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        if (entroMapa) {
-            txtDireccion.setText("✔");
-        } else if (entroTel) {
-            textTel.setText("✔");
-        } else if(entroFotos){
-            textFotos.setText("✔");
-        }
+        new CountDownTimer(6000, 1000) {
+            public void onFinish() {
+            }
+
+            public void onTick(long millisUntilFinished) {
+                if (entroMapa) {
+                    txtDireccion.setText("✔");
+                } else if (entroTel) {
+                    textTel.setText("✔");
+                } else if(entroFotos){
+                    textFotos.setText("✔");
+                }
+            }
+        }.start();
     }
 
     private static boolean isNumeric(String cadena){
@@ -222,24 +236,22 @@ public class AgregarPublicacion extends AppCompatActivity {
         // Now with Builder, you can init BMB more convenient
         final BoomMenuButton init = new BoomMenuButton.Builder()
 
-                .addSubButton(ContextCompat.getDrawable(this, R.drawable.acerca), subButtonColors[0], "Acerca de nosotros")
-                .addSubButton(ContextCompat.getDrawable(this, R.drawable.chat), subButtonColors[0], "Chat")
                 .addSubButton(ContextCompat.getDrawable(this, R.drawable.agregar), subButtonColors[0], "Agregar")
-                .addSubButton(ContextCompat.getDrawable(this, R.drawable.comida), subButtonColors[0], "Restaurantes")
-                .addSubButton(ContextCompat.getDrawable(this, R.drawable.turi), subButtonColors[0], "Turicentros")
-                .addSubButton(ContextCompat.getDrawable(this, R.drawable.hotel), subButtonColors[0], "Hoteles")
+                .addSubButton(ContextCompat.getDrawable(this, R.drawable.chat), subButtonColors[0], "Chat")
+                .addSubButton(ContextCompat.getDrawable(this, R.drawable.acerca), subButtonColors[0], "Acerca de nosotros")
+
 
 
                 .button(ButtonType.CIRCLE)
                 .boom(BoomType.HORIZONTAL_THROW_2)
-                .place(PlaceType.SHARE_6_6)
+                .place(PlaceType.SHARE_3_1)
                 .subButtonTextColor(ContextCompat.getColor(this, R.color.Blanco))
                 .subButtonsShadow(Util.getInstance().dp2px(1), Util.getInstance().dp2px(1))
                 .onSubButtonClick(new BoomMenuButton.OnSubButtonClickListener() {
                     @Override
                     public void onClick(int buttonIndex) {
                         if (buttonIndex == 0) {
-                            Intent llamar = new Intent(AgregarPublicacion.this, CargarLugares.class);
+                            Intent llamar = new Intent(AgregarPublicacion.this, AgregarPublicacion.class);
                             startActivity(llamar);
                             finish();
                         } else if (buttonIndex == 1) {
@@ -247,9 +259,9 @@ public class AgregarPublicacion extends AppCompatActivity {
                             startActivity(intentar);
 
                         } else if (buttonIndex == 2) {
-                            Intent llamar = new Intent(AgregarPublicacion.this, AgregarPublicacion.class);
+                            Intent llamar = new Intent(AgregarPublicacion.this, acerca.class);
                             startActivity(llamar);
-                            finish();
+
                         } else if (buttonIndex == 3) {
                             Intent llamar = new Intent(AgregarPublicacion.this, CargarLugares.class);
                             startActivity(llamar);
