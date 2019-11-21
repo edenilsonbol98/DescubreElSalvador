@@ -98,7 +98,7 @@
             android:layout_width="212dp"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/btnMapa"
@@ -108,6 +108,12 @@
                 android:drawableStart="@android:drawable/ic_input_add"
                 android:gravity="center"
                 android:onClick="MostrarMapa" />
+            <TextView
+                android:id="@+id/txtcheque3"
+                android:layout_width="64dp"
+                android:layout_height="31dp"
+                android:gravity="start"
+                android:textStyle="bold" />
 
         </LinearLayout>
     </LinearLayout>
@@ -178,7 +184,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="start"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:paddingTop="10dp">
 
             <Button
@@ -190,6 +196,13 @@
                 android:gravity="left"
                 android:onClick="ObtenerFotos"
                 tools:ignore="RtlHardcoded" />
+
+            <TextView
+                android:id="@+id/txtcheque"
+                android:layout_width="64dp"
+                android:layout_height="31dp"
+                android:gravity="start"
+                android:textStyle="bold" />
         </LinearLayout>
     </LinearLayout>
 
@@ -220,7 +233,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="start"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:paddingTop="10dp">
 
             <Button
@@ -231,6 +244,12 @@
                 android:drawableStart="@android:drawable/ic_input_add"
                 android:gravity="start"
                 />
+            <TextView
+                android:id="@+id/txtcheque2"
+                android:layout_width="64dp"
+                android:layout_height="31dp"
+                android:gravity="start"
+                android:textStyle="bold" />
         </LinearLayout>
     </LinearLayout>
 
