@@ -167,6 +167,18 @@ public class AgregarPublicacion extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (entroMapa) {
+            txtDireccion.setText("✔");
+        } else if (entroTel) {
+            textTel.setText("✔");
+        } else if(entroFotos){
+            textFotos.setText("✔");
+        }
+    }
+
     private static boolean isNumeric(String cadena){
         try {
             Integer.parseInt(cadena);
