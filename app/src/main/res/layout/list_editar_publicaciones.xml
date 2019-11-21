@@ -52,6 +52,14 @@
                     android:layout_weight="1"
                     app:srcCompat="@drawable/lapiz"
                     android:contentDescription="@string/todo" />
+                <ImageView
+                    android:id="@+id/btneliminar"
+                    android:layout_width="0dp"
+                    android:layout_height="36dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/delete"
+                    android:contentDescription="@string/todo" />
             </LinearLayout>
 
             <TextView
