@@ -319,7 +319,6 @@ public class CargarLugares extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
     public void btnRecargar(View view) {
         mostrarPublicaciones();
     }

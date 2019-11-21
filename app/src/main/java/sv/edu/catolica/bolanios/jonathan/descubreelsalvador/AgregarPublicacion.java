@@ -78,7 +78,8 @@ public class AgregarPublicacion extends AppCompatActivity {
     private Spinner tipo;
     private String departamento;
     public static LatLng valorRecibido;
-    private TextView txtDireccion;
+    private TextView txtDireccion, textTel, textFotos;
+    private boolean entroTel = false, entroFotos;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -105,14 +106,15 @@ public class AgregarPublicacion extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 new Dialogo_telefono(contexto);
+                entroTel=true;
             }
         });
         myRef = FirebaseFirestore.getInstance();
         mContext = this;
         boomMenuButton = findViewById(R.id.boom);
-
-
-        txtDireccion = findViewById(R.id.direccion);
+        txtDireccion = findViewById(R.id.txtDireccionAdd);
+        textFotos = findViewById(R.id.txtFotosAdd);
+        textTel = findViewById(R.id.txtTelAdd);
     }
 
     @Override
@@ -157,10 +159,11 @@ public class AgregarPublicacion extends AppCompatActivity {
         super.onResume();
        // txtDireccion.setText(direcPub);
         if (direcPub!=null) {
-            txtDireccion.setText(direcPub);
-        }
-        else{
-            txtDireccion.setText("Dirección");
+            txtDireccion.setText("✔");
+        } else if (entroTel) {
+            textTel.setText("✔");
+        } else if(entroFotos){
+            textFotos.setText("✔");
         }
     }
 
@@ -273,6 +276,7 @@ public class AgregarPublicacion extends AppCompatActivity {
 
     public void ObtenerFotos(View view) {
         MostrarGaleria();
+        entroFotos=true;
     }
 
     public void  ObtenerIntens(){
@@ -284,8 +288,6 @@ public class AgregarPublicacion extends AppCompatActivity {
         direcPub = VariablesCompartidas.getDireccion();
         departamento = VariablesCompartidas.getDepartammento();
     }
-
-
 
     public void btnGuardar(View view) {
         boolean validaciones = true;
