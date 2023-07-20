@@ -43,7 +43,14 @@
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
-
+                <ImageView
+                    android:id="@+id/btnAnuncio"
+                    android:layout_width="0dp"
+                    android:layout_height="36dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/botonrojo"
+                    android:contentDescription="@string/todo" />
                 <ImageView
                     android:id="@+id/btnPublicacionEdit"
                     android:layout_width="0dp"
